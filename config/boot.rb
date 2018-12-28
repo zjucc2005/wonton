@@ -9,8 +9,30 @@ Bundler.require(:default, RACK_ENV)
 ##
 # ## Enable devel logging
 #
-# Padrino::Logger::Config[:development][:log_level]  = :devel
-# Padrino::Logger::Config[:development][:log_static] = true
+Padrino::Logger::Config[:development] = {
+  :log_level => :debug,
+  :log_static => true,
+  :stream => :stdout,
+  :format_datetime => '%F %T',
+  :format_message => '%s - %s %s',
+  :colorize_logging => false
+}
+Padrino::Logger::Config[:test] = {
+  :log_level => :debug,
+  :log_static => true,
+  :stream => :to_file,
+  :format_datetime => '%F %T',
+  :format_message => '%s - %s %s',
+  :colorize_logging => false
+}
+Padrino::Logger::Config[:production] = {
+  :log_level => :info,
+  :log_static => true,
+  :stream => :to_file,
+  :format_datetime => '%F %T',
+  :format_message => '%s - %s %s',
+  :colorize_logging => false
+}
 #
 # ## Configure Ruby to allow requiring features from your lib folder
 #

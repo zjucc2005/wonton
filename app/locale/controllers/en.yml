@@ -1,0 +1,7 @@
+# Files in the app/locale directory are used for internationalization
+
+en:
+  email: "Email"
+  password: "Password"
+  login: "Login"
+  logout: "Logout"

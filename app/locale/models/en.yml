@@ -1,0 +1,14 @@
+# Files in the app/locale directory are used for internationalization
+
+en:
+  # super
+  models:
+    account:
+      attributes:
+        id: "ID"
+        email: "Email"
+        nickname: "Nickname"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        role: "Role"
+        created_at: "Created at"

@@ -7,3 +7,4 @@
 :stylesheet: scss
 :namespace: Wonton
 :migration_format: timestamp
+:admin_renderer: erb

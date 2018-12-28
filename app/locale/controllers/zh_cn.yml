@@ -1,0 +1,7 @@
+# Files in the app/locale directory are used for internationalization
+
+zh_cn:
+  email: "邮箱"
+  password: "密码"
+  login: "登录"
+  logout: "注销"

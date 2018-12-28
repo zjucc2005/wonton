@@ -1,0 +1,50 @@
+<% error = @account.errors.include?(:email) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+    <%= f.label :email, :class => 'control-label' %>
+    <div class='controls'>
+        <%= f.text_field :email, :class => 'form-control input-xlarge input-with-feedback' %>
+        <span class='help-inline'><%= error ? f.error_message_on(:email) : '' %></span>
+    </div>
+</fieldset>
+<% error = @account.errors.include?(:nickname) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+    <%= f.label :nickname, :class => 'control-label' %>
+    <div class='controls'>
+        <%= f.text_field :nickname, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
+        <span class='help-inline'><%= error ? f.error_message_on(:nickname) : '' %></span>
+    </div>
+</fieldset>
+<% error = @account.errors.include?(:password) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+    <%= f.label :password, :class => 'control-label' %>
+    <div class='controls'>
+        <%= f.password_field :password, :class => 'form-control input-xlarge input-with-feedback' %>
+        <span class='help-inline'><%= error ? f.error_message_on(:password) : '' %></span>
+    </div>
+</fieldset>
+<% error = @account.errors.include?(:password_confirmation) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <div class='controls'>
+        <%= f.password_field :password_confirmation, :class => 'form-control input-xlarge input-with-feedback' %>
+        <span class='help-inline'><%= error ? f.error_message_on(:password_confirmation) : '' %></span>
+    </div>
+</fieldset>
+<% error = @account.errors.include?(:role) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+    <%= f.label :role, :class => 'control-label' %>
+    <div class='controls'>
+        <%= f.select :role, :options => [[], %w[管理员 admin]], :class => 'form-control input-xlarge input-with-feedback' %>
+        <%#= f.text_field :role, :class => 'form-control input-xlarge input-with-feedback' %>
+        <span class='help-inline'><%= error ? f.error_message_on(:role) : '' %></span>
+    </div>
+</fieldset>
+
+
+<div class="form-actions modal-footer">
+  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:accounts, :index), :class => 'btn btn-default' %>
+</div>

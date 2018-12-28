@@ -17,6 +17,8 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
+gem 'activesupport', '>= 3.1'
+gem 'bcrypt'
 gem 'sass'
 gem 'erubi', '~> 1.6'
 gem 'activerecord', '5.1.5', :require => 'active_record'
