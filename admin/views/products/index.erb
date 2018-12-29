@@ -1,0 +1,74 @@
+<ul class="nav nav-tabs">
+    <li class=active> <%= link_to tag_icon(:list, pat(:list)), url(:products, :index) %></li>
+    <li> <%= link_to tag_icon(:plus, pat(:new)), url(:products, :new) %></li>
+</ul>
+
+<div class="tabs-content">
+    <% if @products.any? %>
+        <table id="list" class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <!-- dropdown -->
+                    <th class="header list-menu">
+                        <div class="dropdown">
+                            <a href="#" class="list-menu-toggle dropdown-toggle" data-toggle="dropdown">
+                                <%= tag_icon :magic %> <span class="caret"></span>
+                            </a>
+                            <ul class="list-menu dropdown-menu" role="menu">
+                                <li class="list-menu-wrapper">
+                                    <%= link_to tag_icon('check-square-o', pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link' %>
+                                </li>
+                                <li class="list-menu-wrapper.list-menu-wrapper-disabled">
+                                    <%= link_to tag_icon('square-o', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled' %>
+                                </li>
+                            </ul>
+                        </div>
+                    </th>
+                    <!-- thead -->
+                    <th class="header"><%= mat(:product, :id) %></th>
+                    <th class="header"><%= mat(:product, :name) %></th>
+                    <th class="header"><%= mat(:product, :author) %></th>
+                    <th class="header"><%= mat(:product, :created_at) %></th>
+                    <th class="header"><%= mat(:product, :pv) %></th>
+                    <th class="header list-row-action-header"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @products.each do |product| %>
+                    <tr class="list-row">
+                        <td class="list-column list-selectable">
+                            <%= check_box_tag 'product_ids[]', :value => product.id, :class => 'list-selectable-checkbox' %>
+                        </td>
+                        <td class="list-column"><%= product.id %></td>
+                        <td class="list-column"><%= product.name %></td>
+                        <td class="list-column"><%= product.author.try(:nickname) %></td>
+                        <td class="list-column"><%= product.created_at.strftime('%F %T') %></td>
+                        <td class="list-column"><%= product.pv %></td>
+                        <td class="list-column list-row-action">
+                            <div class='list-row-action-wrapper'>
+                                <%= link_to tag_icon(:edit), :href => url(:products, :edit, :id => product.id), :rel => :tooltip, :title => "#{pat(:edit)} product", :class => 'list-row-action-wrapper-link' %>
+                                <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} product", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
+                                <div class="popover list-row-action-popover-delete-one left">
+                                    <div class=arrow> </div>
+                                    <h3 class=popover-title><%= pat(:delete, :model => 'product') %></h3>
+                                    <div class=popover-content>
+                                        <% form_tag url(:products, :destroy, :id => product.id), :method => :delete do %>
+                                            <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+                                            <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <div align="center">
+            <%= will_paginate @products %>
+        </div>
+    <% else %>
+        <div align="center" class="no-objects-found"><h3>Products not found</h3></div>
+    <% end %>
+</div>

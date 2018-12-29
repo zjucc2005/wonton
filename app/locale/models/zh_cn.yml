@@ -50,6 +50,15 @@ zh_cn:
         password_confirmation: "密码确认"
         role: "角色"
         created_at: "创建时间"
+    product:
+      attributes:
+        id: "ID"
+        name: "名称"
+        description: "描述"
+        pv: "点击量"
+        author: "作者"
+        created_at: "创建时间"
+
 
   will_paginate:
     previous_label: "&#8592; 上一页"

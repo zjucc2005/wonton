@@ -36,7 +36,7 @@
                             <% else %>
                                 <li class=navbar-module>
                             <% end %>
-                            <%= link_to project_module.human_name, url(project_module.path) %>
+                            <%= link_to project_module.options[:friendly_name][I18n.locale] || project_module.human_name, url(project_module.path) %>
                             </li>
                         <% end if logged_in? %>
                     </ul>

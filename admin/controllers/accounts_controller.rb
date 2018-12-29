@@ -1,9 +1,10 @@
 # encoding: utf-8
-Wonton::Admin.controllers :accounts do
+Wonton::Admin.controllers :accounts, :map => 'accounts' do
 
   get :index do
     @title = 'Accounts'
-    @accounts = Account.all.paginate(:page => params[:page], :per_page => 10)
+    query = Account.all
+    @accounts = query.order(:created_at => :asc).paginate(:page => params[:page], :per_page => 10)
     render :index
   end
 
@@ -14,7 +15,7 @@ Wonton::Admin.controllers :accounts do
   end
 
   post :create do
-    @account = Account.new(params[:account])
+    @account = Account.new(account_params)
     if @account.save
       @title = pat(:create_title, :model => "account #{@account.id}")
       flash[:success] = pat(:create_success, :model => 'Account')
@@ -26,49 +27,33 @@ Wonton::Admin.controllers :accounts do
     end
   end
 
-  get :edit, :with => :id do
+  get :edit, :map => ':id/edit' do
     @title = pat(:edit_title, :model => "account #{params[:id]}")
-    @account = Account.where(id: params[:id]).first
-    if @account
-      render :edit
-    else
-      flash[:warning] = pat(:create_error, :model => 'account', :id => "#{params[:id]}")
-      halt 404
-    end
+    load_account
+    render :edit
   end
 
-  put :update, :with => :id do
+  put :update, :map => ':id/update' do
     @title = pat(:update_title, :model => "account #{params[:id]}")
-    @account = Account.where(id: params[:id]).first
-    if @account
-      if @account.update_attributes(params[:account])
-        flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
-        params[:save_and_continue] ?
-          redirect(url(:accounts, :index)) :
-          redirect(url(:accounts, :edit, :id => @account.id))
-      else
-        flash.now[:error] = pat(:update_error, :model => 'account')
-        render :edit
-      end
+    load_account
+    if @account.update(account_params)
+      flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
+      params[:save_and_continue] ?
+        redirect(url(:accounts, :index)) :
+        redirect(url(:accounts, :edit, :id => @account.id))
     else
-      flash[:warning] = pat(:update_warning, :model => 'account', :id => "#{params[:id]}")
-      halt 404
+      flash.now[:error] = pat(:update_error, :model => 'account')
+      render :edit
     end
   end
 
-  delete :destroy, :with => :id do
-    @title = 'Accounts'
-    @account = Account.where(id: params[:id]).first
-    if @account
-      if @account != current_account && @account.destroy
-        flash[:success] = pat(:delete_success, :model => 'Account', :id => "#{params[:id]}")
-      else
-        flash[:error] = pat(:delete_error, :model => 'account')
-      end
-      redirect url(:accounts, :index)
+  delete :destroy, :map => ':id/destroy' do
+    load_account
+    if @account != current_account && @account.destroy
+      flash[:success] = pat(:delete_success, :model => 'Account', :id => "#{params[:id]}")
     else
-      flash[:warning] = pat(:delete_warning, :model => 'account', :id => "#{params[:id]}")
-      halt 404
+      flash[:error] = pat(:delete_error, :model => 'account')
     end
+    redirect url(:accounts, :index)
   end
 end

@@ -12,3 +12,11 @@ en:
         password_confirmation: "Password confirmation"
         role: "Role"
         created_at: "Created at"
+    product:
+      attributes:
+        id: "ID"
+        name: "Name"
+        description: "Description"
+        pv: "PV"
+        author: "Author"
+        created_at: "Created at"
