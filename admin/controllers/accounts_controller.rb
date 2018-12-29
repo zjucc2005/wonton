@@ -18,7 +18,7 @@ Wonton::Admin.controllers :accounts, :map => 'accounts' do
     @account = Account.new(account_params)
     if @account.save
       @title = pat(:create_title, :model => "account #{@account.id}")
-      flash[:success] = pat(:create_success, :model => 'Account')
+      flash[:success] = pat(:create_success, :model => 'account')
       params[:save_and_continue] ? redirect(url(:accounts, :index)) : redirect(url(:accounts, :edit, :id => @account.id))
     else
       @title = pat(:create_title, :model => 'account')
@@ -37,7 +37,7 @@ Wonton::Admin.controllers :accounts, :map => 'accounts' do
     @title = pat(:update_title, :model => "account #{params[:id]}")
     load_account
     if @account.update(account_params)
-      flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
+      flash[:success] = pat(:update_success, :model => 'account', :id =>  "#{params[:id]}")
       params[:save_and_continue] ?
         redirect(url(:accounts, :index)) :
         redirect(url(:accounts, :edit, :id => @account.id))
@@ -50,7 +50,7 @@ Wonton::Admin.controllers :accounts, :map => 'accounts' do
   delete :destroy, :map => ':id/destroy' do
     load_account
     if @account != current_account && @account.destroy
-      flash[:success] = pat(:delete_success, :model => 'Account', :id => "#{params[:id]}")
+      flash[:success] = pat(:delete_success, :model => 'account', :id => "#{params[:id]}")
     else
       flash[:error] = pat(:delete_error, :model => 'account')
     end

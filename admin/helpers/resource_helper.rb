@@ -27,6 +27,18 @@ module Wonton
         resource_params_permit(:product, %w[name description])
       end
 
+      ##
+      # Customer
+      def load_customer
+        @customer = Customer.where(id: params[:id]).first
+        halt(404) if @customer.nil?
+      end
+
+      def customer_params
+        resource_params_permit(:customer,
+        %w[name sex birthday mobile_phone telephone fax company company_addr department position email website])
+      end
+
     end
 
     helpers ResourceHelper

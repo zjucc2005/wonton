@@ -5,3 +5,10 @@ zh_cn:
   password: "密码"
   login: "登录"
   logout: "注销"
+  male: "男"
+  female: "女"
+  other: "其他"
+
+  padrino:
+    admin:
+      search: "搜索"

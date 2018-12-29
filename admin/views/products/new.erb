@@ -5,7 +5,7 @@
 <div class="tabs-content">
     <% form_for :product, url(:products, :create), :class => 'form-horizontal' do |f| %>
         <div class="col-xs-12">
-            <%= partial 'products/form', :locals => { :f => f } %>
+            <%= partial 'form', :locals => { :f => f } %>
         </div>
     <% end %>
 </div>

@@ -5,3 +5,10 @@ en:
   password: "Password"
   login: "Login"
   logout: "Logout"
+  male: "Male"
+  female: "Female"
+  other: "Other"
+
+  padrino:
+    admin:
+      search: "Search"

@@ -5,6 +5,8 @@ Wonton::Admin.controllers :home, :map => '/' do
   end
 
   get :test do
-    current_locale.to_s
+    request.methods.sort.map do |method|
+      "<p>Request.#{method} ==> #{request.send(:"#{method}")}</p>" rescue nil
+    end.join('').html_safe
   end
 end

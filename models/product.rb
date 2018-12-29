@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Product < ActiveRecord::Base
   belongs_to :author, :class_name => 'Account'
+  has_many :product_access_logs, :class_name => 'ProductAccessLog', :dependent => :destroy
 
   # Validations
   validates_presence_of :name

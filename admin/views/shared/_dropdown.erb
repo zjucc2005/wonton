@@ -1,0 +1,13 @@
+<div class="dropdown">
+    <a href="#" class="list-menu-toggle dropdown-toggle" data-toggle="dropdown">
+        <%= tag_icon :magic %> <span class="caret"></span>
+    </a>
+    <ul class="list-menu dropdown-menu" role="menu">
+        <li class="list-menu-wrapper">
+            <%= link_to tag_icon('check-square-o', pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link' %>
+        </li>
+        <li class="list-menu-wrapper.list-menu-wrapper-disabled">
+            <%= link_to tag_icon('square-o', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled' %>
+        </li>
+    </ul>
+</div>

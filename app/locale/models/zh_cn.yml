@@ -58,7 +58,21 @@ zh_cn:
         pv: "点击量"
         author: "作者"
         created_at: "创建时间"
-
+    customer:
+      attributes:
+        id: "ID"
+        name: "姓名"
+        sex: "性别"
+        birthday: "出生日期"
+        mobile_phone: "移动电话"
+        telephone: "固定电话"
+        fax: "传真"
+        company: "公司"
+        company_addr: "公司地址"
+        department: "部门"
+        position: "职位"
+        email: "邮箱"
+        website: "首页"
 
   will_paginate:
     previous_label: "&#8592; 上一页"

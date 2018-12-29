@@ -51,7 +51,7 @@ module Wonton
     #   end
     #
     get :root, :map => '/' do
-      render :erb, 'route ok!'
+      ::Wonton::Admin.url(:products, :index, :uid => 'test uid')
     end
 
     ##

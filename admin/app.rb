@@ -37,6 +37,7 @@ module Wonton
 
     access_control.roles_for :admin do |role|
       role.project_module :products, '/products', { :friendly_name => { :en => 'Products', :zh_cn => '产品' } }
+      role.project_module :customers, '/customers', { :friendly_name => { :en => 'Customers', :zh_cn => '客户' } }
       role.project_module :accounts, '/accounts', { :friendly_name => { :en => 'Accounts', :zh_cn => '帐号管理' } }
     end
 
@@ -53,5 +54,15 @@ module Wonton
         I18n.locale = :zh_cn
       end
     end
+
+    # email settings
+    set :delivery_method, :smtp => {
+                          :address              => 'hwsmtp.qiye.163.com',
+                          :port                 => 25,
+                          :user_name            => 'info@quaie.com',
+                          :password             => '1qaz2WSX',
+                          :authentication       => 'plain',
+                          :enable_starttls_auto => true
+                        }
   end
 end

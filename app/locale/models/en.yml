@@ -20,3 +20,18 @@ en:
         pv: "PV"
         author: "Author"
         created_at: "Created at"
+    customer:
+      attributes:
+        id: "ID"
+        name: "Name"
+        sex: "Gender"
+        birthday: "Birthday"
+        mobile_phone: "Mobile phone"
+        telephone: "Phone"
+        fax: "Fax"
+        company: "Company"
+        company_addr: "Company address"
+        department: "Department"
+        position: "Position"
+        email: "Email"
+        website: "Website"
