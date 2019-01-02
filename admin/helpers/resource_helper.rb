@@ -24,7 +24,7 @@ module Wonton
       end
 
       def product_params
-        resource_params_permit(:product, %w[name description])
+        resource_params_permit(:product, %w[name sku_code thumbnail description])
       end
 
       ##

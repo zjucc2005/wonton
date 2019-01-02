@@ -1,9 +1,31 @@
-<% error = @product.errors.include?(:name) %>
+<div class="col-xs-6">
+    <% error = @product.errors.include?(:name) %>
+    <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+        <%= f.label :name, :class => 'control-label' %>
+        <div class='controls'>
+            <%= f.text_field :name, :required => true, :class => 'form-control input-xlarge input-with-feedback' %>
+            <span class='help-inline'><%= error ? f.error_message_on(:name) : '' %></span>
+        </div>
+    </fieldset>
+</div>
+
+<div class="col-xs-6">
+    <% error = @product.errors.include?(:sku_code) %>
+    <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+        <%= f.label :sku_code, :class => 'control-label' %>
+        <div class='controls'>
+            <%= f.text_field :sku_code, :required => true, :class => 'form-control input-xlarge input-with-feedback' %>
+            <span class='help-inline'><%= error ? f.error_message_on(:sku_code) : '' %></span>
+        </div>
+    </fieldset>
+</div>
+
+<% error = @product.errors.include?(:thumbnail) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :thumbnail, :class => 'control-label' %>
     <div class='controls'>
-        <%= f.text_field :name, :class => 'form-control input-xlarge input-with-feedback' %>
-        <span class='help-inline'><%= error ? f.error_message_on(:name) : '' %></span>
+        <%= f.file_field :thumbnail %>
+        <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
     </div>
 </fieldset>
 

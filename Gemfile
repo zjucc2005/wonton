@@ -25,6 +25,7 @@ gem 'activerecord', '5.1.5', :require => 'active_record'
 gem 'pg'
 
 gem 'will_paginate', '~> 3.0'
+gem 'carrierwave', '~> 1.2.2'
 # Test requirements
 group :test do
   gem 'rspec'

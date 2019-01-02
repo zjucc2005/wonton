@@ -16,6 +16,8 @@ en:
       attributes:
         id: "ID"
         name: "Name"
+        sku_code: "Sku"
+        thumbnail: "Thumbnail"
         description: "Description"
         pv: "PV"
         author: "Author"

@@ -75,6 +75,11 @@ Padrino.before_load do
   require 'will_paginate/active_record'
   require 'will_paginate/view_helpers/sinatra'
   include WillPaginate::Sinatra::Helpers
+
+  # ActiveRecord::Base.send(:include, Paperclip::Glue)
+  # File.send(:include, Paperclip::Upfile)
+  # Paperclip.options[:logger] = Padrino.logger
+  # Paperclip.options[:command_path] = '/usr/bin/'
 end
 
 ##

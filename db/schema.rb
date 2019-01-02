@@ -59,9 +59,11 @@ ActiveRecord::Schema.define(version: 20181229074019) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.string "sku_code"
     t.text "description"
     t.bigint "pv"
     t.bigint "author_id"
+    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

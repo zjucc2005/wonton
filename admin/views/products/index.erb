@@ -31,6 +31,7 @@
                 <th class="header list-menu"><%= partial 'shared/dropdown' %></th>
                 <!-- thead -->
                 <th class="header"><%= mat(:product, :id) %></th>
+                <th class="header"><%= mat(:product, :sku_code) %></th>
                 <th class="header"><%= mat(:product, :name) %></th>
                 <th class="header"><%= mat(:product, :author) %></th>
                 <th class="header"><%= mat(:product, :created_at) %></th>
@@ -46,6 +47,7 @@
                         <%= check_box_tag 'product_ids[]', :value => product.id, :class => 'list-selectable-checkbox' %>
                     </td>
                     <td class="list-column"><%= product.id %></td>
+                    <td class="list-column"><%= product.sku_code %></td>
                     <td class="list-column"><%= product.name %></td>
                     <td class="list-column"><%= product.author.try(:nickname) %></td>
                     <td class="list-column"><%= product.created_at.strftime('%F %T') %></td>
