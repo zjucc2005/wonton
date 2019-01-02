@@ -6,8 +6,8 @@
 <div class="tabs-content">
     <div class="search-namespace">
         <% form_tag url(:products, :index), { :method => :get } do %>
-            <% %w[name].each do |field| %>
-                <div class="col-xs-12">
+            <% %w[sku_code name].each do |field| %>
+                <div class="col-xs-3">
                     <%= label_tag mat(:product, :"#{field}"), :class => 'control-label' %>
                     <div class="controls">
                         <%= text_field_tag :"#{field}", { :value => params[:"#{field}"], :class => 'form-control' } %>

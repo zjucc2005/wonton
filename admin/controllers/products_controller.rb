@@ -4,6 +4,9 @@ Wonton::Admin.controllers :products, :map => 'products' do
   get :index do
     @title = 'Products'
     query = Product.all
+    %w[sku_code name].each do |field|
+      query = query.where("#{field} LIKE ?", "%#{params[:"#{field}"].strip}%") if params[:"#{field}"].present?
+    end
     @products = query.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 10)
     render :index
   end
@@ -55,5 +58,15 @@ Wonton::Admin.controllers :products, :map => 'products' do
       flash[:error] = pat(:delete_error, :model => 'product')
     end
     redirect url(:products, :index)
+  end
+
+  get :thumbnail_url, :map => ':id/thumbnail' do
+    load_product
+    if @product.thumbnail.present?
+      file_path = @product.thumbnail.path
+      send_file(file_path, :file_name => File.basename(file_path))
+    else
+      halt 404
+    end
   end
 end

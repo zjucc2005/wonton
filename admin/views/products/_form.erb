@@ -20,24 +20,31 @@
     </fieldset>
 </div>
 
+
+
+<div class="col-xs-6">
 <% error = @product.errors.include?(:thumbnail) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-    <%= f.label :thumbnail, :class => 'control-label' %>
-    <div class='controls'>
-        <%= f.file_field :thumbnail %>
-        <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
-    </div>
-</fieldset>
+    <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+        <%= f.label :thumbnail, :class => 'control-label' %>
+        <div class="controls pic-upload">
+            <%= f.file_field :thumbnail, :class => 'inbox-file' %>
+            <%= image_tag @product.thumbnail.present? ? url(:products, :thumbnail_url, :id => @product.id) : 'alt.jpg' %>
+            <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
+        </div>
+    </fieldset>
+</div>
+<div class="clearfix"></div>
 
+<div class="col-xs-12">
 <% error = @product.errors.include?(:description) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-    <%= f.label :description, :class => 'control-label' %>
-    <div class='controls'>
-        <%= f.text_area :description, :class => 'ckeditor form-control input-xlarge input-with-feedback' %>
-        <span class='help-inline'><%= error ? f.error_message_on(:description) : '' %></span>
-    </div>
-</fieldset>
-
+    <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+        <%= f.label :description, :class => 'control-label' %>
+        <div class="controls">
+            <%= f.text_area :description, :class => 'ckeditor form-control input-xlarge input-with-feedback' %>
+            <span class='help-inline'><%= error ? f.error_message_on(:description) : '' %></span>
+        </div>
+    </fieldset>
+</div>
 <div class="clearfix"></div>
 
 <div class="form-actions modal-footer">

@@ -116,3 +116,26 @@
     if (error_input = $('.has-error :input').first()) { error_input.focus(); }
   });
 }(window.jQuery);
+
+// pic upload width image show
+$(function(){
+  function preview1(file,ele) {
+    var img = new Image(), url = img.src = URL.createObjectURL(file);
+    var $img = $(img);
+    $img.addClass("fullwidth");
+    img.onload = function() {
+      URL.revokeObjectURL(url);
+      ele.replaceWith($img);
+    }
+  }
+  $(".file input").bind("change",function(e){
+    var file = e.target.files[0];
+    var ele = $(this).parent().parent().next(".pic-upload").children("img");
+    preview1(file,ele)
+  });
+  $(".inbox-file").bind("change",function(e){
+    var file = e.target.files[0];
+    var ele = $(this).next("img");
+    preview1(file,ele)
+  })
+});

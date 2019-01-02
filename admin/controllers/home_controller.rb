@@ -1,7 +1,7 @@
 # encoding: utf-8
 Wonton::Admin.controllers :home, :map => '/' do
   get :index do
-    render :index
+    redirect url(:products, :index)
   end
 
   get :test do

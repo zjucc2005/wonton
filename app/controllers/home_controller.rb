@@ -7,6 +7,7 @@ Wonton::App.controllers :home, :map => '/' do
   end
 
   get :en do
+    @title = 'Ningbo Jiangbei Huiyuan Gifts and Packing Manufactory'
     render :index_en
   end
 
