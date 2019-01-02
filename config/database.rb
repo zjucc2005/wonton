@@ -22,20 +22,11 @@ ActiveRecord::Base.configurations[:development] = {
   :port      => 5432
 }
 
-# ActiveRecord::Base.configurations[:production] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'wonton_prod',
-#   :username  => 'wonton',
-#   :password  => 'd29udG9u',
-#   :host      => 'localhost',
-#   :port      => 5432
-# }
-
 ActiveRecord::Base.configurations[:production] = {
   :adapter   => 'postgresql',
-  :database  => 'wonton_dev',
-  :username  => 'caic',
-  :password  => '123456',
+  :database  => 'wonton_prod',
+  :username  => 'wonton',
+  :password  => 'd29udG9u',
   :host      => 'localhost',
   :port      => 5432
 }
