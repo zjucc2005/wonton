@@ -50,9 +50,6 @@ module Wonton
     #     disable :asset_stamp # no asset timestamping for dev
     #   end
     #
-    get :root, :map => '/' do
-      ::Wonton::Admin.url(:products, :index, :uid => 'test uid')
-    end
 
     ##
     # You can manage errors like:
