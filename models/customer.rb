@@ -4,7 +4,6 @@ class Customer < ActiveRecord::Base
 
   validates_presence_of   :uid
   validates_uniqueness_of :uid
-  validates_presence_of   :name
 
   before_validation :setup, :on => :create
 

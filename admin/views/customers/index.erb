@@ -38,10 +38,9 @@
                 <th class="header"><%= mat(:customer, :id) %></th>
                 <th class="header"><%= mat(:customer, :name) %></th>
                 <th class="header"><%= mat(:customer, :mobile_phone) %></th>
-                <th class="header"><%= mat(:customer, :telephone) %></th>
                 <th class="header"><%= mat(:customer, :email) %></th>
                 <th class="header"><%= mat(:customer, :company) %></th>
-                <th class="header"><%= mat(:customer, :position) %></th>
+                <th class="header"><%= mat(:customer, :website) %></th>
                 <th class="header"><%= mat(:customer, :created_at) %></th>
                 <th class="header list-row-action-header"></th>
             </tr>
@@ -55,11 +54,10 @@
                     </td>
                     <td class="list-column"><%= customer.id %></td>
                     <td class="list-column"><%= customer.name %></td>
-                    <td class="list-column"><%= customer.mobile_phone %></td>
-                    <td class="list-column"><%= customer.telephone %></td>
+                    <td class="list-column" style="white-space: nowrap;"><%= customer.mobile_phone %></td>
                     <td class="list-column"><%= customer.email %></td>
                     <td class="list-column"><%= customer.company %></td>
-                    <td class="list-column"><%= customer.position %></td>
+                    <td class="list-column"><%= customer.website %></td>
                     <td class="list-column"><%= customer.created_at.strftime('%F %T') %></td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>
