@@ -39,6 +39,17 @@ module Wonton
         %w[name sex birthday mobile_phone telephone fax company company_addr department position email website])
       end
 
+      ##
+      # MyMail
+      def load_my_mail
+        @my_mail = MyMail.where(id: params[:id]).first
+        halt(404) if @my_mail.nil?
+      end
+
+      def my_mail_params
+        resource_params_permit(:my_mail, %w[title content to_emails])
+      end
+
     end
 
     helpers ResourceHelper

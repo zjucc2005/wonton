@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181229074019) do
+ActiveRecord::Schema.define(version: 20190103071336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,26 @@ ActiveRecord::Schema.define(version: 20181229074019) do
     t.string "position"
     t.string "email"
     t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mail_tasks", force: :cascade do |t|
+    t.bigint "my_mail_id"
+    t.string "to_email"
+    t.string "status"
+    t.integer "retry_limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["my_mail_id"], name: "index_mail_tasks_on_my_mail_id"
+  end
+
+  create_table "my_mails", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.jsonb "to_emails", default: []
+    t.string "status"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
   attr_accessor :password, :password_confirmation
 
   has_many :products, :class_name => 'Product', :foreign_key => :author_id
+  has_many :my_mails, :class_name => 'MyMail', :foreign_key => :author_id
 
   # Validations
   validates_presence_of     :email, :role

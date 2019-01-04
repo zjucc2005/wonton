@@ -38,6 +38,7 @@ module Wonton
     access_control.roles_for :admin do |role|
       role.project_module :products, '/products', { :friendly_name => { :en => 'Products', :zh_cn => '产品' } }
       role.project_module :customers, '/customers', { :friendly_name => { :en => 'Customers', :zh_cn => '客户' } }
+      role.project_module :my_mails, '/my_mails', { :friendly_name => { :en => 'Mails', :zh_cn => '邮件' } }
       role.project_module :accounts, '/accounts', { :friendly_name => { :en => 'Accounts', :zh_cn => '帐号管理' } }
     end
 
@@ -56,11 +57,16 @@ module Wonton
     end
 
     # email settings
+    # info@partyali.com/1qaz@WSXServer
+    # smtp.ionos.com
+    # Port (for SSL Encryption) 465
+    # Port (TLS/STARTTLS, alternative to SSL) 587
+    DEFAULT_FROM = 'info@partyali.com'
     set :delivery_method, :smtp => {
-                          :address              => 'hwsmtp.qiye.163.com',
+                          :address              => 'smtp.ionos.com',
                           :port                 => 25,
-                          :user_name            => 'info@quaie.com',
-                          :password             => '1qaz2WSX',
+                          :user_name            => 'info@partyali.com',
+                          :password             => '1qaz@WSX',
                           :authentication       => 'plain',
                           :enable_starttls_auto => true
                         }

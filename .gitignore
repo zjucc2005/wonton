@@ -2,6 +2,7 @@
 log/**/*
 tmp/**/*
 uploads/**/*
+public/ckupload
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*

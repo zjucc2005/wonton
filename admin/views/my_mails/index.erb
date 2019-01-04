@@ -1,0 +1,81 @@
+<ul class="nav nav-tabs">
+    <li class="active"><%= link_to tag_icon(:list, pat(:list)), url(:my_mails, :index) %></li>
+    <li><%= link_to tag_icon(:plus, pat(:new)), url(:my_mails, :new) %></li>
+</ul>
+
+<div class="tabs-content">
+    <div class="search-namespace">
+        <% form_tag url(:my_mails, :index), { :method => :get } do %>
+            <div class="col-xs-6">
+                <%= label_tag mat(:my_mail, :title), :class => 'control-label' %>
+                <div class="controls">
+                    <%= text_field_tag :title, { :value => params[:title], :class => 'form-control' } %>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <%= label_tag mat(:my_mail, :content), :class => 'control-label' %>
+                <div class="controls">
+                    <%= text_field_tag :content, { :value => params[:content], :class => 'form-control' } %>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="form-actions modal-footer">
+                <%= submit_tag pat(:search), :class => 'btn btn-primary' %>
+            </div>
+        <% end %>
+    </div>
+
+    <% if @my_mails.any? %>
+        <table id="list" class="table table-striped table-hover table-condensed">
+            <thead>
+            <tr>
+                <!-- dropdown -->
+                <th class="header list-menu"><%= partial 'shared/dropdown' %></th>
+                <!-- thead -->
+                <th class="header"><%= mat(:my_mail, :created_at) %></th>
+                <th class="header"><%= mat(:my_mail, :title) %></th>
+                <th class="header"><%= mat(:my_mail, :author) %></th>
+                <th class="header"><%= mat(:my_mail, :status) %></th>
+                <th class="header list-row-action-header"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @my_mails.each do |mail| %>
+                <tr class="list-row">
+                    <td class="list-column list-selectable">
+                        <%= check_box_tag 'my_mail_ids[]', :value => mail.id, :class => 'list-selectable-checkbox' %>
+                    </td>
+                    <td class="list-column"><%= mail.created_at.strftime('%F %T') %></td>
+                    <td class="list-column"><%= link_to mail.title, url(:my_mails, :edit, :id => mail.id) %></td>
+                    <td class="list-column"><%= mail.author.try(:nickname) %></td>
+                    <td class="list-column"><%= mail.status %></td>
+                    <td class="list-column list-row-action">
+                        <div class='list-row-action-wrapper'>
+                            <%= link_to tag_icon(:edit), :href => url(:my_mails, :edit, :id => mail.id), :rel => :tooltip, :title => "#{pat(:edit)} mail", :class => 'list-row-action-wrapper-link' %>
+                            <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} mail", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
+                            <div class="popover list-row-action-popover-delete-one left">
+                                <div class=arrow> </div>
+                                <h3 class=popover-title><%= pat(:delete, :model => 'mail') %></h3>
+                                <div class=popover-content>
+                                    <% form_tag url(:my_mails, :destroy, :id => mail.id), :method => :delete do %>
+                                        <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+                                        <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+        <div align="center">
+            <%= will_paginate @my_mails %>
+        </div>
+    <% else %>
+        <div align="center" class="no-objects-found"><h3>My mails not found</h3></div>
+    <% end %>
+</div>

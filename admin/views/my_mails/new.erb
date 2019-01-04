@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+    <li> <%= link_to tag_icon(:list, pat(:list)), url(:my_mails, :index) %></li>
+    <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:my_mails, :new) %></li>
+</ul>
+<div class="tabs-content">
+    <% form_for :my_mail, url(:my_mails, :create), :multipart => true, :class => 'form-horizontal' do |f| %>
+        <%= partial 'form', :locals => { :f => f } %>
+    <% end %>
+</div>

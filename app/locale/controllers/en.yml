@@ -11,4 +11,7 @@ en:
 
   padrino:
     admin:
+      save_and_send: "Save and send"
+      save_draft: "Save draft"
       search: "Search"
+      remove_all: "Remove all"

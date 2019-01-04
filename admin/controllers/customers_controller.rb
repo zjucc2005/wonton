@@ -62,4 +62,13 @@ Wonton::Admin.controllers :customers, :map => 'customers' do
     end
     redirect url(:customers, :index)
   end
+
+  get :get_all_emails, :provides => [:json] do
+    begin
+      emails = Customer.where.not(email: nil).pluck(:email)
+      { status: 'succ', emails: emails }.to_json
+    rescue Exception => e
+      { status: 'fail', reason: e.message }.to_json
+    end
+  end
 end

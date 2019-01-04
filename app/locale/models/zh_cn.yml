@@ -75,6 +75,15 @@ zh_cn:
         position: "职位"
         email: "邮箱"
         website: "首页"
+    my_mail:
+      attributes:
+        id: "ID"
+        title: "主题"
+        content: "内容"
+        status: "状态"
+        to_emails: "收件人"
+        author: "作者"
+        created_at: "创建时间"
 
   will_paginate:
     previous_label: "&#8592; 上一页"

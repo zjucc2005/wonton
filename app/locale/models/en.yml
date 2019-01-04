@@ -37,3 +37,12 @@ en:
         position: "Position"
         email: "Email"
         website: "Website"
+    my_mail:
+      attributes:
+        id: "ID"
+        title: "Subject"
+        content: "Content"
+        status: "Status"
+        to_emails: "To"
+        author: "Author"
+        created_at: "Created at"
