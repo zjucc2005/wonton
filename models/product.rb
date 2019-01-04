@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :sku_code
   validates_uniqueness_of :sku_code
-  validates_presence_of :thumbnail
   validates_presence_of :description
   validates_presence_of :author_id
   validates_numericality_of :pv, :greater_than_or_equal_to => 0

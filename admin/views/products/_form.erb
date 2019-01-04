@@ -26,8 +26,13 @@
         <%= f.label :thumbnail, :class => 'control-label' %>
         <div class="controls">
             <div class="pic-upload">
-                <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
-                <%= image_tag @product.thumbnail.present? ? url(:products, :thumbnail_url, :id => @product.id) : 'alt.jpg' %>
+                <% if @product.thumbnail.present? %>
+                    <%= f.file_field :thumbnail, :class => 'inbox-file' %>
+                    <%= image_tag url(:products, :thumbnail_url, :id => @product.id, :a => Time.now.strftime('%Y%m%d%H%M%S')) %>
+                <% else %>
+                    <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
+                    <%= image_tag 'alt.jpg' %>
+                <% end %>
             </div>
             <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
         </div>

@@ -122,7 +122,6 @@ $(function(){
   function preview1(file,ele) {
     var img = new Image(), url = img.src = URL.createObjectURL(file);
     var $img = $(img);
-    $img.addClass("fullwidth");
     img.onload = function() {
       URL.revokeObjectURL(url);
       ele.replaceWith($img);
