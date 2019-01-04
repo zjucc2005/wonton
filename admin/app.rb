@@ -61,7 +61,7 @@ module Wonton
     # smtp.ionos.com
     # Port (for SSL Encryption) 465
     # Port (TLS/STARTTLS, alternative to SSL) 587
-    DEFAULT_FROM = 'info@partyali.com'
+    set :mailer_defaults, :from => 'info@partyali.com'
     set :delivery_method, :smtp => {
                           :address              => 'smtp.ionos.com',
                           :port                 => 25,

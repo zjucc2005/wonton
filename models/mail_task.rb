@@ -13,13 +13,13 @@ class MailTask < ActiveRecord::Base
 
     ##
     # 后台执行发送邮件任务 per 1min
-    # 参数 batch 为每次发送邮件数
-    def run(batch = 1)
+    # 参数 limit 为每次发送邮件数
+    def run(limit = 1)
       # mail_tasks running code here
-      batch.times do
-        mail_task = MailTask.where(status: 'init').order(:retry_limit => :desc, :created_at => :asc).first
-        mail_task.send_mail
-      end
+      run_batch = Time.now.strftime('%Y%m%d%H%M%S')
+      mail_tasks = MailTask.where(status: 'init', run_batch: nil).order(:retry_limit => :desc, :created_at => :asc).limit(limit)
+      mail_tasks.update_all(run_batch: run_batch)
+      MailTask.where(run_batch: run_batch).map(&:send_mail)
     end
   end
 
@@ -27,12 +27,15 @@ class MailTask < ActiveRecord::Base
     begin
       ::Wonton::Admin.deliver(:envelope, :new, to_email, my_mail.title, my_mail.content)
       self.update(status: 'succ')
-    rescue
+    rescue Exception => e
+      puts "SEND MAIL ERROR: #{e.message}"
       self.retry_limit -= 1
       self.status = 'fail' if self.retry_limit == 0
       self.save
+    ensure
+      self.update(run_batch: nil)
+      self.my_mail.update_status
     end
-    self.my_mail.update_status
   end
 
   private

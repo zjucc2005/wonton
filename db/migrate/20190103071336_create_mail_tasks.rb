@@ -5,6 +5,7 @@ class CreateMailTasks < ActiveRecord::Migration[5.1]
       t.string :to_email
       t.string :status
       t.integer :retry_limit
+      t.string :run_batch
       
       t.timestamps null: false
     end

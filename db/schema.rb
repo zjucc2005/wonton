@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20190103071336) do
     t.string "to_email"
     t.string "status"
     t.integer "retry_limit"
+    t.string "run_batch"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["my_mail_id"], name: "index_mail_tasks_on_my_mail_id"
