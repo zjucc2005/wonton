@@ -138,3 +138,91 @@ $(function(){
     preview1(file,ele)
   })
 });
+
+// MyMail -- add recipient panel -------------------------------------------
+// add all emails
+document.getElementById('add-all-emails').onclick = function(){
+  var ret_data = get_all_emails();
+  var wrapper = $('#selected-emails-list');
+  var selected_emails = get_list_group_items_right();
+  for(var i=0; i<ret_data.length; i++){
+    if(selected_emails.indexOf(ret_data[i]) == -1){
+      var list_item = set_list_group_item_right(ret_data[i]);
+      wrapper.append(list_item);
+    }
+  }
+};
+// remove all emails
+document.getElementById('remove-all-selected-emails').onclick = function(){
+  $('#selected-emails-list').html('');
+};
+
+// open add-recipient-panel
+document.getElementById('add-recipient').onclick = function(){
+  $('#add-recipient-panel').show();
+  var my_mail_to_emails = $('#my_mail_to_emails').val().replace(/^\s+|\s+$/g,"");
+  if(my_mail_to_emails){
+    var to_emails = my_mail_to_emails.split(/\s*[;|；]\s*/);
+  }else{
+    var to_emails = [];
+  }
+  var selected_emails_list = $('#selected-emails-list');
+  selected_emails_list.html('');
+  for(var i=0; i<to_emails.length; i++){
+    var list_item = set_list_group_item_right(to_emails[i]);
+    selected_emails_list.append(list_item);
+  }
+  set_list_group_items_left();
+};
+// confirm selected emails
+document.getElementById('add-recipient-panel-confirm').onclick = function(){
+  $('#my_mail_to_emails').val(get_list_group_items_right().join('; '));
+  $('#add-recipient-panel').hide();
+};
+// cancel and close add-recipient-panel
+document.getElementById('add-recipient-panel-cancel').onclick = function(){
+  $('#add-recipient-panel').hide();
+};
+
+function get_all_emails(){
+  var result = [];
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    async: false,
+    url: '/admin/customers/get_all_emails',
+    success: function(data){
+      if(data.status == 'succ'){
+        result = data.emails.sort();
+      }else{
+        alert(data.reason);
+      }
+    }
+  });
+  return result
+}
+// function set_list_group_item_left/right(name) is in page file
+function set_list_group_items_left(){
+  var ret_data = get_all_emails();
+  var emails_list = $('#emails-list');
+  emails_list.html('');
+  for(var i=0; i<ret_data.length; i++){
+    var list_item = set_list_group_item_left(ret_data[i]);
+    emails_list.append(list_item);
+  }
+}
+function get_list_group_items_right(){
+  var obj = $('#selected-emails-list>.list-group-item');
+  var result = [];
+  for(var i=0; i<obj.length; i++){
+    result.push(obj[i].children[1].innerHTML);
+  }
+  return result;
+}
+function add_email(name){
+  var selected_emails = get_list_group_items_right();
+  if(selected_emails.indexOf(name) == -1){
+    var list_item = set_list_group_item_right(name);
+    $('#selected-emails-list').append(list_item);
+  }
+}
