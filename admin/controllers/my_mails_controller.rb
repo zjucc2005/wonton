@@ -86,7 +86,12 @@ Wonton::Admin.controllers :my_mails, :map => 'my_mails' do
 
   delete :destroy, :map => ':id/destroy' do
     load_my_mail
-
+    if @my_mail.destroy
+      flash[:success] = pat(:delete_success, :model => 'my_mail', :id => "#{params[:id]}")
+    else
+      flash[:error] = pat(:delete_error, :model => 'my_mail')
+    end
+    redirect url(:my_mails, :index)
   end
 
 end

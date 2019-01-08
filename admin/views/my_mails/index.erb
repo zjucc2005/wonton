@@ -51,7 +51,10 @@
                     <td class="list-column"><%= mail.created_at.strftime('%F %T') %></td>
                     <td class="list-column"><%= link_to mail.title, url(:my_mails, :edit, :id => mail.id) %></td>
                     <td class="list-column"><%= mail.author.try(:nickname) %></td>
-                    <td class="list-column"><%= mail.status %></td>
+                    <td class="list-column">
+                        <%= mail.status %>
+                        <%= "(#{mail.mail_tasks.where.not(status: 'init').count}/#{mail.mail_tasks.count})" if mail.status == 'sending' %>
+                    </td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>
                             <%= link_to tag_icon(:edit), :href => url(:my_mails, :edit, :id => mail.id), :rel => :tooltip, :title => "#{pat(:edit)} mail", :class => 'list-row-action-wrapper-link' %>

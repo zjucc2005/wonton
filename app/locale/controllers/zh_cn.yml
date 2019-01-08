@@ -11,7 +11,14 @@ zh_cn:
 
   padrino:
     admin:
+      add: "添加"
+      add_all: "全部添加"
+      add_recipient: "添加收件人"
+      all_emails: "全部邮箱"
       save_and_send: "保存并发送"
       save_draft: "保存草稿"
       search: "搜索"
+      select_partial: "部分选择"
+      ok: "确定"
+      remove: "移除"
       remove_all: "全部移除"

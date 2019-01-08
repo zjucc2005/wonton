@@ -11,7 +11,14 @@ en:
 
   padrino:
     admin:
+      add: "Add"
+      add_all: "Add all"
+      add_recipient: "Add recipient"
+      all_emails: "All emails"
       save_and_send: "Save and send"
       save_draft: "Save draft"
       search: "Search"
+      select_partial: "Select partial"
+      ok: "OK"
+      remove: "Remove"
       remove_all: "Remove all"
