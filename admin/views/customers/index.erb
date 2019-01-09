@@ -8,8 +8,8 @@
         <% form_tag url(:customers, :index), { :method => :get } do %>
             <% %w[name sex mobile_phone company].each do |field| %>
                 <div class="col-xs-3">
-                    <%= label_tag mat(:customer, :"#{field}"), :class => 'control-label' %>
-                    <div class="controls">
+                    <div class="controls input-group">
+                        <span class="input-group-addon"><%= mat(:customer, :"#{field}") %></span>
                         <% if field == 'sex' %>
                             <%= select_tag :sex, :options => [[], [t('male'), 'male'], [t('female'), 'female'], [t('other'), 'other']],
                                            :value => params[:sex], :class => 'form-control input-xlarge input-with-feedback' %>

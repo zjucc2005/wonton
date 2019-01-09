@@ -29,6 +29,15 @@
 </div>
 
 <script>
+    // execute after loading
+    window.onload = function(){
+        document.getElementById('add-all-emails').onclick = add_all_emails;
+        document.getElementById('remove-all-selected-emails').onclick = remove_all_selected_emails;
+        document.getElementById('add-recipient').onclick = add_recipient;
+        document.getElementById('add-recipient-panel-confirm').onclick = add_recipient_panel_confirm;
+        document.getElementById('add-recipient-panel-cancel').onclick = add_recipient_panel_cancel;
+    };
+
     function set_list_group_item_right(name){
         return '<li class="list-group-item">' +
                 '<span class="pull-right btn btn-danger btn-xs" data-dismiss="alert"><%= pat(:remove) %></span>' +

@@ -141,7 +141,7 @@ $(function(){
 
 // MyMail -- add recipient panel -------------------------------------------
 // add all emails
-document.getElementById('add-all-emails').onclick = function(){
+function add_all_emails(){
   var ret_data = get_all_emails();
   var wrapper = $('#selected-emails-list');
   var selected_emails = get_list_group_items_right();
@@ -151,14 +151,13 @@ document.getElementById('add-all-emails').onclick = function(){
       wrapper.append(list_item);
     }
   }
-};
+}
 // remove all emails
-document.getElementById('remove-all-selected-emails').onclick = function(){
+function remove_all_selected_emails(){
   $('#selected-emails-list').html('');
-};
-
+}
 // open add-recipient-panel
-document.getElementById('add-recipient').onclick = function(){
+function add_recipient(){
   $('#add-recipient-panel').show();
   var my_mail_to_emails = $('#my_mail_to_emails').val().replace(/^\s+|\s+$/g,"");
   if(my_mail_to_emails){
@@ -173,16 +172,16 @@ document.getElementById('add-recipient').onclick = function(){
     selected_emails_list.append(list_item);
   }
   set_list_group_items_left();
-};
+}
 // confirm selected emails
-document.getElementById('add-recipient-panel-confirm').onclick = function(){
+function add_recipient_panel_confirm(){
   $('#my_mail_to_emails').val(get_list_group_items_right().join('; '));
   $('#add-recipient-panel').hide();
-};
+}
 // cancel and close add-recipient-panel
-document.getElementById('add-recipient-panel-cancel').onclick = function(){
+function add_recipient_panel_cancel(){
   $('#add-recipient-panel').hide();
-};
+}
 
 function get_all_emails(){
   var result = [];

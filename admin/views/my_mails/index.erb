@@ -7,14 +7,14 @@
     <div class="search-namespace">
         <% form_tag url(:my_mails, :index), { :method => :get } do %>
             <div class="col-xs-6">
-                <%= label_tag mat(:my_mail, :title), :class => 'control-label' %>
-                <div class="controls">
+                <div class="controls input-group">
+                    <span class="input-group-addon"> <%= mat(:my_mail, :title) %></span>
                     <%= text_field_tag :title, { :value => params[:title], :class => 'form-control' } %>
                 </div>
             </div>
             <div class="col-xs-6">
-                <%= label_tag mat(:my_mail, :content), :class => 'control-label' %>
-                <div class="controls">
+                <div class="controls input-group">
+                    <span class="input-group-addon"> <%= mat(:my_mail, :content) %></span>
                     <%= text_field_tag :content, { :value => params[:content], :class => 'form-control' } %>
                 </div>
             </div>
