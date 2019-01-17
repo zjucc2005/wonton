@@ -141,8 +141,8 @@ $(function(){
 
 // MyMail -- add recipient panel -------------------------------------------
 // add all emails
-function add_all_emails(){
-  var ret_data = get_all_emails();
+function add_current_emails(){
+  var ret_data = get_list_group_items_left();
   var wrapper = $('#selected-emails-list');
   var selected_emails = get_list_group_items_right();
   for(var i=0; i<ret_data.length; i++){
@@ -183,13 +183,14 @@ function add_recipient_panel_cancel(){
   $('#add-recipient-panel').hide();
 }
 
-function get_all_emails(){
+function load_customer_emails(term){
   var result = [];
   $.ajax({
     type: 'GET',
     dataType: 'json',
     async: false,
-    url: '/admin/customers/get_all_emails',
+    url: '/admin/customers/search_emails',
+    data: { term: term },
     success: function(data){
       if(data.status == 'succ'){
         result = data.emails.sort();
@@ -201,14 +202,22 @@ function get_all_emails(){
   return result
 }
 // function set_list_group_item_left/right(name) is in page file
-function set_list_group_items_left(){
-  var ret_data = get_all_emails();
+function set_list_group_items_left(term){
+  var ret_data = load_customer_emails(term);
   var emails_list = $('#emails-list');
   emails_list.html('');
   for(var i=0; i<ret_data.length; i++){
     var list_item = set_list_group_item_left(ret_data[i]);
     emails_list.append(list_item);
   }
+}
+function get_list_group_items_left(){
+  var obj = $('#emails-list>.list-group-item');
+  var result = [];
+  for(var i=0; i<obj.length; i++){
+    result.push(obj[i].children[1].innerHTML);
+  }
+  return result;
 }
 function get_list_group_items_right(){
   var obj = $('#selected-emails-list>.list-group-item');
@@ -224,4 +233,21 @@ function add_email(name){
     var list_item = set_list_group_item_right(name);
     $('#selected-emails-list').append(list_item);
   }
+}
+function add_input_email(){
+  var ele = $('#input-email');
+  var input_email = ele.val().replace(/^\s+|\s+$/g,"");
+  if(input_email.length > 0){
+    add_email(input_email)
+  }else{
+    alert('please input an email');
+  }
+  ele.val('').focus();
+}
+// set search emails
+function set_search_emails(){
+  var ele = $('#search-email');
+  var term = ele.val().replace(/^\s+|\s+$/g,"");
+  set_list_group_items_left(term);
+  ele.val('').focus();
 }

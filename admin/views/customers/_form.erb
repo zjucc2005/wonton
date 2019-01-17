@@ -1,5 +1,5 @@
 <% %w[name sex birthday mobile_phone telephone fax email website company company_addr department position].each do |field| %>
-    <div class="col-xs-3">
+    <div class="col-sm-3 col-xs-6">
         <% error = @customer.errors.include?(:"#{field}") %>
         <fieldset class="control-group <%= error ? 'has-error' : ''%>">
             <%= f.label :"#{field}", :class => 'control-label' %>

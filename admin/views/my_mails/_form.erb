@@ -3,7 +3,7 @@
     <fieldset class="control-group <%= error ? 'has-error' : '' %>">
 
         <% content_tag :label, :id => 'add-recipient',:class => 'btn btn-primary btn-xs' do %>
-            <span class="caret"></span> <%= mat(:my_mail, :to_emails) %>:
+            <%= mat(:my_mail, :to_emails) %><span class="caret"></span>
         <% end %>
         <div class="controls">
             <%= f.text_field :to_emails, :value => @my_mail.to_emails.join('; '), :class => 'form-control input-xlarge input-with-feedback' %>

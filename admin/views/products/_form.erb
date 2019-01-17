@@ -28,7 +28,7 @@
             <div class="pic-upload">
                 <% if @product.thumbnail.present? %>
                     <%= f.file_field :thumbnail, :class => 'inbox-file' %>
-                    <%= image_tag url(:products, :thumbnail_url, :id => @product.id, :a => Time.now.strftime('%Y%m%d%H%M%S')) %>
+                    <%= image_tag url(:products, :thumbnail_url, :id => @product.id, :t => @product.thumbnail_identifier) %>
                 <% else %>
                     <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
                     <%= image_tag 'alt.jpg' %>

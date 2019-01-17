@@ -1,21 +1,45 @@
 <!-- add recipient panel -->
-<div id="add-recipient-panel" class="col-xs-8 col-xs-offset-2" style="display: none; position: fixed; z-index: 999; top: 110px; left: 0;">
+<div id="add-recipient-panel" class="col-xs-8 col-xs-offset-2" style="display: none; position: fixed; z-index: 999; top: 100px; left: 0;">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title"><%= pat(:add_recipient) %></h3>
         </div>
         <div class="panel-body">
             <div class="col-xs-6">
-                <%= label_tag pat(:all_emails), :class => 'control-label' %>
-                <span id="add-all-emails" class="pull-right btn btn-info btn-xs"><%= pat(:add_all) %></span>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon" style="font-weight:bold;"><%= pat(:all_emails) %></span>
+                    <%= text_field_tag :search_email, :id => 'search-email',:class => 'form-control' %>
+                    <span id="search-email-btn" class="input-group-addon btn btn-info"><%= pat(:search) %></span>
+                    <div class="input-group-btn">
+                        <% content_tag :button, :type => 'button', :class => 'btn btn-default dropdown-toggle', :'data-toggle' => 'dropdown' do %>
+                            <span class="caret"></span>
+                        <% end %>
+                        <ul class="dropdown-menu">
+                            <li><a id="add-all-emails"><%= pat(:add_all) %></a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="controls" style="overflow-y: auto; height: 300px;">
                     <ul id="emails-list" class="list-group"></ul><!-- data display -->
                 </div>
             </div>
 
             <div class="col-xs-6">
-                <%= label_tag mat(:my_mail, :to_emails), :class => 'control-label' %>
-                <span id="remove-all-selected-emails" class="pull-right btn btn-danger btn-xs"><%= pat(:remove_all) %></span>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon" style="font-weight:bold;"><%= mat(:my_mail, :to_emails) %></span>
+                    <%= text_field_tag :input_email, :id => 'input-email', :class => 'form-control' %>
+                    <span id="input-email-btn" class="input-group-addon btn btn-info"><%= pat(:add) %></span>
+                    <div class="input-group-btn">
+                        <% content_tag :button, :type => 'button', :class => 'btn btn-default dropdown-toggle', :'data-toggle' => 'dropdown' do %>
+                            <span class="caret"></span>
+                        <% end %>
+                        <ul class="dropdown-menu">
+                            <li><a id="remove-all-selected-emails"><%= pat(:remove_all) %></a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="controls" style="overflow-y: auto; height: 300px;">
                     <ul id="selected-emails-list" class="list-group"></ul><!-- data display -->
                 </div>
@@ -31,11 +55,15 @@
 <script>
     // execute after loading
     window.onload = function(){
-        document.getElementById('add-all-emails').onclick = add_all_emails;
+        document.getElementById('add-all-emails').onclick = add_current_emails;
         document.getElementById('remove-all-selected-emails').onclick = remove_all_selected_emails;
         document.getElementById('add-recipient').onclick = add_recipient;
         document.getElementById('add-recipient-panel-confirm').onclick = add_recipient_panel_confirm;
         document.getElementById('add-recipient-panel-cancel').onclick = add_recipient_panel_cancel;
+        document.getElementById('search-email-btn').onclick = set_search_emails;
+        document.getElementById('search-email').onkeypress = function(e){ var e = e || window.event; if(e.keyCode == 13){ set_search_emails();} };
+        document.getElementById('input-email-btn').onclick = add_input_email;
+        document.getElementById('input-email').onkeypress = function(e){ var e = e || window.event; if(e.keyCode == 13){ add_input_email(); } };
     };
 
     function set_list_group_item_right(name){
