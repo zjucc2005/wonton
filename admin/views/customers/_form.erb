@@ -1,11 +1,11 @@
 <% %w[name sex birthday mobile_phone telephone fax email website company company_addr department position].each do |field| %>
-    <div class="col-sm-3 col-xs-6">
+    <div class="col-xs-6 col-md-3">
         <% error = @customer.errors.include?(:"#{field}") %>
         <fieldset class="control-group <%= error ? 'has-error' : ''%>">
             <%= f.label :"#{field}", :class => 'control-label' %>
             <div class="controls">
                 <% if field == 'sex' %>
-                    <%= f.select :"#{field}", :options => [[t('male'), 'male'], [t('female'), 'female'], [t('other'), 'other']],
+                    <%= f.select :"#{field}", :options => [[pat(:male), 'male'], [pat(:female), 'female'], [pat(:other), 'other']],
                                  :class => 'form-control input-xlarge input-with-feedback' %>
                 <% else %>
                     <%= f.text_field :"#{field}", :class => 'form-control input-xlarge input-with-feedback' %>

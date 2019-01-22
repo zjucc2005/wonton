@@ -6,13 +6,13 @@
 <div class="tabs-content">
     <div class="search-namespace">
         <% form_tag url(:my_mails, :index), { :method => :get } do %>
-            <div class="col-xs-6">
+            <div class="form-group col-xs-6 col-md-3">
                 <div class="controls input-group">
                     <span class="input-group-addon"> <%= mat(:my_mail, :title) %></span>
                     <%= text_field_tag :title, { :value => params[:title], :class => 'form-control' } %>
                 </div>
             </div>
-            <div class="col-xs-6">
+            <div class="form-group col-xs-6 col-md-3">
                 <div class="controls input-group">
                     <span class="input-group-addon"> <%= mat(:my_mail, :content) %></span>
                     <%= text_field_tag :content, { :value => params[:content], :class => 'form-control' } %>

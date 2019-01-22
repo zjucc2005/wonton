@@ -1,24 +1,25 @@
 # Files in the app/locale directory are used for internationalization
 
 en:
-  email: "Email"
-  password: "Password"
-  login: "Login"
-  logout: "Logout"
-  male: "Male"
-  female: "Female"
-  other: "Other"
-
   padrino:
     admin:
       add: "Add"
       add_all: "Add all"
       add_recipient: "Add recipient"
       all_emails: "All emails"
+      email: "Email"
+      female: "Female"
+      login: "Login"
+      logout: "Logout"
+      male: "Male"
+      my_account: "My account"
       save_and_send: "Save and send"
       save_draft: "Save draft"
       search: "Search"
       select_partial: "Select partial"
+      sure_to_logout: "Sure to logout?"
       ok: "OK"
+      other: "Other"
+      password: "Password"
       remove: "Remove"
       remove_all: "Remove all"
