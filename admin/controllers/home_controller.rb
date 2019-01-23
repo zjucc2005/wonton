@@ -9,4 +9,11 @@ Wonton::Admin.controllers :home, :map => '/' do
       "<p>Request.#{method} ==> #{request.send(:"#{method}")}</p>" rescue nil
     end.join('').html_safe
   end
+
+  get :select_locale do
+    if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
+      session['wonton.locale'] = params[:locale]
+    end
+    redirect params[:back_url] || url(:home, :index)
+  end
 end

@@ -198,7 +198,7 @@ footer p {
   padding: 15px 15px;
 }
 .navbar-nav-form-link:hover {
-  color: #333333;
+  color: red;
 }
 .navbar-brand {
   margin-top: 10px;
@@ -213,6 +213,11 @@ footer p {
 .navbar .navbar-nav > .active > a:focus {
   color: #555;
   background-color: #e7e7e7;
+}
+.navbar-select-locale {
+  display: inline-block;
+  height: 30px;
+  padding: 11px 12px;
 }
 /* --- End Application::TopBar --- */
 

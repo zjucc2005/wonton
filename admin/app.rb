@@ -49,8 +49,13 @@ module Wonton
 
     # Language setting, default :zh_cn
     before do
-      if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
-        I18n.locale = :"#{params[:locale]}"
+      # if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
+      #   I18n.locale = :"#{params[:locale]}"
+      # else
+      #   I18n.locale = :zh_cn
+      # end
+      if session['wonton.locale'].present? && I18n.available_locales.include?(:"#{session['wonton.locale']}")
+        I18n.locale = :"#{session['wonton.locale']}"
       else
         I18n.locale = :zh_cn
       end
