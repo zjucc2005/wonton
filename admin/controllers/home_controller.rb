@@ -10,7 +10,7 @@ Wonton::Admin.controllers :home, :map => '/' do
     end.join('').html_safe
   end
 
-  get :select_locale do
+  get :set_locale do
     if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
       session['wonton.locale'] = params[:locale]
     end

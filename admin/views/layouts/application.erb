@@ -18,12 +18,12 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <%= link_to 'Admin', url(:home, :index), :class => 'navbar-brand' %>
-                    <div class="navbar-select-locale">
-                        <% form_tag url(:home, :select_locale), :method => :get, :id => 'select_locale' do %>
+                    <div class="navbar-set-locale">
+                        <% form_tag url(:home, :set_locale), :method => :get, :id => 'set_locale' do %>
                             <%= hidden_field_tag :back_url, :value => request.path %>
                             <div class="input-group-sm">
                                 <%= select_tag :locale, :options => [%w[中文 zh_cn], %w[English en]], :value => current_locale,
-                                               :onchange => "$('form#select_locale').submit();", :class => 'form-control' %>
+                                               :onchange => "$('form#set_locale').submit();", :class => 'form-control' %>
                             </div>
                         <% end %>
                     </div>
@@ -33,18 +33,19 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="project_modules">
-                    <ul class="nav navbar-nav">
-                        <% project_modules.each do |project_module| %>
-                            <% if request.path_info =~ /^#{project_module.path}/ %>
-                                <li class="navbar-module active">
-                            <% else %>
-                                <li class=navbar-module>
+
+                <% if logged_in? %>
+                    <div class="collapse navbar-collapse" id="project_modules">
+                        <ul class="nav navbar-nav">
+                            <% project_modules.each do |project_module| %>
+                                <% if request.path_info =~ /^#{project_module.path}/ %>
+                                    <li class="navbar-module active">
+                                <% else %>
+                                    <li class=navbar-module>
+                                <% end %>
+                                <%= link_to project_module.options[:friendly_name][I18n.locale] || project_module.human_name, url(project_module.path) %>
+                                </li>
                             <% end %>
-                            <%= link_to project_module.options[:friendly_name][I18n.locale] || project_module.human_name, url(project_module.path) %>
-                            </li>
-                        <% end if logged_in? %>
-                        <% if logged_in? %>
                             <li class="navbar-edit-account">
                                 <% link_to url(:accounts, :edit, :id => current_account.id), :title => pat(:profile) do %>
                                     <span><%= tag_icon(:user) %> <%= pat(:my_account) %></span>
@@ -54,9 +55,10 @@
                                 <%= button_to(:logout, url(:sessions, :destroy), :method => :delete, :class => 'navbar-nav-form', :onsubmit => "return confirm('#{pat(:sure_to_logout)}');",
                                               :submit_options => { :type => :submit, :title => pat(:logout), :class => 'navbar-nav-form-link' }) { "#{tag_icon(:'power-off')} #{pat(:logout)}".html_safe } %>
                             </li>
-                        <% end %>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                <% end %>
+              
             </div>
         </nav>
 
@@ -64,7 +66,7 @@
         <div class="container main">
             <div class="main-wrapper">
                 <% {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info' }.each do |key, value| %>
-                    <%= flash_tag(key, :class => "alert alert-#{value} fade in", :bootstrap => true) %>
+                    <%= flash_tag(key, :class => "alert alert-#{value} alert-dismissable fade in", :bootstrap => true) %>
                 <% end %>
 
                 <div class="row">
