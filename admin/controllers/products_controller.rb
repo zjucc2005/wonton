@@ -12,7 +12,7 @@ Wonton::Admin.controllers :products, :map => 'products' do
   end
 
   get :new do
-    @title = pat(:new_title, :model => 'product')
+    @title = 'New Product'
     @product = Product.new
     render :new
   end
@@ -31,19 +31,18 @@ Wonton::Admin.controllers :products, :map => 'products' do
   end
 
   get :edit, :map => ':id/edit' do
-    @title = pat(:edit_title, :model => "product #{params[:id]}")
+    @title = 'Edit Product'
     load_product
     render :edit
   end
 
   put :update, :map => ':id/update' do
-    @title = pat(:update_title, :model => "product #{params[:id]}")
     load_product
     if @product.update(product_params)
       flash[:success] = pat(:update_success, :model => 'product', :id =>  "#{params[:id]}")
       params[:save_and_continue] ?
-        redirect(url(:products, :index)) :
-        redirect(url(:products, :edit, :id => @product.id))
+        redirect(url(:products, :edit, :id => @product.id)):
+        redirect(url(:products, :index))
     else
       flash.now[:error] = pat(:update_error, :model => 'product')
       render :edit

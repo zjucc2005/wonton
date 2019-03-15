@@ -9,7 +9,7 @@ Wonton::Admin.controllers :my_mails, :map => 'my_mails' do
   end
 
   get :new do
-    @title = pat(:new_title, :model => 'my_mail')
+    @title = 'New My Mail'
     @my_mail = MyMail.new(status: 'new')
     render :new
   end
@@ -44,7 +44,7 @@ Wonton::Admin.controllers :my_mails, :map => 'my_mails' do
   end
 
   get :edit, :map => ':id/edit' do
-    @title = pat(:edit_title, :model => 'my_mail')
+    @title = 'Edit My Mail'
     load_my_mail
     render :edit
   end

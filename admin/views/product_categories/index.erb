@@ -1,0 +1,81 @@
+<ul class="nav nav-tabs">
+    <li class="active"> <%= link_to tag_icon(:list, pat(:list)), url(:product_categories, :index) %></li>
+    <li> <%= link_to tag_icon(:plus, pat(:new_product_category, :grade => 1)), url(:product_categories, :new) %></li>
+</ul>
+
+<div class="tabs-content">
+
+    <div class="row">
+        <div class="col-md-4 col-xs-6">
+            <ul class="list-group">
+                <% @main_categories.each do |category| %>
+                    <% content_tag :li, :id => "category_#{category.id}", :class => 'main_category list-group-item',
+                                    :title => category.description, :onclick => "get_sub_categories(#{category.id});" do %>
+                        <%= category.name %>
+                        <%= button_to(:destroy, url(:product_categories, :destroy, :id => category.id), :method => :delete, :class => 'btn-delete pull-right', :onsubmit => "return confirm('#{pat(:sure_to_delete)}');",
+                                     :submit_options => { :type => :submit, :title => "#{pat(:delete)}#{category.name}", :class => 'btn btn-danger btn-xs btn-badge' }) { tag_icon(:'trash-o') } %>
+                        <%= link_to tag_icon(:edit), url(:product_categories, :edit, :id => category.id),
+                                    :class => 'btn btn-info btn-xs btn-badge pull-right', :title => "#{pat(:edit)}#{category.name}", :data => { :toggle => :tooltip } %>
+                        <%#= link_to tag_icon(:plus), url(:product_categories, :new, :parent_id => category.id),
+                                    :class => 'btn btn-info btn-xs btn-badge pull-right', :title => pat(:new_product_category, :grade => 2), :data => { :toggle => :tooltip } %>
+                    <% end %>
+                <% end %>
+
+                <%= link_to content_tag(:li, tag_icon(:plus), :class => 'list-group-item align-center'), url(:product_categories, :new) %>
+            </ul>
+        </div>
+
+        <div class="col-md-4 col-xs-6">
+            <ul class="list-group" id="sub_categories_wrapper">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function get_sub_categories(category_id){
+        $('#sub_categories_wrapper').html('');
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            url: '/admin/product_categories/' + category_id + '/children',
+            success: function(data){
+                if(data.status == 'succ'){
+                    set_sub_categories(data.children);
+                    set_plus(data.parent);
+                    category_active(category_id);
+                }else{
+                    alert(data.reason);
+                }
+            }
+        });
+    }
+    function set_plus(parent){
+        var wrapper = $('#sub_categories_wrapper');
+        var content = '<a href="/admin/product_categories/new?parent_id=' + parent['id'] + '">' +
+                        '<li class="list-group-item align-center"><i class="fa fa-plus"></i></li></a>';
+        wrapper.append(content);
+    }
+    function set_sub_categories(children){
+        var wrapper = $('#sub_categories_wrapper');
+        for(i=0;i<children.length;i++){
+            var content = '';
+            var category = children[i];
+            content = '<li id="category_' + category['id'] +'" class="list-group-item" title="'+ category['description'] +'">' + category['name'] +
+                           '<form action="/admin/product_categories/' + category['id'] + '/destroy" accept-charset="UTF-8" method="post" class="btn-delete pull-right" onsubmit="return confirm(\'<%= pat(:sure_to_delete) %>\');">' +
+                           '<input name="_method" value="delete" type="hidden"><button type="submit" title="删除'+ category['name'] + '" class="btn btn-danger btn-xs btn-badge"><i class="fa fa-trash-o"></i></button></form>' +
+                           '<a href="/admin/product_categories/'+ category['id'] +'/edit" class="btn btn-info btn-xs btn-badge pull-right" title="编辑'+ category['name'] +'" data-toggle="tooltip"><i class="fa fa-edit"></i> </a>' +
+                      '</li>';
+            wrapper.append(content);
+        }
+    }
+    function category_active(category_id){
+        var main_categories = $('.main_category');
+        for(i=0;i<main_categories.length;i++){
+            $(main_categories[i]).removeClass('active arrow-right');
+        }
+        $('#category_' + category_id).addClass('active arrow-right');
+    }
+</script>

@@ -16,6 +16,22 @@ module Wonton
       end
 
       ##
+      # Product Category
+      #
+      def load_product_category
+        @product_category = ProductCategory.where(id: params[:id]).first
+        halt(404) if @product_category.nil?
+      end
+
+      def product_category_params
+        resource_params_permit(:product_category, %w[name description])
+      end
+
+      def load_main_categories
+        @main_categories = ProductCategory.where(grade: 1).order(:created_at => :desc)
+      end
+
+      ##
       # Product
       #
       def load_product

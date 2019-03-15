@@ -37,6 +37,7 @@ module Wonton
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :product_categories, '/product_categories', { :friendly_name => { :en => 'Product Categories', :zh_cn => '产品目录' } }
       role.project_module :products, '/products', { :friendly_name => { :en => 'Products', :zh_cn => '产品' } }
       role.project_module :customers, '/customers', { :friendly_name => { :en => 'Customers', :zh_cn => '客户' } }
       role.project_module :my_mails, '/my_mails', { :friendly_name => { :en => 'Mails', :zh_cn => '邮件' } }

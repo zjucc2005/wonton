@@ -9,6 +9,42 @@
 .error{
     color: #a94442;
 }
+.align-center {
+    text-align: center;
+}
+li.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+li.list-group-item.arrow-right::after {
+    content: '';
+    position: absolute;
+    border-left: 5px solid #428bca;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    top: 50%;
+    margin-top: -10px;
+    right: -5px;
+    z-index: 1;
+}
+.btn-delete{
+    display: inline;
+}
+.btn-badge{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 10px;
+}
+
 
 /*-- pic upload with image show --*/
 .inbox-file{

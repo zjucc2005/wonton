@@ -12,6 +12,12 @@ en:
         password_confirmation: "Password confirmation"
         role: "Role"
         created_at: "Created at"
+    product_category:
+      attributes:
+        id: "ID"
+        name: "Name"
+        description: "Description"
+        parent: "Parent Category"
     product:
       attributes:
         id: "ID"
