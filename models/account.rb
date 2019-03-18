@@ -5,6 +5,10 @@ class Account < ActiveRecord::Base
   has_many :products, :class_name => 'Product', :foreign_key => :author_id
   has_many :my_mails, :class_name => 'MyMail', :foreign_key => :author_id
 
+  # collection_associations
+  has_many :collection_associations, :class_name => 'CollectionAssociation', :dependent => :destroy
+  has_many :collections, :class_name => 'Product', :through => :collection_associations, :source => :product
+
   # Validations
   validates_presence_of     :email, :role
   validates_presence_of     :password,                   :if => :password_required
