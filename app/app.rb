@@ -51,16 +51,18 @@ module Wonton
     #   end
     #
 
-    ##
-    # You can manage errors like:
-    #
-    #   error 404 do
-    #     render 'errors/404'
-    #   end
-    #
-    #   error 500 do
-    #     render 'errors/500'
-    #   end
-    #
+    # Custom error management
+    error(403) { @title = 'Error 403'; render('errors/403', :layout => :error) }
+    error(404) { @title = 'Error 404'; render('errors/404', :layout => :error) }
+    error(500) { @title = 'Error 500'; render('errors/500', :layout => :error) }
+
+    # Language setting, default :zh_cn
+    before do
+      if session['wonton.locale'].present? && I18n.available_locales.include?(:"#{session['wonton.locale']}")
+        I18n.locale = :"#{session['wonton.locale']}"
+      else
+        I18n.locale = :zh_cn
+      end
+    end
   end
 end

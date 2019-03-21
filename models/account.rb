@@ -18,7 +18,7 @@ class Account < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :email,    :case_sensitive => false
   validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of       :role,     :with => /[A-Za-z]/
+  validates_inclusion_of    :role,     :in => %w[admin customer]
 
   # Callbacks
   before_save :encrypt_password, :if => :password_required

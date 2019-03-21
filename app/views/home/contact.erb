@@ -1,0 +1,29 @@
+<%= partial 'shared/header', :locals => { :active => 'contact' } %>
+
+<div class="contact-bgleft"></div>
+<div class="contact-bgright"></div>
+
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="contact-phone">
+                <%= content_tag :p, '+49 (0) 133-5599-4425' %>
+            </div>
+            <div class="contact-address">
+                <%= content_tag :p, '浙江宁波庄桥新桥二路 (315032)' %>
+            </div>
+            <div class="contact-email">
+                <%= content_tag :p, 'info@partyali.com' %>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="row contact-windows">
+                <div class="col-xs-6"><%= image_tag 'contact_pic1.png' %></div>
+                <div class="col-xs-6"><%= image_tag 'contact_pic2.png' %></div>
+                <div class="col-xs-6"><%= image_tag 'contact_pic3.png' %></div>
+                <div class="col-xs-6"><%= image_tag 'contact_pic4.png' %></div>
+            </div>
+        </div>
+    </div>
+</div>

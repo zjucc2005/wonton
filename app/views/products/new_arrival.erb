@@ -1,0 +1,78 @@
+<%= partial 'shared/header', :locals => { :active => 'product' } %>
+
+<div class="product-bg"></div>
+<div class="product-bgleft"></div>
+<div class="product-bgright"></div>
+
+<div class="container">
+    <!-- product_navbar -->
+    <ul class="nav product-navbar-nav">
+        <li>
+            <%= link_to t(:new_arrival), url(:products, :new_arrival), :class => 'active' %>
+            <span class="tab"><%= image_tag 'hot.svg' %></span>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">生日</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a onmouseover="$('#test3').show();" onmouseout="$('#test3').hide();">挂牌</a>
+              <ul id="test3" class="dropdown-menu" style="left: 150px;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                <li><a>蝴蝶结</a></li>
+                <li><a>无纺布</a></li>
+                <li><a>人偶</a></li>
+              </ul>
+            </li>
+            <li>
+              <a onmouseover="$('#test4').show();" onmouseout="$('#test4').hide();">金属丝</a>
+              <ul id="test4" class="dropdown-menu" style="left: 150px;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                <li><a>金属1</a></li>
+                <li><a>金属2</a></li>
+                <li><a>金属3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">帽子</a></li>
+            <li><a href="#">头饰</a></li>
+            <li><a href="#">眼镜制品</a></li>
+            <li><a href="#">衣服树裙</a></li>
+          </ul>
+        </li>
+        <li><a>帽子</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">圣诞</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a onmouseover="$('#test1').show();" onmouseout="$('#test1').hide();">挂牌</a>
+                    <ul id="test1" class="dropdown-menu" style="left: 100%; top: 0;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                        <li><a>蝴蝶结</a></li>
+                        <li><a>无纺布</a></li>
+                        <li><a>人偶</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a onmouseover="$('#test2').show();" onmouseout="$('#test2').hide();">金属丝</a>
+                    <ul id="test2" class="dropdown-menu" style="left: 100%; top: 0;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                        <li><a>金属1</a></li>
+                        <li><a>金属2</a></li>
+                        <li><a>金属3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">帽子</a></li>
+                <li><a href="#">头饰</a></li>
+                <li><a href="#">眼镜制品</a></li>
+                <li><a href="#">衣服树裙</a></li>
+            </ul>
+        </li>
+        <li><%= link_to t(:collections), url(:products, :collections) %></li>
+    </ul>
+
+    <div id="showcases" class="row">
+        <% @products.each do |product| %>
+        <% 8.times do |i| %>
+            <%= partial 'showcase', :locals => { :product => product, :new_arrival => true } %>
+        <% end %>
+        <% end %>
+    </div>
+    <div align="right">
+        <%= will_paginate @products %>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<nav class="navbar hy-navbar">
+    <div class="hy-navbar-logo">
+        <%= image_tag 'logo.svg' %>
+    </div>
+
+    <div class="hy-navbar-menu">
+        <ul class="nav hy-navbar-nav">
+            <li><%= link_to t('navbar.home'), url(:home, :index), :class => ('active' if active == 'home') %></li>
+            <li><%= link_to t('navbar.company'), url(:home, :company), :class => ('active' if active == 'company') %></li>
+            <li><%= link_to t('navbar.product'), url(:products, :new_arrival), :class => ('active' if active == 'product') %></li>
+            <li><%= link_to t('navbar.contact'), url(:home, :contact), :class => ('active' if active == 'contact') %></li>
+            <li>
+                <% if current_locale == :zh_cn %>
+                    <%= link_to 'English', url(:home, :set_locale, :locale => :en, :back_url => request.path) %>
+                <% else %>
+                    <%= link_to '中文', url(:home, :set_locale, :locale => :zh_cn, :back_url => request.path) %>
+                <% end %>
+            </li>
+            <li><%= link_to t('navbar.login_or_signup'), nil, :onclick => "$('#hy-login-form').slideToggle(200);" %></li>
+        </ul>
+    </div>
+
+    <div id="hy-login-form">
+        <ul id="hy-login-form-label" class="nav nav-tabs">
+            <li class="active"><a href="#hy-login" data-toggle="tab">登录</a></li>
+            <li><a href="#hy-signup" data-toggle="tab">注册</a></li>
+        </ul>
+
+        <div id="hy-login-form-content" class="tab-content">
+            <div class="tab-pane fade in active" id="hy-login">
+                <% form_tag url(:sessions, :create), :method => :post do %>
+                    <%= hidden_field_tag :back_url, :value => request.path %>
+                    <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
+                    <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
+                    <%= submit_tag t(:login) %>
+                    <span class="forget-password pull-left">
+                        <%= link_to t(:forget_password) %>
+                    </span>
+                    <span class="remember-me pull-right">
+                        <%= check_box_tag :remember_me %>
+                        <%= t(:remember_me) %>
+                    </span>
+                <% end %>
+            </div>
+            <div class="tab-pane fade" id="hy-signup">
+                <% form_tag url(:registrations, :create), :method => :post do %>
+                    <%= hidden_field_tag :back_url, :value => request.path %>
+                    <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
+                    <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
+                    <%= password_field_tag :password_confirmation, :required => true, :placeholder => t(:password_confirmation) %>
+                    <%= submit_tag t(:signup) %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</nav>

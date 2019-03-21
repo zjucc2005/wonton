@@ -52,3 +52,7 @@ en:
         to_emails: "To"
         author: "Author"
         created_at: "Created at"
+
+  will_paginate:
+    previous_label: "&lt;"
+    next_label: "&gt;"

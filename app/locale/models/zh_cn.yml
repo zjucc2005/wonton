@@ -92,5 +92,5 @@ zh_cn:
         created_at: "创建时间"
 
   will_paginate:
-    previous_label: "&#8592; 上一页"
-    next_label: "下一页 &#8594;"
+    previous_label: "&lt;"
+    next_label: "&gt;"

@@ -27,3 +27,31 @@ zh_cn:
       sure_to_delete: "确定删除吗?"
       sure_to_logout: "确定注销吗?"
 
+  custom_errors:
+    "403":
+      title: "403错误"
+      description: "禁止访问该资源"
+    "404":
+      title: "404错误"
+      description: "未找到相关资源"
+    "500":
+      title: "500错误"
+      description: "服务器错误"
+
+  navbar:
+    home: "首页"
+    company: "企业"
+    product: "产品"
+    contact: "联系"
+    login_or_signup: "登录/注册"
+
+  collections: "收藏"
+  email: "账号"
+  forget_password: "忘记密码?"
+  login: "登录"
+  logout: "注销"
+  new_arrival: "新品"
+  password: "密码"
+  password_confirmation: "密码确认"
+  remember_me: "下次自动登录"
+  signup: "注册"

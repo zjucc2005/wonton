@@ -34,7 +34,7 @@
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
     <%= f.label :role, :class => 'control-label' %>
     <div class='controls'>
-        <%= f.select :role, :options => [[], %w[管理员 admin]], :class => 'form-control input-xlarge input-with-feedback' %>
+        <%= f.select :role, :options => [%w[客户 customer], %w[管理员 admin]], :class => 'form-control input-xlarge input-with-feedback' %>
         <%#= f.text_field :role, :class => 'form-control input-xlarge input-with-feedback' %>
         <span class='help-inline'><%= error ? f.error_message_on(:role) : '' %></span>
     </div>

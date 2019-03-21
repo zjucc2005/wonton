@@ -27,3 +27,31 @@ en:
       sure_to_delete: "Sure to delete?"
       sure_to_logout: "Sure to logout?"
 
+  custom_errors:
+    "403":
+      title: "error 403"
+      description: "forbidden"
+    "404":
+      title: "error 404"
+      description: "not found"
+    "500":
+      title: "error 500"
+      description: "server error"
+
+  navbar:
+    home: "Home"
+    company: "Company"
+    product: "Products"
+    contact: "Contact Us"
+    login_or_signup: "Login/Sign up"
+
+  collections: "Collections"
+  email: "email"
+  forget_password: "forgot password?"
+  login: "Login"
+  logout: "Logout"
+  new_arrival: "New"
+  password: "password"
+  password: "password confirmation"
+  remember_me: "remember me"
+  signup: "Sign up"

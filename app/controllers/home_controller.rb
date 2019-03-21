@@ -1,14 +1,32 @@
 # encoding: utf-8
 Wonton::App.controllers :home, :map => '/' do
 
+  # homepage
   get :index do
-    @title = '宁波江北汇园包装礼品厂'
     render :index
   end
 
-  get :en do
-    @title = 'Ningbo Jiangbei Huiyuan Gifts and Packing Manufactory'
-    render :index_en
+  get :company do
+    render :company
+  end
+
+  get :contact do
+    render :contact
+  end
+
+  get :old_version do
+    render :old_version
+  end
+
+  get :old_version_en do
+    render :old_version_en
+  end
+
+  get :set_locale do
+    if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
+      session['wonton.locale'] = params[:locale]
+    end
+    redirect params[:back_url] || url(:home, :index)
   end
 
   # 处理 ckeditor 文件上传
