@@ -1,0 +1,16 @@
+<ul id="hy-logged-form">
+    <li>
+        <% link_to  url(:accounts, :edit_my_account) do %>
+            <i class="glyphicon glyphicon-user"></i>
+            <%= t(:edit_my_account) %>
+        <% end %>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <% button_to(:logout, url(:sessions, :destroy), :method => :delete, :onsubmit => "return confirm('#{t(:sure_to_logout)}');",
+                      :submit_options => { :type => :submit, :title => t(:logout) }) do %>
+            <i class="glyphicon glyphicon-log-out"></i>
+            <%= t(:logout) %>
+        <% end %>
+    </li>
+</ul>

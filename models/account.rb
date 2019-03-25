@@ -13,7 +13,7 @@ class Account < ActiveRecord::Base
   validates_presence_of     :email, :role
   validates_presence_of     :password,                   :if => :password_required
   validates_presence_of     :password_confirmation,      :if => :password_required
-  validates_length_of       :password, :within => 4..40, :if => :password_required
+  validates_length_of       :password, :within => 6..40, :if => :password_required
   validates_confirmation_of :password,                   :if => :password_required
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :email,    :case_sensitive => false

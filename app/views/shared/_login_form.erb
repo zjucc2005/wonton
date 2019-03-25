@@ -1,0 +1,33 @@
+<div id="hy-login-form">
+    <ul id="hy-login-form-label" class="nav nav-tabs">
+        <li class="active"><a href="#hy-login" data-toggle="tab">登录</a></li>
+        <li><a href="#hy-signup" data-toggle="tab">注册</a></li>
+    </ul>
+
+    <div id="hy-login-form-content" class="tab-content">
+        <div class="tab-pane fade in active" id="hy-login">
+            <% form_tag url(:sessions, :create), :method => :post, :id => :login_form do %>
+                <%= hidden_field_tag :back_url, :value => request.path %>
+                <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
+                <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
+                <%= submit_tag t(:login) %>
+                <span class="forget-password pull-left">
+                    <%= link_to t(:forget_password) %>
+                </span>
+                <span class="remember-me pull-right">
+                    <%= check_box_tag :remember_me %>
+                    <%= t(:remember_me) %>
+                </span>
+            <% end %>
+        </div>
+        <div class="tab-pane fade" id="hy-signup">
+            <% form_tag url(:registrations, :create), :method => :post, :id => :signup_form, :onsubmit => "return validate_params_of_reg('#{current_locale}');" do %>
+                <%= hidden_field_tag :back_url, :value => request.path %>
+                <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
+                <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
+                <%= password_field_tag :password_confirmation, :required => true, :placeholder => t(:password_confirmation) %>
+                <%= submit_tag t(:signup) %>
+            <% end %>
+        </div>
+    </div>
+</div>

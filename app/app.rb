@@ -4,7 +4,11 @@ module Wonton
     use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
+
+    set :admin_model, 'Account' unless respond_to?(:admin_model)
+    set :session_id, "_padrino_#{Padrino.env}_#{app_name}" unless respond_to?(:session_id)
     enable :sessions
+    disable :store_location
 
     ##
     # Caching support.

@@ -15,6 +15,9 @@
     </head>
 
     <body>
+        <% {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info' }.each do |key, value| %>
+            <%= flash_tag(key, :class => "alert alert-#{value} alert-dismissable fade in", :bootstrap => true) %>
+        <% end %>
         <%= yield %>
         <%= javascript_include_tag 'jquery-3.3.1.min', 'bootstrap.min', 'application' %>
     </body>

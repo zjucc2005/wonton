@@ -1,1 +1,25 @@
 <%= partial 'shared/header', :locals => { :active => 'home' } %>
+
+<div id="myCarousel" class="carousel slide">
+    <!-- carousel indicators -->
+    <ol class="carousel-indicators">
+        <% 3.times do |i| %>
+            <%= content_tag :li, nil, :'data-target' => '#myCarousel', :'data-slide-to' => i, :class => i.zero? ? 'active' : '' %>
+        <% end %>
+    </ol>
+    <!-- carousel contents -->
+    <div class="carousel-inner">
+        <div class="item active"><img src="/images/slider1.jpg" alt="First slide"></div>
+        <div class="item"><img src="/images/slider2.jpg" alt="Second slide"></div>
+        <div class="item"><img src="/images/slider3.jpg" alt="Second slide"></div>
+    </div>
+    <!-- carousel control prev/next -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="thin-arrows left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="thin-arrows right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

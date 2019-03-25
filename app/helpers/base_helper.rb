@@ -23,6 +23,7 @@ module Wonton
 
       ##
       # get random name, timestamp(12) + random string(8)
+      # url(:home, :chupload)
       def get_random_name
         "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{Account.new_token(8)}"
       end

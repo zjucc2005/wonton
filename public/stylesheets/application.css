@@ -19,6 +19,53 @@ body {
 .carousel-control .glyphicon-chevron-left { left: 30%; }
 .carousel-control .glyphicon-chevron-right { right: 30%; }
 
+.carousel .thin-arrows {
+    position: absolute;
+    display: block;
+    width: 35px;
+    height: 35px;
+    top: 10px;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.carousel .thin-arrows::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 3px;
+    background: #fff;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.carousel .thin-arrows::after{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 35px;
+    background: #fff;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.carousel .thin-arrows.left {
+    left: 30px;
+    top: 50%;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.carousel .thin-arrows.right{
+    right: 30px;
+    top: 50%;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+
 /* -- Begin Errors -- */
 .custom-error {
     font-family: 'Varela', sans-serif;
@@ -72,8 +119,8 @@ body {
 }
 .hy-navbar-nav > li > a:hover, .hy-navbar-nav > li > a.active {
     text-decoration: none;
-    background: url('/images/underline.png') repeat-x;
-    background-position: 0 70%;
+    background: url('/images/gradient_10px.png') no-repeat;
+    background-position: 50% 70%;
 }
 .hy-navbar-nav > li > a:focus {
     text-decoration: none;
@@ -87,7 +134,7 @@ body {
     right: 65px;
     border: 1px solid #eaeaea;
     background: #fff;
-    box-shadow: 3px 3px 3px #e1e1e1;
+    box-shadow: 3px 3px 3px rgba(100,100,100,0.2);
     width: 238px;
     height: 260px;
     padding: 20px;
@@ -123,9 +170,11 @@ body {
     color: #fff;
     font-size: 13px;
     background-color: #00A0E9;
+    opacity: 0.8;
     border: 0;
     border-radius: 0;
 }
+#hy-login-form-content input[type=submit]:hover{ opacity: 1; }
 #hy-login-form-content .forget-password{ margin-top: 6px; }
 #hy-login-form-content .forget-password a{
     font-size: 10px;
@@ -135,6 +184,31 @@ body {
     font-size: 10px;
     color: #08061E;
 }
+
+#hy-logged-form{
+    display: none;
+    z-index: 100;
+    position: absolute;
+    top: 93px;
+    right: 65px;
+    border: 1px solid #eaeaea;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(100,100,100,0.2);
+    padding: 10px 0;
+}
+
+#hy-logged-form .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+#hy-logged-form li { list-style: none; font-size: 16px; }
+#hy-logged-form li a { display: block;  color: #333; white-space: nowrap; padding: 5px 20px; text-decoration: none; }
+#hy-logged-form li a:hover { background: linear-gradient(140deg, #00A0E9, #F68AFF); color: #fff; }
+#hy-logged-form form button { width: 100%; color: #333; white-space: nowrap; border: none; padding: 5px 20px; background: #fff; text-align: left; }
+#hy-logged-form form button:hover { background: linear-gradient(140deg, #00A0E9, #F68AFF); color: #fff; }
+
 
 /*-- Contact --*/
 .contact-bgleft{ width: 548px; height: 617px; position: absolute; left: 0; top: 128px; z-index: -1; background: url('/images/bg_contact1.svg') no-repeat; }
@@ -201,6 +275,7 @@ body {
 .showcase-modal .modal-body .product-properties td{ border: none; padding: 7px; }
 .showcase-modal .modal-body .product-properties .title { font-size: 16px; color: #787A84; white-space: nowrap; text-align: left; }
 .showcase-modal .modal-body .product-properties .string { font-size: 16px; color: #2B2F39; text-align: right; }
+.showcase-modal .modal-body .product-properties .price { color: #E64949; }
 .showcase-modal .modal-body .product-properties .text { font-size: 14px; text-align: left; }
 
 .showcase-modal .modal-body .user-grade { font-size: 16px; color: #43A9EE; float: right; margin-top: 30px; margin-bottom: 10px; }
