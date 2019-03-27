@@ -23,6 +23,9 @@ class Account < ActiveRecord::Base
   # Callbacks
   before_save :encrypt_password, :if => :password_required
 
+  scope :admin, lambda { where(role: 'admin') }
+  scope :customer, lambda { where(role: 'customer') }
+
   ##
   # This method is for authentication purpose.
   def self.authenticate(email, password)

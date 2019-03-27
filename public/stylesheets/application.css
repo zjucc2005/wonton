@@ -2,7 +2,7 @@
 body {
     font-family: "microsoft yahei";
 }
-
+.control-label { white-space: nowrap; }
 .caret.right {
     display: inline-block;
     width: 0;
@@ -19,7 +19,7 @@ body {
 .carousel-control .glyphicon-chevron-left { left: 30%; }
 .carousel-control .glyphicon-chevron-right { right: 30%; }
 
-.carousel .thin-arrows {
+.carousel .thin-arrow {
     position: absolute;
     display: block;
     width: 35px;
@@ -30,7 +30,7 @@ body {
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.carousel .thin-arrows::before {
+.carousel .thin-arrow::before {
     content: '';
     position: absolute;
     width: 35px;
@@ -40,7 +40,7 @@ body {
     left: 0;
     display: block;
 }
-.carousel .thin-arrows::after{
+.carousel .thin-arrow::after{
     content: '';
     position: absolute;
     width: 3px;
@@ -50,21 +50,25 @@ body {
     left: 0;
     display: block;
 }
-.carousel .thin-arrows.left {
+.carousel .thin-arrow.left {
     left: 30px;
     top: 50%;
     -webkit-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-.carousel .thin-arrows.right{
+.carousel .thin-arrow.right{
     right: 30px;
     top: 50%;
     -webkit-transform: rotate(135deg);
     -ms-transform: rotate(135deg);
     transform: rotate(135deg);
 }
-
+.carousel .thin-arrow.small{ width: 25px; height: 25px; }
+.carousel .thin-arrow.small::before{ width: 25px; }
+.carousel .thin-arrow.small::after{ height: 25px; }
+.carousel .carousel-indicators li { border: none; background-color: #aaa; opacity: 0.7;}
+.carousel .carousel-indicators li.active { border: none; background-color: #00A0E9; }
 
 /* -- Begin Errors -- */
 .custom-error {
@@ -288,7 +292,8 @@ body {
 .showcase-modal .modal-body .operation .consult:hover, .showcase-modal .modal-body .operation .collect:hover, .showcase-modal .modal-body .operation .order:hover  { opacity: 1; }
 
 /*-- Pagination --*/
-.pagination a { padding: 7px 12px; background: #E8F1FF; color: #2E53A5; }
-.pagination span { padding: 7px 12px; background: #eee; color: #bbb; }
-.pagination em { padding: 7px 12px; background: #00A0E9; color: #fff; }
+.pagination a, .pagination span, .pagination em { padding: 7px 12px; }
+.pagination a { background: #E8F1FF; color: #2E53A5; text-decoration: none; }
+.pagination span { background: #eee; color: #bbb; }
+.pagination em, .pagination a:hover { background: #00A0E9; color: #fff; }
 

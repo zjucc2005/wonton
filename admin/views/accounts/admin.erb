@@ -1,39 +1,10 @@
 <ul class="nav nav-tabs">
-    <li class="active"> <%= link_to tag_icon(:user, t(:customer_accounts)), url(:accounts, :index) %></li>
-    <li> <%= link_to tag_icon(:gear, t(:admin_accounts)), url(:accounts, :admin) %></li>
+    <li> <%= link_to tag_icon(:user, t(:customer_accounts)), url(:accounts, :index) %></li>
+    <li class="active"> <%= link_to tag_icon(:gear, t(:admin_accounts)), url(:accounts, :admin) %></li>
     <li> <%= link_to tag_icon(:plus, t('action.new')), url(:accounts, :new) %></li>
 </ul>
 
 <div class="tabs-content">
-    <div class="search-namespace">
-        <% form_tag url(:accounts, :index), :method => :get do %>
-
-            <% %w[email nickname name].each do |field| %>
-            <div class="form-group col-xs-6 col-md-3">
-                <div class="controls input-group">
-                    <span class="input-group-addon"><%= mat(:account, field) %></span>
-                    <%= text_field_tag field, :value => params[field], :class => 'form-control' %>
-                </div>
-            </div>
-            <% end %>
-
-            <div class="form-group col-xs-6 col-md-3">
-                <div class="controls input-group">
-                    <span class="input-group-addon"><%= mat(:account, :sex) %></span>
-                    <%= select_tag :sex, :options => [[], [t(:male), 'male'], [t(:female), 'female'], [t(:other), 'other']],
-                                   :value => params[:sex], :class => 'form-control' %>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="form-actions modal-footer">
-                <%= submit_tag t('action.search'), :class => 'btn btn-primary' %>
-            </div>
-        <% end %>
-    </div>
-
-
     <% if @accounts.any? %>
         <table id="list" class="table table-striped table-hover table-condensed">
             <thead>

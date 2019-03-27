@@ -37,12 +37,12 @@
 
 <div class="form-actions modal-footer">
     <% if @my_mail.can_edit? %>
-        <%= f.submit pat(:save_draft), :class => 'btn btn-primary' %>
+        <%= f.submit t('action.save_draft'), :class => 'btn btn-primary' %>
         &nbsp;
-        <%= f.submit pat(:save_and_send), :class => 'btn btn-info', :name => 'save_and_send' %>
+        <%= f.submit t('action.save_and_send'), :class => 'btn btn-info', :name => 'save_and_send' %>
         &nbsp;
     <% end %>
-    <%= link_to pat(:cancel), url(:my_mails, :index), :class => 'btn btn-default' %>
+    <%= link_to t('action.cancel'), url(:my_mails, :index), :class => 'btn btn-default' %>
 </div>
 
 <%= partial 'add_recipient_panel' %>

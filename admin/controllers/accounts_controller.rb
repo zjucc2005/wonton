@@ -3,9 +3,22 @@ Wonton::Admin.controllers :accounts, :map => 'accounts' do
 
   get :index do
     @title = 'Accounts'
-    query = Account.all
+    query = Account.customer
+    %w[email nickname name].each do |field|
+      query = query.where("lower(#{field}) LIKE lower(?)", "%#{params[:"#{field}"].strip}%") if params[:"#{field}"].present?
+    end
+    %w[sex].each do |field|
+      query = query.where(:"#{field}" => params[:"#{field}"].strip) if params[:"#{field}"].present?
+    end
     @accounts = query.order(:created_at => :asc).paginate(:page => params[:page], :per_page => 10)
     render :index
+  end
+
+  get :admin do
+    @title = 'Admin accounts'
+    query = Account.admin
+    @accounts = query.order(:created_at => :asc).paginate(:page => params[:page], :per_page => 10)
+    render :admin
   end
 
   get :new do
@@ -55,5 +68,19 @@ Wonton::Admin.controllers :accounts, :map => 'accounts' do
       flash[:error] = pat(:delete_error, :model => 'account')
     end
     redirect url(:accounts, :index)
+  end
+
+  get :search_emails, :provides => [:json] do
+    begin
+      if params[:term].present?
+        cond = ['lower(email) LIKE lower(?)', "%#{params[:term].strip}%"]
+      else
+        cond = ['email IS NOT NULL']
+      end
+      emails = Account.customer.where(*cond).pluck(:email)
+      { status: 'succ', emails: emails }.to_json
+    rescue Exception => e
+      { status: 'fail', reason: e.message }.to_json
+    end
   end
 end

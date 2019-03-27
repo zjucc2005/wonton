@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
-    <li> <%= link_to tag_icon(:list, pat(:list)), url(:products, :index) %></li>
-    <li> <%= link_to tag_icon(:plus, pat(:new)), url(:products, :new) %></li>
-    <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:products, :edit, :id => @product.id) %></li>
+    <li> <%= link_to tag_icon(:list, t(:list)), url(:products, :index) %></li>
+    <li> <%= link_to tag_icon(:plus, t('action.new')), url(:products, :new) %></li>
+    <li class="active"> <%= link_to tag_icon(:edit, t('action.edit')), url(:products, :edit, :id => @product.id) %></li>
 </ul>
 <div class="tabs-content">
     <% form_for :product, url(:products, :update, :id => @product.id), :method => :put, :multipart => true, :class => 'form-horizontal' do |f| %>

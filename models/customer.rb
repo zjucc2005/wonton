@@ -1,7 +1,5 @@
 # encoding: utf-8
 class Customer < ActiveRecord::Base
-  has_many :product_access_logs, :class_name => 'ProductAccessLog', :dependent => :destroy
-
   validates_presence_of   :uid
   validates_uniqueness_of :uid
 

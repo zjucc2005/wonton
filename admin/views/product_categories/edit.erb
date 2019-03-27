@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
-    <li> <%= link_to tag_icon(:list, pat(:list)), url(:product_categories, :index) %></li>
-    <li> <%= link_to tag_icon(:plus, pat(:new_product_category, :grade => 1)), url(:product_categories, :new) %></li>
-    <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:product_categories, :edit, :id => @product_category.id) %></li>
+    <li> <%= link_to tag_icon(:list, t(:list)), url(:product_categories, :index) %></li>
+    <li> <%= link_to tag_icon(:plus, t(:new_product_category, :grade => 1)), url(:product_categories, :new) %></li>
+    <li class="active"> <%= link_to tag_icon(:edit, t('action.edit')), url(:product_categories, :edit, :id => @product_category.id) %></li>
 </ul>
 <div class="tabs-content">
     <div class="row">

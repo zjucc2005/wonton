@@ -189,7 +189,7 @@ function load_customer_emails(term){
     type: 'GET',
     dataType: 'json',
     async: false,
-    url: '/admin/customers/search_emails',
+    url: '/admin/accounts/search_emails',
     data: { term: term },
     success: function(data){
       if(data.status == 'succ'){

@@ -53,11 +53,11 @@
 <div class="clearfix"></div>
 
 <div class="form-actions modal-footer">
-    <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+    <%= f.submit t('action.save'), :class => 'btn btn-primary' %>
     &nbsp;
-    <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+    <%= f.submit t('action.save_and_continue'), :class => 'btn btn-info', :name => 'save_and_continue' %>
     &nbsp;
-    <%= link_to pat(:cancel), url(:products, :index), :class => 'btn btn-default' %>
+    <%= link_to t('action.cancel'), url(:products, :index), :class => 'btn btn-default' %>
 </div>
 
 <%= javascript_include_tag 'ckeditor/ckeditor' %>

@@ -12,7 +12,9 @@ module Wonton
       end
 
       def account_params
-        resource_params_permit(:account, %w[email nickname password password_confirmation role])
+        resource_params_permit(:account,
+          %w[email nickname password password_confirmation role name sex year_of_birth month_of_birth day_of_birth
+             mobile_phone telephone fax company company_addr department position website])
       end
 
       ##

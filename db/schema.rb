@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315071132) do
+ActiveRecord::Schema.define(version: 20190325071724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20190315071132) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uid"
+    t.string "name"
+    t.string "sex"
+    t.integer "year_of_birth"
+    t.integer "month_of_birth"
+    t.integer "day_of_birth"
+    t.string "mobile_phone"
+    t.string "telephone"
+    t.string "fax"
+    t.string "company"
+    t.string "company_addr"
+    t.string "department"
+    t.string "position"
+    t.string "website"
   end
 
   create_table "collection_associations", force: :cascade do |t|

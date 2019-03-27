@@ -1,38 +1,134 @@
-<% error = @account.errors.include?(:email) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-  <%= f.label :email, :class => 'control-label' %>
-  <div class='controls'>
-    <%= f.text_field :email, :readonly => true, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:email) : '' %></span>
-  </div>
-</fieldset>
-<% error = @account.errors.include?(:nickname) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-  <%= f.label :nickname, :class => 'control-label' %>
-  <div class='controls'>
-    <%= f.text_field :nickname, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
-    <span class='help-inline'><%= error ? f.error_message_on(:nickname) : '' %></span>
-  </div>
-</fieldset>
-<% error = @account.errors.include?(:password) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-  <%= f.label :password, :class => 'control-label' %>
-  <div class='controls'>
-    <%= f.password_field :password, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:password) : '' %></span>
-  </div>
-</fieldset>
-<% error = @account.errors.include?(:password_confirmation) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-  <%= f.label :password_confirmation, :class => 'control-label' %>
-  <div class='controls'>
-    <%= f.password_field :password_confirmation, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:password_confirmation) : '' %></span>
-  </div>
-</fieldset>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><%= t(:base_info) %></h3>
+            </div>
+            <div class="panel-body">
+                <% error = @account.errors.include?(:email) %>
+                <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                    <%= f.label :email, :class => 'control-label' %>
+                    <div class='controls'>
+                        <%= f.text_field :email, :class => 'form-control', :required => true, :disabled => request.action != :new %>
+                        <span class='help-inline'><%= error ? f.error_message_on(:email) : '' %></span>
+                    </div>
+                </fieldset>
+
+                <% error = @account.errors.include?(:nickname) %>
+                <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                    <%= f.label :nickname, :class => 'control-label' %>
+                    <div class='controls'>
+                        <%= f.text_field :nickname, :class => 'form-control', :required => true %>
+                        <span class='help-inline'><%= error ? f.error_message_on(:nickname) : '' %></span>
+                    </div>
+                </fieldset>
+
+                <% error = @account.errors.include?(:password) %>
+                <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                    <%= f.label :password, :class => 'control-label' %>
+                    <div class='controls'>
+                        <%= f.password_field :password, :class => 'form-control' %>
+                        <span class='help-inline'><%= error ? f.error_message_on(:password) : '' %></span>
+                    </div>
+                </fieldset>
+
+                <% error = @account.errors.include?(:password_confirmation) %>
+                <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                    <%= f.label :password_confirmation, :class => 'control-label' %>
+                    <div class='controls'>
+                        <%= f.password_field :password_confirmation, :class => 'form-control' %>
+                        <span class='help-inline'><%= error ? f.error_message_on(:password_confirmation) : '' %></span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><%= t(:personal_info) %></h3>
+            </div>
+            <div class="panel-body row">
+                <div class="col-md-4 col-sm-6">
+                    <% error = @account.errors.include?(:name) %>
+                    <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                        <%= f.label :name, :class => 'control-label' %>
+                        <div class='controls'>
+                            <%= f.text_field :name, :class => 'form-control' %>
+                            <span class='help-inline'><%= error ? f.error_message_on(:name) : '' %></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <% error = @account.errors.include?(:sex) %>
+                    <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                        <%= f.label :sex, :class => 'control-label' %>
+                        <div class='controls'>
+                          <%= f.select :sex, :options => [[t(:male), 'male'], [t(:female), 'female'], [t(:other), 'other']], :class => 'form-control' %>
+                          <span class='help-inline'><%= error ? f.error_message_on(:sex) : '' %></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6 row">
+                    <% %w[year_of_birth month_of_birth day_of_birth].each do |field| %>
+                        <div class="col-xs-4">
+                            <% error = @account.errors.include?(field.to_sym) %>
+                            <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                                <%= f.label field, :class => 'control-label' %>
+                                <div class='controls'>
+                                    <%= f.text_field field, :class => 'form-control' %>
+                                    <span class='help-inline'><%= error ? f.error_message_on(field.to_sym) : '' %></span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><%= t(:contact_info) %></h3>
+            </div>
+            <div class="panel-body row">
+                <% %w[mobile_phone telephone fax].each do |field| %>
+                    <div class="col-md-4">
+                        <% error = @account.errors.include?(field.to_sym) %>
+                        <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                            <%= f.label field, :class => 'control-label' %>
+                            <div class='controls'>
+                                <%= f.text_field field, :class => 'form-control' %>
+                                <span class='help-inline'><%= error ? f.error_message_on(field.to_sym) : '' %></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"><%= t(:company_info) %></h3>
+            </div>
+            <div class="panel-body row">
+                <% %w[company company_addr department position website].each do |field| %>
+                    <div class="col-md-4">
+                        <% error = @account.errors.include?(field.to_sym) %>
+                        <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                            <%= f.label field, :class => 'control-label' %>
+                            <div class='controls'>
+                                <%= f.text_field field, :class => 'form-control' %>
+                                <span class='help-inline'><%= error ? f.error_message_on(field.to_sym) : '' %></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="clearfix"></div>
 
 <div class="form-actions modal-footer">
-  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+    <%= f.submit t('action.submit'), :class => 'btn btn-primary' %>
 </div>

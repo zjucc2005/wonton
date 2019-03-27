@@ -10,13 +10,13 @@ Wonton::Admin.controllers :product_categories, :map => 'product_categories' do
   get :new do
     @title = 'New Product Category'
     @product_category = ProductCategory.new
-    @parent = ProductCategory.where(id: params[:parent_id], grade: 1).first
+    @parent = ProductCategory.where(id: params[:parent_id]).first
     render :new
   end
 
   post :create do
     @product_category = ProductCategory.new(product_category_params)
-    @parent = ProductCategory.where(id: params[:parent_id], grade: 1).first
+    @parent = ProductCategory.where(id: params[:parent_id]).first
     if @parent
       @product_category.grade  = @parent.grade + 1
       @product_category.parent = @parent
@@ -66,11 +66,18 @@ Wonton::Admin.controllers :product_categories, :map => 'product_categories' do
     redirect url(:product_categories, :index)
   end
 
+  # format - :html, :data(default)
   get :children, :map => ':id/children' do
     begin
       load_product_category
       @sub_categories = @product_category.children.order(:created_at => :desc)
-      { :status => 'succ', :parent => @product_category.to_api, :children => @sub_categories.map(&:to_api) }.to_json
+      if params[:remote] == 'true'
+        html_content = @sub_categories.map{|category| partial :list_unit, :locals => { :category => category} }.join('')
+        html_content += partial :list_unit_plus, :locals => { :category => @product_category }
+        { :status => 'succ', :parent => @product_category.to_api, :children => @sub_categories.map(&:to_api), :html => html_content }.to_json
+      else
+        { :status => 'succ', :parent => @product_category.to_api, :children => @sub_categories.map(&:to_api) }.to_json
+      end
     rescue Exception => e
       { :status => 'fail', :reason => e.message }.to_json
     end

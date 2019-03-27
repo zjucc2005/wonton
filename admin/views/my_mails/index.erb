@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
-    <li class="active"><%= link_to tag_icon(:list, pat(:list)), url(:my_mails, :index) %></li>
-    <li><%= link_to tag_icon(:plus, pat(:new)), url(:my_mails, :new) %></li>
+    <li class="active"><%= link_to tag_icon(:list, t(:list)), url(:my_mails, :index) %></li>
+    <li><%= link_to tag_icon(:plus, t('action.new')), url(:my_mails, :new) %></li>
 </ul>
 
 <div class="tabs-content">
@@ -22,7 +22,7 @@
             <div class="clearfix"></div>
 
             <div class="form-actions modal-footer">
-                <%= submit_tag pat(:search), :class => 'btn btn-primary' %>
+                <%= submit_tag t('action.search'), :class => 'btn btn-primary' %>
             </div>
         <% end %>
     </div>
@@ -57,15 +57,15 @@
                     </td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>
-                            <%= link_to tag_icon(:edit), :href => url(:my_mails, :edit, :id => mail.id), :rel => :tooltip, :title => "#{pat(:edit)} mail", :class => 'list-row-action-wrapper-link' %>
-                            <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} mail", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
+                            <%= link_to tag_icon(:edit), :href => url(:my_mails, :edit, :id => mail.id), :rel => :tooltip, :title => "#{t('action.edit')} mail", :class => 'list-row-action-wrapper-link' %>
+                            <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{t('action.delete')} mail", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
                             <div class="popover list-row-action-popover-delete-one left">
                                 <div class=arrow> </div>
-                                <h3 class=popover-title><%= pat(:delete, :model => 'mail') %></h3>
+                                <h3 class=popover-title><%= t('action.delete') %></h3>
                                 <div class=popover-content>
                                     <% form_tag url(:my_mails, :destroy, :id => mail.id), :method => :delete do %>
-                                        <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
-                                        <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
+                                        <%= submit_tag t('action.delete'), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+                                        <div class="btn btn-default btn-small cancel"><%= t('action.cancel') %></div>
                                     <% end %>
                                 </div>
                             </div>

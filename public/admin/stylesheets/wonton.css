@@ -1,11 +1,12 @@
 /* -- css for wonton admin -- */
-
+.control-label { white-space: nowrap; }
 .no-objects-found {
     color: #777;
 }
 .help-inline {
     padding: 10px; color: #777;
 }
+.has-error .help-inline { color: #a94442; }
 .error{
     color: #a94442;
 }
@@ -29,6 +30,9 @@ li.list-group-item.arrow-right::after {
     right: -5px;
     z-index: 1;
 }
+li.list-group-item.category-plus { padding: 0; }
+li.list-group-item.category-plus a { background: #eee; color: #555; display: block; padding: 10px 15px; text-decoration: none; }
+li.list-group-item.category-plus a:hover{ background: #5bc0de; color: #fff; }
 .btn-delete{
     display: inline;
 }
@@ -69,3 +73,9 @@ li.list-group-item.arrow-right::after {
 .pic-upload img{
     max-width: 100%;
 }
+
+/*-- Pagination --*/
+.pagination a, .pagination span, .pagination em { padding: 5px 10px; border-radius: 3px; }
+.pagination a { background: #E8F1FF; color: #555; text-decoration: none; }
+.pagination span { background: #eee; color: #bbb; }
+.pagination em, .pagination a:hover { background: #428bca; color: #fff; }

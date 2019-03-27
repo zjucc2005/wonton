@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs">
-    <li> <%= link_to tag_icon(:list, pat(:list)), url(:product_categories, :index) %></li>
-    <li class="<%= 'active' if @parent.nil? %>"> <%= link_to tag_icon(:plus, pat(:new_product_category, :grade => 1)), url(:product_categories, :new) %></li>
+    <li> <%= link_to tag_icon(:list, t(:list)), url(:product_categories, :index) %></li>
+    <li class="<%= 'active' if @parent.nil? %>"> <%= link_to tag_icon(:plus, t(:new_product_category, :grade => 1)), url(:product_categories, :new) %></li>
     <% if @parent %>
-        <li class="active"> <%= link_to tag_icon(:plus, pat(:new_product_category, :grade => 2)), url(:product_categories, :new, :parent_id => @parent.id) %></li>
+        <li class="active"> <%= link_to tag_icon(:plus, t(:new_product_category, :grade => @parent.grade + 1)), url(:product_categories, :new, :parent_id => @parent.id) %></li>
     <% end %>
 </ul>
 <div class="tabs-content">

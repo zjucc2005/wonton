@@ -23,7 +23,7 @@
     <div class="controls">
         <%= f.select :parent_id, :options => @main_categories.map{|c| [c.name, c.id]},
                      :class => 'form-control input-xlarge input-with-feedback' %>
-      <span class='help-inline'><%= error ? f.error_message_on(:parent_id) : '' %></span>
+        <span class='help-inline'><%= error ? f.error_message_on(:parent_id) : '' %></span>
     </div>
 </fieldset>
 <% end %>
@@ -31,9 +31,9 @@
 <div class="clearfix"></div>
 
 <div class="form-actions modal-footer">
-  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  <%= f.submit t('action.save'), :class => 'btn btn-primary' %>
   &nbsp;
-  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  <%= f.submit t('action.save_and_continue'), :class => 'btn btn-info', :name => 'save_and_continue' %>
   &nbsp;
-  <%= link_to pat(:cancel), url(:product_categories, :index), :class => 'btn btn-default' %>
+  <%= link_to t('action.cancel'), url(:product_categories, :index), :class => 'btn btn-default' %>
 </div>

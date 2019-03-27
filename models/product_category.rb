@@ -10,13 +10,24 @@ class ProductCategory < ActiveRecord::Base
   before_validation :setup, :on => :create
 
   def to_api
-    { :id => id, :name => name, :description => description }
+    { :id => id, :name => name, :description => description, :grade => grade }
   end
 
-  # find out first category from parent chain
+  # find out first category from ancestor chain
   def first_category
     parent = self.parent
     parent.nil? ? self : parent.first_category
+  end
+
+  # friendly display for ancestor chain
+  def name_breadcrumb
+    ancestor_chain.reverse.join(' - ')
+  end
+
+  def ancestor_chain(crumbs=[])
+    crumbs << name
+    parent = self.parent
+    parent.nil? ? crumbs : parent.ancestor_chain(crumbs)
   end
 
   private

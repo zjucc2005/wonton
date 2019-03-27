@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:base_info) %></h3>
+                <h3 class="panel-title"><%= pat(:base_info) %></h3>
             </div>
             <div class="panel-body">
                 <% error = @account.errors.include?(:email) %>
@@ -45,7 +45,7 @@
                 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
                     <%= f.label :role, :class => 'control-label' %>
                     <div class='controls'>
-                        <%= f.select :role, :options => [[t(:customer), :customer], [t(:admin), :admin]], :class => 'form-control', :required => true %>
+                        <%= f.select :role, :options => [[pat(:customer), :customer], [pat(:admin), :admin]], :class => 'form-control', :required => true %>
                         <span class='help-inline'><%= error ? f.error_message_on(:role) : '' %></span>
                     </div>
                 </fieldset>
@@ -56,7 +56,7 @@
     <div class="col-md-8">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:personal_info) %></h3>
+                <h3 class="panel-title"><%= pat(:personal_info) %></h3>
             </div>
             <div class="panel-body row">
                 <div class="col-md-4 col-sm-6">
@@ -74,7 +74,7 @@
                     <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
                         <%= f.label :sex, :class => 'control-label' %>
                         <div class='controls'>
-                          <%= f.select :sex, :options => [[t(:male), 'male'], [t(:female), 'female'], [t(:other), 'other']], :class => 'form-control' %>
+                          <%= f.select :sex, :options => [[pat(:male), 'male'], [pat(:female), 'female'], [pat(:other), 'other']], :class => 'form-control' %>
                           <span class='help-inline'><%= error ? f.error_message_on(:sex) : '' %></span>
                         </div>
                     </fieldset>
@@ -97,7 +97,7 @@
         </div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:contact_info) %></h3>
+                <h3 class="panel-title"><%= pat(:contact_info) %></h3>
             </div>
             <div class="panel-body row">
                 <% %w[mobile_phone telephone fax].each do |field| %>
@@ -116,7 +116,7 @@
         </div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:company_info) %></h3>
+                <h3 class="panel-title"><%= pat(:company_info) %></h3>
             </div>
             <div class="panel-body row">
                 <% %w[company company_addr department position website].each do |field| %>
@@ -139,9 +139,9 @@
 <div class="clearfix"></div>
 
 <div class="form-actions modal-footer">
-    <%= f.submit t('action.save'), :class => 'btn btn-primary' %>
+    <%= f.submit pat(:save), :class => 'btn btn-primary' %>
     &nbsp;
-    <%= f.submit t('action.save_and_continue'), :class => 'btn btn-info', :name => 'save_and_continue' %>
+    <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
     &nbsp;
-    <%= link_to t('action.cancel'), url(:accounts, :index), :class => 'btn btn-default' %>
+    <%= link_to pat(:cancel), url(:accounts, :index), :class => 'btn btn-default' %>
 </div>

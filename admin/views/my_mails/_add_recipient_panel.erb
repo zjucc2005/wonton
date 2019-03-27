@@ -2,20 +2,20 @@
 <div id="add-recipient-panel" class="col-lg-8 col-lg-offset-2" style="display: none; position: fixed; z-index: 999; top: 100px; left: 0;">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title"><%= pat(:add_recipient) %></h3>
+            <h3 class="panel-title"><%= t(:add_recipient) %></h3>
         </div>
         <div class="panel-body">
             <div class="col-xs-6">
                 <div class="input-group input-group-sm">
-                    <span class="input-group-addon" style="font-weight:bold;"><%= pat(:all_emails) %></span>
+                    <span class="input-group-addon" style="font-weight:bold;"><%= t(:all_emails) %></span>
                     <%= text_field_tag :search_email, :id => 'search-email',:class => 'form-control' %>
-                    <span id="search-email-btn" class="input-group-addon btn btn-info"><%= pat(:search) %></span>
+                    <span id="search-email-btn" class="input-group-addon btn btn-info"><%= t('action.search') %></span>
                     <div class="input-group-btn">
                         <% content_tag :button, :type => 'button', :class => 'btn btn-default dropdown-toggle', :'data-toggle' => 'dropdown' do %>
                             <span class="caret"></span>
                         <% end %>
                         <ul class="dropdown-menu">
-                            <li><a id="add-all-emails"><%= pat(:add_all) %></a></li>
+                            <li><a id="add-all-emails"><%= t('action.add_all') %></a></li>
                         </ul>
                     </div>
                 </div>
@@ -29,13 +29,13 @@
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon" style="font-weight:bold;"><%= mat(:my_mail, :to_emails) %></span>
                     <%= text_field_tag :input_email, :id => 'input-email', :class => 'form-control' %>
-                    <span id="input-email-btn" class="input-group-addon btn btn-info"><%= pat(:add) %></span>
+                    <span id="input-email-btn" class="input-group-addon btn btn-info"><%= t('action.add') %></span>
                     <div class="input-group-btn">
                         <% content_tag :button, :type => 'button', :class => 'btn btn-default dropdown-toggle', :'data-toggle' => 'dropdown' do %>
                             <span class="caret"></span>
                         <% end %>
                         <ul class="dropdown-menu">
-                            <li><a id="remove-all-selected-emails"><%= pat(:remove_all) %></a></li>
+                            <li><a id="remove-all-selected-emails"><%= t('action.remove_all') %></a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
             </div>
         </div>
         <div class="panel-footer" align="right">
-            <%= button_tag pat(:ok), :id => 'add-recipient-panel-confirm', :class => 'btn btn-success' %>
-            <%= button_tag pat(:cancel), :id => 'add-recipient-panel-cancel', :class => 'btn btn-default' %>
+            <%= button_tag t('action.ok'), :id => 'add-recipient-panel-confirm', :class => 'btn btn-success' %>
+            <%= button_tag t('action.cancel'), :id => 'add-recipient-panel-cancel', :class => 'btn btn-default' %>
         </div>
     </div>
 </div>
@@ -68,12 +68,12 @@
 
     function set_list_group_item_right(name){
         return '<li class="list-group-item">' +
-                '<span class="pull-right btn btn-danger btn-xs" data-dismiss="alert"><%= pat(:remove) %></span>' +
+                '<span class="pull-right btn btn-danger btn-xs" data-dismiss="alert"><%= t('action.remove') %></span>' +
                 '<span>' + name + '</span>' + '</li>';
     }
     function set_list_group_item_left(name){
         return '<li class="list-group-item">' +
-                '<span class="pull-right btn btn-info btn-xs" onclick="add_email(\''+ name +'\');"><%= pat(:add) %></span>' +
+                '<span class="pull-right btn btn-info btn-xs" onclick="add_email(\''+ name +'\');"><%= t('action.add') %></span>' +
                 '<span>' + name + '</span>' + '</li>';
     }
 </script>

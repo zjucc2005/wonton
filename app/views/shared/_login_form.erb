@@ -10,7 +10,7 @@
                 <%= hidden_field_tag :back_url, :value => request.path %>
                 <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
                 <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
-                <%= submit_tag t(:login) %>
+                <%= submit_tag t('action.login') %>
                 <span class="forget-password pull-left">
                     <%= link_to t(:forget_password) %>
                 </span>
@@ -26,7 +26,7 @@
                 <%= email_field_tag :email, :required => true, :placeholder => t(:email) %>
                 <%= password_field_tag :password, :required => true, :placeholder => t(:password) %>
                 <%= password_field_tag :password_confirmation, :required => true, :placeholder => t(:password_confirmation) %>
-                <%= submit_tag t(:signup) %>
+                <%= submit_tag t('action.signup') %>
             <% end %>
         </div>
     </div>

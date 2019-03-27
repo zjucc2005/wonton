@@ -1,11 +1,10 @@
 <ul class="nav nav-tabs">
-    <li> <%= link_to tag_icon(:list, pat(:list)), url(:accounts, :index) %></li>
-    <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:accounts, :new) %></li>
+    <li> <%= link_to tag_icon(:user, t(:customer_accounts)), url(:accounts, :index) %></li>
+    <li> <%= link_to tag_icon(:gear, t(:admin_accounts)), url(:accounts, :admin) %></li>
+    <li class="active"> <%= link_to tag_icon(:plus, t('action.new')), url(:accounts, :new) %></li>
 </ul>
 <div class="tabs-content">
-    <div class="col-xs-6 col-xs-offset-3">
-        <% form_for :account, url(:accounts, :create), :class => 'form-horizontal' do |f| %>
-            <%= partial 'form', :locals => { :f => f } %>
-        <% end %>
-    </div>
+    <% form_for :account, url(:accounts, :create), :class => 'form-horizontal' do |f| %>
+        <%= partial 'form', :locals => { :f => f } %>
+    <% end %>
 </div>

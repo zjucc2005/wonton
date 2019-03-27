@@ -13,14 +13,22 @@ ActiveRecord::Base.transaction do
     xlsx = Roo::Spreadsheet.open(file_path, extension: :xlsx)
     (2..xlsx.last_row).each do |i|
       company, name, email, mobile_phone, website = xlsx.row(i)
-      next if Customer.where(name: name, mobile_phone: mobile_phone, company: company, email: email, website: website).count > 0
-      Customer.create!(
-        name: name,
-        mobile_phone: mobile_phone,
-        company: company,
+      next if email.blank?
+      next if Account.where(email: email).count > 0
+      account = Account.customer.new(
         email: email,
+        password: 'partyali',
+        password_confirmation: 'partyali',
+        name: name,
+        company: company,
+        mobile_phone: mobile_phone,
         website: website
       )
+      if account.valid?
+        account.save!
+      else
+        next
+      end
     end
   rescue Exception => e
     puts e.message

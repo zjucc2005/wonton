@@ -7,17 +7,17 @@ Wonton::Admin.controllers :sessions do
   post :create do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
-      flash[:success] = 'Login success'
+      flash[:success] = t(:login_succeeded)
       redirect url(:home, :index)
     else
-      flash.now[:error] = 'Invalid email or password'
+      flash.now[:error] = t(:invalid_email_or_password)
       render 'new'
     end
   end
 
   delete :destroy do
     set_current_account(nil)
-    flash[:success] = 'Logout success'
+    flash[:success] = t(:logout_succeeded)
     redirect url(:sessions, :new)
   end
 end

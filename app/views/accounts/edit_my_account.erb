@@ -1,9 +1,7 @@
 <%= partial 'shared/header', :locals => { :active => 'account' } %>
 
 <div class="container">
-    <div class="col-xs-6 col-xs-offset-3">
-    <% form_for :account, url(:accounts, :update_my_account), :method => :put, :class => 'form-horizontal' do |f| %>
+    <% form_for :account, url(:accounts, :update_my_account), :method => :put, :class => 'form-horizontal', :style => 'margin-top: 20px;' do |f| %>
         <%= partial 'form', :locals => { :f => f } %>
     <% end %>
-    </div>
 </div>
