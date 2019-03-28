@@ -70,7 +70,7 @@ Wonton::Admin.controllers :product_categories, :map => 'product_categories' do
   get :children, :map => ':id/children' do
     begin
       load_product_category
-      @sub_categories = @product_category.children.order(:created_at => :desc)
+      @sub_categories = @product_category.children.order(:created_at => :asc)
       if params[:remote] == 'true'
         html_content = @sub_categories.map{|category| partial :list_unit, :locals => { :category => category} }.join('')
         html_content += partial :list_unit_plus, :locals => { :category => @product_category }

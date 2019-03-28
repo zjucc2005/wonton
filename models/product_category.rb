@@ -1,7 +1,8 @@
 # encoding: utf-8
 class ProductCategory < ActiveRecord::Base
-  has_many :children, :class_name => 'ProductCategory', :foreign_key => :parent_id, :dependent => :destroy
   belongs_to :parent, :class_name => 'ProductCategory'
+  has_many :children, :class_name => 'ProductCategory', :foreign_key => :parent_id, :dependent => :destroy
+  has_many :products, :class_name => 'Product'
 
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false

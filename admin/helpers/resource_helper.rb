@@ -13,7 +13,7 @@ module Wonton
 
       def account_params
         resource_params_permit(:account,
-          %w[email nickname password password_confirmation role name sex year_of_birth month_of_birth day_of_birth
+          %w[email nickname password password_confirmation role grade name sex year_of_birth month_of_birth day_of_birth
              mobile_phone telephone fax company company_addr department position website])
       end
 
@@ -30,7 +30,7 @@ module Wonton
       end
 
       def load_main_categories
-        @main_categories = ProductCategory.where(grade: 1).order(:created_at => :desc)
+        @main_categories = ProductCategory.where(grade: 1).order(:created_at => :asc)
       end
 
       ##
@@ -43,18 +43,6 @@ module Wonton
 
       def product_params
         resource_params_permit(:product, %w[name sku_code thumbnail description])
-      end
-
-      ##
-      # Customer
-      def load_customer
-        @customer = Customer.where(id: params[:id]).first
-        halt(404) if @customer.nil?
-      end
-
-      def customer_params
-        resource_params_permit(:customer,
-        %w[name sex birthday mobile_phone telephone fax company company_addr department position email website])
       end
 
       ##

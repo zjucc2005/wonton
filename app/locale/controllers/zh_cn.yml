@@ -72,6 +72,7 @@ zh_cn:
   new_product_category: "新增%{grade}级目录"
   password: "密码"
   password_confirmation: "密码确认"
+  pictures: "图片"
   remember_me: "下次自动登录"
   signup_succeeded: "注册成功"
   select_partial: "部分选择"

@@ -49,12 +49,21 @@
                         <span class='help-inline'><%= error ? f.error_message_on(:role) : '' %></span>
                     </div>
                 </fieldset>
+
+                <% error = @account.errors.include?(:grade) %>
+                <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                    <%= f.label :grade, :class => 'control-label' %>
+                    <div class='controls'>
+                        <%= f.select :grade, :options => [1, 2, 3], :class => 'form-control', :required => true %>
+                        <span class='help-inline'><%= error ? f.error_message_on(:grade) : '' %></span>
+                    </div>
+                </fieldset>
             </div>
         </div>
     </div>
 
     <div class="col-md-8">
-        <div class="panel panel-info">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><%= t(:personal_info) %></h3>
             </div>
@@ -95,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><%= t(:contact_info) %></h3>
             </div>
@@ -114,7 +123,7 @@
                 <% end %>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><%= t(:company_info) %></h3>
             </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325071724) do
+ActiveRecord::Schema.define(version: 20190327030117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20190325071724) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "grade"
     t.string "uid"
     t.string "name"
     t.string "sex"
@@ -51,24 +52,6 @@ ActiveRecord::Schema.define(version: 20190325071724) do
     t.index ["product_id"], name: "index_collection_associations_on_product_id"
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "uid"
-    t.string "name"
-    t.string "sex"
-    t.string "birthday"
-    t.string "mobile_phone"
-    t.string "telephone"
-    t.string "fax"
-    t.string "company"
-    t.string "company_addr"
-    t.string "department"
-    t.string "position"
-    t.string "email"
-    t.string "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "mail_tasks", force: :cascade do |t|
     t.bigint "my_mail_id"
     t.string "to_email"
@@ -90,15 +73,6 @@ ActiveRecord::Schema.define(version: 20190325071724) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_access_logs", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "customer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_product_access_logs_on_customer_id"
-    t.index ["product_id"], name: "index_product_access_logs_on_product_id"
-  end
-
   create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -115,8 +89,13 @@ ActiveRecord::Schema.define(version: 20190325071724) do
     t.bigint "pv"
     t.bigint "author_id"
     t.string "thumbnail"
+    t.string "size"
+    t.string "material"
+    t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "price_list", default: {}
+    t.bigint "product_category_id"
   end
 
 end

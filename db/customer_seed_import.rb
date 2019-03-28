@@ -19,6 +19,7 @@ ActiveRecord::Base.transaction do
         email: email,
         password: 'partyali',
         password_confirmation: 'partyali',
+        grade: 1,
         name: name,
         company: company,
         mobile_phone: mobile_phone,

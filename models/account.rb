@@ -19,8 +19,12 @@ class Account < ActiveRecord::Base
   validates_uniqueness_of   :email,    :case_sensitive => false
   validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_inclusion_of    :role,     :in => %w[admin customer]
+  validates_numericality_of :grade,    :greater_than => 0
+  # validates_presence_of     :uid
+  # validates_uniqueness_of   :uid
 
   # Callbacks
+  before_validation :setup, :on => :create
   before_save :encrypt_password, :if => :password_required
 
   scope :admin, lambda { where(role: 'admin') }
@@ -62,12 +66,20 @@ class Account < ActiveRecord::Base
   end
 
   private
-
   def encrypt_password
     self.password_digest = Account.digest(password)
   end
 
   def password_required
     password_digest.blank? || password.present?
+  end
+
+  def setup
+    self.uid = get_unique_uid
+  end
+
+  def get_unique_uid
+    new_uid = Account.new_token
+    Account.where(uid: new_uid).count > 0 ? get_unique_uid : new_uid
   end
 end

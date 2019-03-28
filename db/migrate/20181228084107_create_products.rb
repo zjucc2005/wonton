@@ -7,6 +7,9 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.bigint :pv
       t.bigint :author_id
       t.string :thumbnail
+      t.string :size
+      t.string :material
+      t.decimal :price, :precision => 10, :scale => 2
 
       t.timestamps null: false
     end

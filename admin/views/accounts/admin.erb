@@ -13,6 +13,7 @@
                 <th class="header"><%= mat(:account, :email) %></th>
                 <th class="header"><%= mat(:account, :nickname) %></th>
                 <th class="header"><%= mat(:account, :role) %></th>
+                <th class="header"><%= mat(:account, :grade) %></th>
                 <th class="header list-row-action-header"></th>
             </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <td class="list-column"><%= account.email %></td>
                     <td class="list-column"><%= account.nickname %></td>
                     <td class="list-column"><%= account.role %></td>
+                    <td class="list-column"><%= account.grade %></td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>
                             <%= link_to tag_icon(:edit), :href => url(:accounts, :edit, :id => account.id), :rel => :tooltip, :title => "#{t('action.edit')} account", :class => 'list-row-action-wrapper-link' %>

@@ -2,6 +2,7 @@
 require 'carrierwave/orm/activerecord'
 class Product < ActiveRecord::Base
   belongs_to :author, :class_name => 'Account'
+  belongs_to :product_category, :class_name => 'ProductCategory'
 
   # collection_associations
   has_many :collection_associations, :class_name => 'CollectionAssociation', :dependent => :destroy
