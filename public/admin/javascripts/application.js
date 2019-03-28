@@ -251,3 +251,8 @@ function set_search_emails(){
   set_list_group_items_left(term);
   ele.val('').focus();
 }
+
+/*-- Product & Product posts --*/
+function editing_product_post(ele){
+  $(ele).parent().parent().parent().parent().addClass('editing');
+}

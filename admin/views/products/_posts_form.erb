@@ -1,0 +1,26 @@
+<div class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%= mat(:product, :posts) %></h3>
+        </div>
+        <div class="panel-body product-posts">
+            <% product.product_posts.order(:created_at => :asc).each do |post| %>
+                <div class="product-post">
+                <% form_for :product_post, url(:product_posts, :update, :id => post.id), :method => :put, :multipart => true, :remote => true do |f| %>
+                    <div class="controls">
+                        <div class="pic-upload">
+                            <%= f.file_field :image, :class => 'inbox-file', :onchange => 'editing_product_post(this);' %>
+                            <%= image_tag post.image.present? ? post.image.default_url : 'alt.jpg' %>
+                        </div>
+                    </div>
+                    <%= content_tag :button, tag_icon(:upload), :type => 'submit', :class => 'btn btn-primary btn-xs product-post-btn', :title => 'upload picture' %>
+                <% end %>
+                <%= button_to(:product_post, url(:product_posts, :destroy, :id => post.id), :method => :delete, :onsubmit => "return confirm('#{t(:sure_to_delete)}');",
+                              :submit_options => { :type => :submit, :class => 'btn btn-danger btn-xs product-post-btn', :title => 'delete picture' }) { tag_icon(:'trash-o') } %>
+                </div>
+            <% end %>
+
+            <%= link_to tag_icon(:plus), url(:products, :new_post, :id => product.id), :class => 'btn btn-info', :style => 'display: block;' %>
+        </div>
+    </div>
+</div>

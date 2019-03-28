@@ -1,20 +1,21 @@
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:base_info) %></h3>
-            </div>
-            <div class="panel-body">
+<!-- base info -->
+<div class="col-md-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%= t(:base_info) %></h3>
+        </div>
+        <div class="panel-body row">
+            <div class="col-md-6">
                 <% error = @product.errors.include?(:product_category_id) %>
                 <fieldset class="control-group <%= error ? 'has-error' : '' %>">
                     <%= f.label :product_category, :class => 'control-label' %>
                     <div class="controls">
-                        <%= f.select :product_category_id, :options => [[]] + ProductCategory.all.map{|c| [c.name, c.id] }, :class => 'form-control' %>
+                        <%= f.select :product_category_id, :options => [[]] + @category_options, :class => 'form-control' %>
                         <span class="help-inline"><%= error ? f.error_message_on(:product_category_id) : '' %></span>
                     </div>
                 </fieldset>
 
-                <% %w[name sku_code size material].each do |field| %>
+                <% %w[name sku_code].each do |field| %>
                     <% error = @product.errors.include?(field.to_sym) %>
                     <fieldset class="control-group <%= error ? 'has-error' : '' %>">
                         <%= f.label field, :class => 'control-label' %>
@@ -25,6 +26,44 @@
                     </fieldset>
                 <% end %>
 
+                <% error = @product.errors.include?(:thumbnail) %>
+                <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+                    <%= f.label :thumbnail, :class => 'control-label' %>
+                    <div class="controls">
+                        <div class="pic-upload">
+                            <% if @product.thumbnail.present? %>
+                                <%= f.file_field :thumbnail, :class => 'inbox-file' %>
+                                <%= image_tag @product.thumbnail.default_url %>
+                            <% else %>
+                                <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
+                                <%= image_tag 'alt.jpg' %>
+                            <% end %>
+                        </div>
+                        <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-md-6">
+                <% %w[size material].each do |field| %>
+                    <% error = @product.errors.include?(field.to_sym) %>
+                    <fieldset class="control-group <%= error ? 'has-error' : '' %>">
+                        <%= f.label field, :class => 'control-label' %>
+                        <div class="controls">
+                            <%= f.text_field field, :required => true, :class => 'form-control' %>
+                            <span class="help-inline"><%= error ? f.error_message_on(field.to_sym) : '' %></span>
+                        </div>
+                    </fieldset>
+                <% end %>
+                <% %w[price_1 price_2 price_3].each do |field| %>
+                    <fieldset class="control-group">
+                        <%= f.label field, :class => 'control-label' %>
+                        <div class="controls">
+                            <%= f.number_field field, :value => @product.__send__(field) , :required => true, :class => 'form-control', :min => 0, :step => 0.01 %>
+                            <span class="help-inline"></span>
+                        </div>
+                    </fieldset>
+                <% end %>
                 <% error = @product.errors.include?(:description) %>
                 <fieldset class="control-group <%= error ? 'has-error' : '' %>">
                     <%= f.label :description, :class => 'control-label' %>
@@ -33,89 +72,17 @@
                         <span class="help-inline"><%= error ? f.error_message_on(:description) : '' %></span>
                     </div>
                 </fieldset>
-
-                <% %w[price_1 price_2 price_3].each do |field| %>
-                    <fieldset class="control-group">
-                        <%= f.label field, :class => 'control-label' %>
-                        <div class="controls">
-                            <%= f.number_field field, :required => true, :class => 'form-control', :min => 0, :step => 0.01 %>
-                            <span class="help-inline"></span>
-                        </div>
-                    </fieldset>
-                <% end %>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-8">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title"><%= t(:pictures) %></h3>
-            </div>
-            <div class="panel-body">
-                <div class="col-md-6">
-                    <% error = @product.errors.include?(:thumbnail) %>
-                    <fieldset class="control-group <%= error ? 'has-error' : ''%>">
-                        <%= f.label :thumbnail, :class => 'control-label' %>
-                        <div class="controls">
-                            <div class="pic-upload">
-                                <% if @product.thumbnail.present? %>
-                                    <%= f.file_field :thumbnail, :class => 'inbox-file' %>
-                                    <%= image_tag url(:products, :thumbnail_url, :id => @product.id, :t => @product.thumbnail_identifier) %>
-                                <% else %>
-                                    <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
-                                    <%= image_tag 'alt.jpg' %>
-                                <% end %>
-                            </div>
-                            <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="clearfix"></div>
-                <div class="divider"></div>
-                <div class="col-md-6"><%= f.label :posts, :class => 'control-label' %></div>
-                <div class="clearfix"></div>
-                <div class="col-md-6">
-                    <fieldset class="control-group">
-                        <div class="controls">
-                            <div class="pic-upload">
-                                <%#= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
-                                <%= image_tag 'alt.jpg' %>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="col-md-6">
-                    <fieldset class="control-group">
-                        <div class="controls">
-                            <div class="pic-upload">
-                                <%#= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
-                                <%= image_tag 'alt.jpg' %>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="col-md-6">
-                    <fieldset class="control-group">
-                        <div class="controls">
-                            <div class="pic-upload">
-                                <%#= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
-                                <%= image_tag 'alt.jpg' %>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
+        <div class="clearfix"></div>
+
+        <div class="form-actions modal-footer">
+            <%= f.submit t('action.save'), :class => 'btn btn-primary' if request.action == :edit %>
+            &nbsp;
+            <%= f.submit t('action.save_and_continue'), :class => 'btn btn-info', :name => 'save_and_continue' %>
+            &nbsp;
+            <%= link_to t('action.cancel'), url(:products, :index), :class => 'btn btn-default' %>
         </div>
     </div>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="form-actions modal-footer">
-    <%= f.submit t('action.save'), :class => 'btn btn-primary' %>
-    &nbsp;
-    <%= f.submit t('action.save_and_continue'), :class => 'btn btn-info', :name => 'save_and_continue' %>
-    &nbsp;
-    <%= link_to t('action.cancel'), url(:products, :index), :class => 'btn btn-default' %>
 </div>

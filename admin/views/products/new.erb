@@ -3,7 +3,9 @@
     <li class="active"> <%= link_to tag_icon(:plus, t('action.new')), url(:products, :new) %></li>
 </ul>
 <div class="tabs-content">
-    <% form_for :product, url(:products, :create), :multipart => true, :class => 'form-horizontal' do |f| %>
-        <%= partial 'form', :locals => { :f => f } %>
-    <% end %>
+    <div class="row">
+        <% form_for :product, url(:products, :create), :multipart => true, :class => 'form-horizontal' do |f| %>
+            <%= partial 'form', :locals => { :f => f } %>
+        <% end %>
+    </div>
 </div>

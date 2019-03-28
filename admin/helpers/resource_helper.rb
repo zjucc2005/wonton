@@ -33,6 +33,10 @@ module Wonton
         @main_categories = ProductCategory.where(grade: 1).order(:created_at => :asc)
       end
 
+      def load_category_options
+         @category_options = ProductCategory.where(grade: [2, 3]).map{|category| [category.name_breadcrumb, category.id] }.sort
+      end
+
       ##
       # Product
       #
@@ -42,7 +46,19 @@ module Wonton
       end
 
       def product_params
-        resource_params_permit(:product, %w[name sku_code thumbnail description])
+        resource_params_permit(:product, %w[name sku_code thumbnail description size material price price_1 price_2 price_3 product_category_id])
+      end
+
+      ##
+      # ProductPost
+      #
+      def load_product_post
+        @product_post = ProductPost.where(id: params[:id]).first
+        halt(404) if @product_post.nil?
+      end
+
+      def product_post_params
+        resource_params_permit(:product_post, %w[image])
       end
 
       ##

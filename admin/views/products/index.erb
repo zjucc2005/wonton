@@ -27,14 +27,12 @@
         <table id="list" class="table table-striped table-hover table-condensed">
             <thead>
             <tr>
-                <!-- dropdown -->
-                <th class="header list-menu"><%= partial 'shared/dropdown' %></th>
-                <!-- thead -->
-                <th class="header"><%= mat(:product, :id) %></th>
+                <th class="header"><%= mat(:product, :created_at) %></th>
                 <th class="header"><%= mat(:product, :sku_code) %></th>
                 <th class="header"><%= mat(:product, :name) %></th>
-                <th class="header"><%= mat(:product, :author) %></th>
-                <th class="header"><%= mat(:product, :created_at) %></th>
+                <th class="header"><%= mat(:product, :product_category) %></th>
+                <th class="header"><%= mat(:product, :size) %></th>
+                <th class="header"><%= mat(:product, :material) %></th>
                 <th class="header"><%= mat(:product, :pv) %></th>
                 <th class="header list-row-action-header"></th>
             </tr>
@@ -43,14 +41,12 @@
             <tbody>
             <% @products.each do |product| %>
                 <tr class="list-row">
-                    <td class="list-column list-selectable">
-                        <%= check_box_tag 'product_ids[]', :value => product.id, :class => 'list-selectable-checkbox' %>
-                    </td>
-                    <td class="list-column"><%= product.id %></td>
+                    <td class="list-column"><%= product.created_at.strftime('%F %T') %></td>
                     <td class="list-column"><%= product.sku_code %></td>
                     <td class="list-column"><%= product.name %></td>
-                    <td class="list-column"><%= product.author.try(:nickname) %></td>
-                    <td class="list-column"><%= product.created_at.strftime('%F %T') %></td>
+                    <td class="list-column"><%= product.product_category.try(:name_breadcrumb) %></td>
+                    <td class="list-column"><%= product.size %></td>
+                    <td class="list-column"><%= product.material %></td>
                     <td class="list-column"><%= product.pv %></td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>
