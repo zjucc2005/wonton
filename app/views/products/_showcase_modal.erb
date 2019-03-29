@@ -1,0 +1,75 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= image_tag 'close-o.svg' %></button>
+            <h4 class="modal-title" id="myModalLabel"><%= product.product_category.try(:name_breadcrumb, '/') %></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <table class="table product-properties">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="product-name">
+                                <%= image_tag 'icon_product_name.svg' %>
+                                <%= product.name %>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="title">价格：</td><td class="string price">¥ <%= product.price %></td></tr>
+                            <tr><td class="title">尺寸：</td><td class="string"><%= product.size %></td></tr>
+                            <tr><td class="title">材质：</td><td class="string"><%= product.material %></td></tr>
+                            <tr><td class="title">编号：</td><td class="string"><%= product.sku_code %></td></tr>
+                            <tr><td class="title">说明：</td><td class="text"><%= product.description %></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-6">
+                    <!--<span class="user-grade">欢迎二级用户</span>-->
+
+                    <div id="myCarousel_<%= product.id %>" class="carousel slide">
+                        <div class="carousel-inner" style="height: 234px;">
+                            <% product.product_posts.each_with_index do |post, index| %>
+                                <% content_tag :div, :class => "item #{index.zero? ? 'active' : ''}" do %>
+                                    <%= image_tag post.image.default_url %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel_<%= product.id %>" role="button" data-slide="prev">
+                            <span class="thin-arrow left small" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel_<%= product.id %>" role="button" data-slide="next">
+                            <span class="thin-arrow right small" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <ol class="carousel-indicators">
+                            <% product.product_posts.each_with_index do |post, index| %>
+                                <%= content_tag :li, nil, :'data-target' => "#myCarousel_#{product.id}", :'data-slide-to' => index, :class => index.zero? ? 'active' : '' %>
+                            <% end %>
+                        </ol>
+                    </div>
+
+                    <div class="operation">
+                        <div class="col-xs-4">
+                            <div class="consult"><%= image_tag 'icon_consult.svg' %>咨询</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <% if logged_in? %>
+                                <div id="collect_btn_<%= product.id %>">
+                                    <%= partial :collect_btn, :locals => { :product => product } %>
+                                </div>
+                            <% else %>
+                                <div class="collect disabled" onclick="alert('<%= t(:login_first) %>')"><%= image_tag 'icon_pentagram.svg' %><%= t(:collect) %></div>
+                            <% end %>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="order"><%= image_tag 'icon_cart.svg' %>下单</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->

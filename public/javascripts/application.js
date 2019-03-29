@@ -53,3 +53,56 @@ function email_is_taken(email){
     });
     return result;
 }
+
+/*-- product showcase --*/
+function load_product_showcase(product_id){
+    var ele = document.getElementById('product_' + product_id);
+    if(ele.dataset.loaded == 'true'){
+        return true;  // 不再重复加载
+    }else{
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            url: '/products/' + product_id + '/showcase',
+            success: function(data){
+                if(data.status == 'succ'){
+                    $(ele).html(data.html);
+                    ele.dataset.loaded = 'true';
+                }else{
+                    alert(data.reason);
+                }
+            }
+        });
+    }
+}
+function collect_product(product_id){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        url: '/products/' + product_id + '/collect',
+        success: function(data){
+            if(data.status == 'succ'){
+                $('#collect_btn_'+ product_id).html(data.html);
+            }else{
+                alert(data.reason);
+            }
+        }
+    })
+}
+function cancel_collect_product(product_id){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        url: '/products/' + product_id + '/cancel_collect',
+        success: function(data){
+            if(data.status == 'succ'){
+                $('#collect_btn_'+ product_id).html(data.html);
+            }else{
+                alert(data.reason);
+            }
+        }
+    })
+}

@@ -288,6 +288,8 @@ body {
 .showcase-modal .modal-body .operation img { margin-right: 10px; }
 .showcase-modal .modal-body .operation .consult { padding: 10px; color: #fff; text-align: center; background: #00A0E9; opacity: 0.8; }
 .showcase-modal .modal-body .operation .collect { padding: 10px; color: #fff; text-align: center; background: linear-gradient(46deg, #FA970C, #FFDC01); opacity: 0.8; }
+.showcase-modal .modal-body .operation .collect.disabled { background: #ccc; opacity: 1; }
+.showcase-modal .modal-body .operation .collect.cancel { background: #ccc; }
 .showcase-modal .modal-body .operation .order { padding: 10px; color: #fff; text-align: center; background: linear-gradient(134deg, #FFB415, #FF5509); opacity: 0.8; }
 .showcase-modal .modal-body .operation .consult:hover, .showcase-modal .modal-body .operation .collect:hover, .showcase-modal .modal-body .operation .order:hover  { opacity: 1; }
 

@@ -6,11 +6,11 @@
 
 <div class="container">
     <!-- product_navbar -->
-    <%= partial :navbar, :locals => { :active => 'new_arrival' } %>
+    <%= partial :navbar, :locals => { :active => 'collections' } %>
 
     <div id="showcases" class="row">
         <% @products.each do |product| %>
-            <%= partial 'showcase', :locals => { :product => product, :new_arrival => true } %>
+            <%= partial 'showcase', :locals => { :product => product, :new_arrival => false } %>
         <% end %>
     </div>
     <div align="right">

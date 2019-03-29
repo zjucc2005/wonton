@@ -1,0 +1,9 @@
+<% if current_account.collections.pluck(:id).include? product.id %>
+    <div class="collect cancel" onclick="cancel_collect_product('<%= product.id %>');">
+        <%= image_tag 'icon_pentagram.svg' %><%= t(:cancel_collection) %>
+    </div>
+<% else %>
+    <div class="collect" onclick="collect_product('<%= product.id %>');">
+      <%= image_tag 'icon_pentagram.svg' %><%= t(:collect) %>
+    </div>
+<% end %>

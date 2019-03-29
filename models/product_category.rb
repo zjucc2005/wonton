@@ -15,14 +15,19 @@ class ProductCategory < ActiveRecord::Base
   end
 
   # find out first category from ancestor chain
-  def first_category
+  def ancestor
     parent = self.parent
-    parent.nil? ? self : parent.first_category
+    parent.nil? ? self : parent.ancestor
+  end
+
+  # find out all categories inherited from self, exclude self
+  def descendants_id
+    self.children.map{|child| [child.id, child.descendants] }.flatten
   end
 
   # friendly display for ancestor chain
-  def name_breadcrumb
-    ancestor_chain.reverse.join(' - ')
+  def name_breadcrumb(delimiter=' - ')
+    ancestor_chain.reverse.join(delimiter)
   end
 
   def ancestor_chain(crumbs=[])
