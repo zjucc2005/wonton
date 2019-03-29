@@ -60,6 +60,13 @@ en:
         to_emails: "To"
         author: "Author"
         created_at: "Created at"
+    order:
+      attributes:
+        id: "ID"
+        status: "Status"
+        content: "Content"
+        created_at: "Created at"
+        account: "User"
 
   will_paginate:
     previous_label: "&lt;"

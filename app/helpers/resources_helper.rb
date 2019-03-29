@@ -17,6 +17,10 @@ module Wonton
         halt(404) if @product_category.nil?
       end
 
+      def order_params
+        resource_params_permit(:order, %w[content])
+      end
+
     end
 
     helpers ResourcesHelper

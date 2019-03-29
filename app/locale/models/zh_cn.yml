@@ -98,6 +98,13 @@ zh_cn:
         to_emails: "收件人"
         author: "作者"
         created_at: "创建时间"
+    order:
+      attributes:
+        id: "ID"
+        status: "状态"
+        content: "内容"
+        created_at: "创建时间"
+        account: "用户"
 
   will_paginate:
     previous_label: "&lt;"

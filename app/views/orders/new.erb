@@ -1,0 +1,29 @@
+<%= partial 'shared/header', :locals => { :active => 'product' } %>
+
+<div class="container">
+    <% form_for :order, url(:orders, :create), :method => :post, :class => 'form-horizontal', :style => 'margin-top: 20px;' do |f| %>
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><%= t(:order_info) %></h3>
+                </div>
+                <div class="panel-body">
+                    <% error = @order.errors.include?(:content) %>
+                    <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                        <%= f.label :content, :class => 'control-label' %>
+                        <div class='controls'>
+                            <%= f.text_area :content, :class => 'form-control', :required => true, :rows => 8, :style => 'resize: vertical;' %>
+                            <span class='help-inline'><%= error ? f.error_message_on(:content) : '' %></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="panel-footer" align="right">
+                    <%= f.submit t('action.submit'), :class => 'btn btn-primary' %>
+                    &nbsp;
+                    <%= link_to t('action.cancel'), 'javascript:history.go(-1);', :class => 'btn btn-default' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

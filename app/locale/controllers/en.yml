@@ -6,12 +6,15 @@ en:
     add: "Add"
     add_all: "Add all"
     cancel: "Cancel"
+    close: "Close"
     delete: "Delete"
     edit: "Edit"
+    finish: "Finish"
     login: "Login"
     logout: "Logout"
     new: "New"
     ok: "OK"
+    process: "Process"
     remove: "Remove"
     remove_all: "Remove all"
     save: "Save"
@@ -42,6 +45,11 @@ en:
     login_or_signup: "Login/Sign up"
     my_account: "My account"
 
+  order_status:
+    new: "New"
+    readed: "Readed"
+    closed: "Closed"
+
   # accounts
   admin_accounts: "Admin accounts"
   customer_accounts: "Customer accounts"
@@ -49,6 +57,7 @@ en:
   personal_info: "Personal info."
   company_info: "Company info."
   contact_info: "Contact info."
+  order_info: "Order info."
   my_account: "My account"
   edit_my_account: "Edit my account"
 
@@ -79,5 +88,8 @@ en:
   remember_me: "remember me"
   signup_succeeded: "Sign up succeeded"
   select_partial: "Select partial"
+  submission_of_order_succeeded: "Submission_of_order_succeeded"
+  submission_of_order_failed: "Submission_of_order_failed"
+  sure_to_close: "Sure to close?"
   sure_to_delete: "Sure to delete?"
   sure_to_logout: "Sure to logout?"

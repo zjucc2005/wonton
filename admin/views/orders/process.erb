@@ -1,0 +1,29 @@
+<ul class="nav nav-tabs">
+    <li> <%= link_to tag_icon(:list, t(:list)), url(:orders, :index) %></li>
+    <li class="active"> <%= link_to tag_icon(:tag, t('action.process')), url(:orders, :process, :id => @order.id) %></li>
+</ul>
+<div class="tabs-content">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="list-group">
+            <a class="list-group-item active">
+                <%= t(:order_info) %>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :account) %></h4>
+                <p class="list-group-item-text"><%= @order.account.try(:email) %></p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :status) %></h4>
+                <p class="list-group-item-text"><%= @order.status %></p>
+            </a>
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :content) %></h4>
+                <p class="list-group-item-text"><%= @order.content %></p>
+            </a>
+            <a class="list-group-item" style="text-align: right;">
+                <%= button_to(:close, url(:orders, :close, :id => @order.id), :method => :put, :onsubmit => "return confirm('#{t(:sure_to_close)}');",
+                                :submit_options => { :type => :submit, :class => 'btn btn-success' }) { "#{tag_icon(:check)} #{t('action.close')}".html_safe } %>
+            </a>
+        </div>
+    </div>
+</div>

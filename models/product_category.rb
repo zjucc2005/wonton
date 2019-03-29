@@ -22,7 +22,7 @@ class ProductCategory < ActiveRecord::Base
 
   # find out all categories inherited from self, exclude self
   def descendants_id
-    self.children.map{|child| [child.id, child.descendants] }.flatten
+    self.children.map{|child| [child.id, child.descendants_id] }.flatten
   end
 
   # friendly display for ancestor chain

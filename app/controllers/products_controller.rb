@@ -2,12 +2,14 @@
 Wonton::App.controllers :products, :map => '/products' do
   # 新品
   get :new_arrival do
+    load_main_categories
     @products = Product.all.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 8)
     render :new_arrival
   end
 
   # 收藏
   get :collections do
+    load_main_categories
     @products = current_account.collections.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 8)
     render :collections
   end
@@ -15,7 +17,10 @@ Wonton::App.controllers :products, :map => '/products' do
   # 通用 - 按产品目录分, 此处 id 为 product_category_id
   get :category, :map => ':id/category' do
     load_product_category
-    
+    load_main_categories
+    @products = Product.where(product_category_id: @product_category.descendants_id << @product_category.id).order(:created_at => :desc).
+      paginate(:page => params[:page], :per_page => 8)
+    render :category
   end
 
   # 加载产品详情 modal, remote: true

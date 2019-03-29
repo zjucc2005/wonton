@@ -65,7 +65,13 @@
                             <% end %>
                         </div>
                         <div class="col-xs-4">
-                            <div class="order"><%= image_tag 'icon_cart.svg' %>下单</div>
+                            <% if logged_in? %>
+                                <% link_to url(:orders, :new), :style => 'text-decoration: none;' do %>
+                                    <div class="order"><%= image_tag 'icon_cart.svg' %>下单</div>
+                                <% end %>
+                            <% else %>
+                                <div class="order disabled" onclick="alert('<%= t(:login_first) %>')"><%= image_tag 'icon_cart.svg' %>下单</div>
+                            <% end %>
                         </div>
                     </div>
                 </div>

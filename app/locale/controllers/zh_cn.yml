@@ -6,12 +6,15 @@ zh_cn:
     add: "添加"
     add_all: "全部添加"
     cancel: "取消"
+    close: "关闭"
     delete: "删除"
     edit: "编辑"
+    finish: "完成"
     login: "登录"
     logout: "注销"
     new: "新建"
     ok: "确定"
+    process: "处理"
     remove: "移除"
     remove_all: "全部移除"
     save: "保存"
@@ -42,6 +45,11 @@ zh_cn:
     login_or_signup: "登录/注册"
     my_account: "我的账号"
 
+  order_status:
+    new: "新订单"
+    readed: "已读"
+    closed: "已关闭"
+
   # accounts
   admin_accounts: "管理员账号"
   customer_accounts: "客户账号"
@@ -49,6 +57,7 @@ zh_cn:
   personal_info: "个人信息"
   company_info: "公司信息"
   contact_info: "联系信息"
+  order_info: "订单信息"
   my_account: "我的帐号"
   edit_my_account: "编辑我的账号"
 
@@ -79,5 +88,8 @@ zh_cn:
   remember_me: "下次自动登录"
   signup_succeeded: "注册成功"
   select_partial: "部分选择"
+  submission_of_order_succeeded: "订单提交成功"
+  submission_of_order_failed: "订单提交失败"
+  sure_to_close: "确定关闭吗?"
   sure_to_delete: "确定删除吗?"
   sure_to_logout: "确定注销吗?"

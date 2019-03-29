@@ -6,7 +6,7 @@
 
 <div class="container">
     <!-- product_navbar -->
-    <%= partial :navbar, :locals => { :active => 'collections' } %>
+    <%= partial :navbar, :locals => { :active => @product_category.ancestor.id } %>
 
     <div id="showcases" class="row">
         <% @products.each do |product| %>

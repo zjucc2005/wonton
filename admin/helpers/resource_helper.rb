@@ -72,6 +72,13 @@ module Wonton
         resource_params_permit(:my_mail, %w[title content to_emails])
       end
 
+      ##
+      # Order
+      def load_order
+        @order = Order.where(id: params[:id]).first
+        halt(404) if @order.nil?
+      end
+
     end
 
     helpers ResourceHelper

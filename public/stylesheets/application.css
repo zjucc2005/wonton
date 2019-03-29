@@ -18,7 +18,6 @@ body {
 .carousel .carousel-control { background: none; }
 .carousel-control .glyphicon-chevron-left { left: 30%; }
 .carousel-control .glyphicon-chevron-right { right: 30%; }
-
 .carousel .thin-arrow {
     position: absolute;
     display: block;
@@ -247,6 +246,7 @@ body {
 .product-navbar-nav .dropdown-menu { font-size: 16px; border: none; border-radius: 0; }
 .product-navbar-nav .dropdown-menu > li > a { padding: 5px 20px; }
 .product-navbar-nav .dropdown-menu > li > a:hover { background: #00A0E9; color: #fff; }
+.product-navbar-nav .dropdown-menu.right { left: 100%; top: auto; }
 
 .showcase { padding: 7px; height: 270px; }
 .showcase-container { background: #fff; width: 100%; height: 100%; padding: 15px; }
@@ -288,7 +288,7 @@ body {
 .showcase-modal .modal-body .operation img { margin-right: 10px; }
 .showcase-modal .modal-body .operation .consult { padding: 10px; color: #fff; text-align: center; background: #00A0E9; opacity: 0.8; }
 .showcase-modal .modal-body .operation .collect { padding: 10px; color: #fff; text-align: center; background: linear-gradient(46deg, #FA970C, #FFDC01); opacity: 0.8; }
-.showcase-modal .modal-body .operation .collect.disabled { background: #ccc; opacity: 1; }
+.showcase-modal .modal-body .operation .collect.disabled, .showcase-modal .modal-body .operation .order.disabled { background: #ccc; opacity: 1; }
 .showcase-modal .modal-body .operation .collect.cancel { background: #ccc; }
 .showcase-modal .modal-body .operation .order { padding: 10px; color: #fff; text-align: center; background: linear-gradient(134deg, #FFB415, #FF5509); opacity: 0.8; }
 .showcase-modal .modal-body .operation .consult:hover, .showcase-modal .modal-body .operation .collect:hover, .showcase-modal .modal-body .operation .order:hover  { opacity: 1; }

@@ -3,58 +3,27 @@
         <%= link_to t(:new_arrival), url(:products, :new_arrival), :class => ('active' if active == 'new_arrival') %>
         <span class="tab"><%= image_tag 'hot.svg' %></span>
     </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown">生日</a>
-    <ul class="dropdown-menu">
-      <li>
-        <a onmouseover="$('#test3').show();" onmouseout="$('#test3').hide();">挂牌</a>
-        <ul id="test3" class="dropdown-menu" style="left: 150px;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
-          <li><a>蝴蝶结</a></li>
-          <li><a>无纺布</a></li>
-          <li><a>人偶</a></li>
-        </ul>
-      </li>
-      <li>
-        <a onmouseover="$('#test4').show();" onmouseout="$('#test4').hide();">金属丝</a>
-        <ul id="test4" class="dropdown-menu" style="left: 150px;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
-          <li><a>金属1</a></li>
-          <li><a>金属2</a></li>
-          <li><a>金属3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">帽子</a></li>
-      <li><a href="#">头饰</a></li>
-      <li><a href="#">眼镜制品</a></li>
-      <li><a href="#">衣服树裙</a></li>
-    </ul>
-  </li>
-  <li><a>帽子</a></li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown">圣诞</a>
-    <ul class="dropdown-menu">
-      <li>
-        <a onmouseover="$('#test1').show();" onmouseout="$('#test1').hide();">挂牌</a>
-        <ul id="test1" class="dropdown-menu" style="left: 100%; top: 0;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
-          <li><a>蝴蝶结</a></li>
-          <li><a>无纺布</a></li>
-          <li><a>人偶</a></li>
-        </ul>
-      </li>
-      <li>
-        <a onmouseover="$('#test2').show();" onmouseout="$('#test2').hide();">金属丝</a>
-        <ul id="test2" class="dropdown-menu" style="left: 100%; top: 0;" onmouseover="$(this).show();" onmouseout="$(this).hide();">
-          <li><a>金属1</a></li>
-          <li><a>金属2</a></li>
-          <li><a>金属3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">帽子</a></li>
-      <li><a href="#">头饰</a></li>
-      <li class="divider"></li>
-      <li><a href="#">眼镜制品</a></li>
-      <li><a href="#">衣服树裙</a></li>
-    </ul>
-  </li>
+    <% @main_categories.each do |category_g1| %>
+        <li class="dropdown">
+            <a class="dropdown-toggle <%= 'active' if active == category_g1.id %>"  data-toggle="dropdown"><%= category_g1.name %></a>
+            <ul class="dropdown-menu">
+                <% category_g1.children.each do |category_g2| %>
+                    <li class="category-g2" onmouseover="$('#category_<%= category_g2.id %>').show();" onmouseout="$('#category_<%= category_g2.id %>').hide();">
+                        <% if category_g2.children.count > 0 %>
+                        <ul id="category_<%= category_g2.id %>" class="dropdown-menu right category-g3" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                            <% category_g2.children.each do |category_g3| %>
+                                <li>
+                                    <%= link_to category_g3.name, url(:products, :category, :id => category_g3.id) %>
+                                </li>
+                            <% end %>
+                        </ul>
+                        <% end %>
+                        <%= link_to category_g2.name, url(:products, :category, :id => category_g2.id) %>
+                    </li>
+                <% end %>
+            </ul>
+        </li>
+    <% end %>
     <% if logged_in? %>
         <li><%= link_to t(:collections), url(:products, :collections), :class => ('active' if active == 'collections') %></li>
     <% end %>
