@@ -36,14 +36,6 @@
                                 <% end %>
                             <% end %>
                         </div>
-                        <a class="left carousel-control" href="#myCarousel_<%= product.id %>" role="button" data-slide="prev">
-                            <span class="thin-arrow left small" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel_<%= product.id %>" role="button" data-slide="next">
-                            <span class="thin-arrow right small" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                         <ol class="carousel-indicators">
                             <% product.product_posts.each_with_index do |post, index| %>
                                 <%= content_tag :li, nil, :'data-target' => "#myCarousel_#{product.id}", :'data-slide-to' => index, :class => index.zero? ? 'active' : '' %>

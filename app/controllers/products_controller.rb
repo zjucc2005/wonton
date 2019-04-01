@@ -28,6 +28,7 @@ Wonton::App.controllers :products, :map => '/products' do
     begin
       load_product
       @product.pv_up
+      current_account.product_access_logs.create(product_id: @product.id) if logged_in?
       html_content = partial :showcase_modal, :locals => { :product => @product }
       { :status => 'succ', :html => html_content }.to_json
     rescue Exception => e

@@ -10,6 +10,7 @@
         <%= content_tag :title, @title.present? ? "#{@title} | HUIYUAN Admin" : 'HUIYUAN Admin' %>
         <%= favicon_tag 'favicon-16x16.png' %>
         <%= stylesheet_link_tag 'bootstrap', 'application', 'wonton' %>
+        <%= javascript_include_tag 'jquery-3.3.1.min', 'bootstrap.min', 'echarts.min' %>
     </head>
 
     <body>
@@ -90,7 +91,7 @@
                 </ul>
             </div>
         </footer>
-        <%= javascript_include_tag 'jquery-3.3.1.min', 'bootstrap.min', :application %>
+        <%= javascript_include_tag :application %>
     </body>
 
 </html>

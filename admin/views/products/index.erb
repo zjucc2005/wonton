@@ -1,5 +1,6 @@
 <ul class="nav nav-tabs">
     <li class="active"> <%= link_to tag_icon(:list, t(:list)), url(:products, :index) %></li>
+    <li> <%= link_to tag_icon(:signal, t(:chart)), url(:products, :pv_rank) %></li>
     <li> <%= link_to tag_icon(:plus, t('action.new')), url(:products, :new) %></li>
 </ul>
 

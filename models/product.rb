@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   # collection_associations
   has_many :collection_associations, :class_name => 'CollectionAssociation', :dependent => :destroy
   has_many :collectors, :class_name => 'Account', :through => :collection_associations, :source => :account
+  has_many :product_access_logs, :class_name => 'ProductAccessLog', :dependent => :destroy
 
   has_many :product_posts, :class_name => 'ProductPost', :dependent => :destroy
 

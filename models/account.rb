@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
   # collection_associations
   has_many :collection_associations, :class_name => 'CollectionAssociation', :dependent => :destroy
   has_many :collections, :class_name => 'Product', :through => :collection_associations, :source => :product
+  has_many :product_access_logs, :class_name => 'ProductAccessLog', :dependent => :destroy
 
   # Validations
   validates_presence_of     :email, :role

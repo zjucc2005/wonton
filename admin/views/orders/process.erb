@@ -14,16 +14,18 @@
             </a>
             <a class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :status) %></h4>
-                <p class="list-group-item-text"><%= @order.status %></p>
+                <p class="list-group-item-text"><%= t("order_status.#{@order.status}") %></p>
             </a>
             <a class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :content) %></h4>
                 <p class="list-group-item-text"><%= @order.content %></p>
             </a>
+            <% unless @order.status == 'closed' %>
             <a class="list-group-item" style="text-align: right;">
                 <%= button_to(:close, url(:orders, :close, :id => @order.id), :method => :put, :onsubmit => "return confirm('#{t(:sure_to_close)}');",
                                 :submit_options => { :type => :submit, :class => 'btn btn-success' }) { "#{tag_icon(:check)} #{t('action.close')}".html_safe } %>
             </a>
+            <% end %>
         </div>
     </div>
 </div>

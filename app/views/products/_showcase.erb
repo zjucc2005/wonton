@@ -21,7 +21,9 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade showcase-modal" id="product_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <div class="modal fade showcase-modal" id="product_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-loaded="true">
+        <%= partial :showcase_modal, :locals => { :product => product } %>
+    </div>
 </div>
 
 

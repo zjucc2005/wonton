@@ -1,6 +1,7 @@
 # encoding: utf-8
 Wonton::Admin.controllers :products, :map => 'products' do
 
+  # -- main --
   get :index do
     @title = 'Products'
     query = Product.all
@@ -62,11 +63,19 @@ Wonton::Admin.controllers :products, :map => 'products' do
     redirect url(:products, :index)
   end
 
+  # -- extra --
+  get :pv_rank do
+    products = Product.all.order(:pv => :desc).limit(10)
+    data = products.map{|p| [p.name, p.pv, p.collectors.count]}
+    title = current_locale == :zh_cn ? %w[产品 点击量 收藏数] : %w[Product PV Collectors]
+    @source = [title] + data.reverse
+    render :pv_rank
+  end
+
   get :new_post, :map => ':id/new_post' do
     load_product
     @product.product_posts.create!
     redirect url(:products, :edit, :id => @product.id)
   end
-
 
 end

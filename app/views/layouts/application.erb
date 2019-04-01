@@ -11,7 +11,8 @@
         <meta name="description" content="<%= @title %>">
         <%= content_tag :title, @title.present? ? @title : 'HUIYUAN' %>
         <%= favicon_tag 'favicon-16x16.png' %>
-        <%= stylesheet_link_tag 'bootstrap', 'application' %>
+        <%= stylesheet_link_tag 'bootstrap', 'cloud-zoom', 'zoomify', 'application' %>
+        <%= javascript_include_tag 'jquery-1.7.0.min', 'bootstrap.min', 'cloud-zoom.min', 'zoomify.min', 'blowup.min' %>
     </head>
 
     <body>
@@ -19,6 +20,6 @@
             <%= flash_tag(key, :class => "alert alert-#{value} alert-dismissable fade in", :bootstrap => true) %>
         <% end %>
         <%= yield %>
-        <%= javascript_include_tag 'jquery-3.3.1.min', 'bootstrap.min', 'application' %>
+        <%= javascript_include_tag 'application' %>
     </body>
 </html>
