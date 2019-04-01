@@ -34,8 +34,8 @@ ActiveRecord::Base.configurations[:production] = {
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
   :database  => 'wonton_test',
-  :username  => 'caic',
-  :password  => '123456',
+  :username  => 'wonton',
+  :password  => 'd29udG9u',
   :host      => 'localhost',
   :port      => 5432
 }
