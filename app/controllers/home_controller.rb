@@ -14,14 +14,6 @@ Wonton::App.controllers :home, :map => '/' do
     render :contact
   end
 
-  get :old_version do
-    render :old_version
-  end
-
-  get :old_version_en do
-    render :old_version_en
-  end
-
   get :set_locale do
     if params[:locale].present? && I18n.available_locales.include?(:"#{params[:locale]}")
       session['wonton.locale'] = params[:locale]

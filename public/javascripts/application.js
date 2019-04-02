@@ -55,6 +55,15 @@ function email_is_taken(email){
 }
 
 /*-- product showcase --*/
+$('.category-g2').mouseover(function(){
+    var g3 = this.getElementsByTagName('ul')[0];
+    if(g3){ $(g3).show(); }else{ return false; }
+});
+$('.category-g2').mouseout(function(){
+    var g3 = this.getElementsByTagName('ul')[0];
+    if( g3){$(g3).hide(); }else{ return false; }
+});
+
 function load_product_showcase(product_id){
     var ele = document.getElementById('product_' + product_id);
     if(ele.dataset.loaded == 'true'){
@@ -105,4 +114,16 @@ function cancel_collect_product(product_id){
             }
         }
     })
+}
+
+function postShow(ele){
+    var show = $(ele).parent().parent().prev().children().eq(0);
+    show.attr('src', $(ele).attr('src'));
+    $(function(){$(show).blowup({ width: 250, height: 250 });});
+    var list = $(ele).parent().parent().children();
+    for(var i=0;i<list.length;i++){
+        var child = list.eq(i).children().eq(0);
+        child.removeClass('active');
+    }
+    $(ele).addClass('active');
 }

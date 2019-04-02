@@ -8,9 +8,9 @@
             <a class="dropdown-toggle <%= 'active' if active == category_g1.id %>"  data-toggle="dropdown"><%= category_g1.name %></a>
             <ul class="dropdown-menu">
                 <% category_g1.children.each do |category_g2| %>
-                    <li class="category-g2" onmouseover="$('#category_<%= category_g2.id %>').show();" onmouseout="$('#category_<%= category_g2.id %>').hide();">
+                    <li class="category-g2">
                         <% if category_g2.children.count > 0 %>
-                        <ul id="category_<%= category_g2.id %>" class="dropdown-menu right category-g3" onmouseover="$(this).show();" onmouseout="$(this).hide();">
+                        <ul id="category_<%= category_g2.id %>" class="dropdown-menu right category-g3">
                             <% category_g2.children.each do |category_g3| %>
                                 <li>
                                     <%= link_to category_g3.name, url(:products, :category, :id => category_g3.id) %>

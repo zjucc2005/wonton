@@ -223,8 +223,8 @@ body {
 .contact-email{ margin-top: 14px; width: 401px; height: 125px; background: url('/images/contact_email.svg') no-repeat; }
 .contact-email p { padding-top: 26px; padding-left: 116px; font-size: 22px; font-weight: bold; }
 .contact-windows { margin-top: 42px; }
-.contact-windows .col-xs-6 { padding: 5px; }
-.contact-windows img{ width: 100%; }
+.contact-windows .col-xs-6 { padding: 9px; }
+.contact-windows img{ width: 100%; -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3); box-shadow: 0 2px 3px rgba(0,0,0,0.3);}
 
 /*-- Product --*/
 .product-bgleft { width: 360px; height: 690px; position: absolute; left: 0; top: 128px; z-index: -1; background: url('/images/bg_product1.svg') no-repeat; }
@@ -292,6 +292,14 @@ body {
 .showcase-modal .modal-body .operation .collect.cancel { background: #ccc; }
 .showcase-modal .modal-body .operation .order { padding: 10px; color: #fff; text-align: center; background: linear-gradient(134deg, #FFB415, #FF5509); opacity: 0.8; }
 .showcase-modal .modal-body .operation .consult:hover, .showcase-modal .modal-body .operation .collect:hover, .showcase-modal .modal-body .operation .order:hover  { opacity: 1; }
+
+/*-- product-posts --*/
+.product-posts .product-posts-show { margin-bottom: 5px; height: 256px; border: 1px solid #eee; overflow: hidden; line-height: 252px; vertical-align: middle; }
+.product-posts .product-posts-show img { width: 100%; margin: auto 0; }
+.product-posts .product-posts-list { padding: 0; text-align: center; }
+.product-posts .product-posts-list li { display: inline; }
+.product-posts .product-posts-list li img { border: 2px solid #ccc; margin: 0 1px; height: 50px; width: 15%; }
+.product-posts .product-posts-list li img:hover, .product-posts .product-posts-list li img.active{ border: 2px solid red; }
 
 /*-- Pagination --*/
 .pagination a, .pagination span, .pagination em { padding: 7px 12px; }
