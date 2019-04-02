@@ -7,7 +7,7 @@
 <div class="tabs-content">
     <div class="search-namespace">
         <% form_tag url(:products, :index), { :method => :get } do %>
-            <% %w[sku_code name].each do |field| %>
+            <% %w[sku_code name name_en].each do |field| %>
                 <div class="form-group col-xs-6 col-md-3">
                     <div class="controls input-group">
                         <span class="input-group-addon"><%= mat(:product, :"#{field}") %></span>
@@ -30,10 +30,10 @@
             <tr>
                 <th class="header"><%= mat(:product, :created_at) %></th>
                 <th class="header"><%= mat(:product, :sku_code) %></th>
-                <th class="header"><%= mat(:product, :name) %></th>
+                <th class="header"><%= mat(:product, current_locale == :en ? :name_en : :name) %></th>
                 <th class="header"><%= mat(:product, :product_category) %></th>
-                <th class="header"><%= mat(:product, :size) %></th>
-                <th class="header"><%= mat(:product, :material) %></th>
+                <th class="header"><%= mat(:product, current_locale == :en ? :size_en : :size) %></th>
+                <th class="header"><%= mat(:product, current_locale == :en ? :material_en : :material) %></th>
                 <th class="header"><%= mat(:product, :pv) %></th>
                 <th class="header list-row-action-header"></th>
             </tr>

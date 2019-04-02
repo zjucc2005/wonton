@@ -17,7 +17,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="title">价格：</td><td class="string price">¥ <%= product.price %></td></tr>
+                            <tr><td class="title">价格：</td><td class="string price">¥ <%= product.price_grade(current_account.try(:grade)) %></td></tr>
                             <tr><td class="title">尺寸：</td><td class="string"><%= product.size_locale %></td></tr>
                             <tr><td class="title">材质：</td><td class="string"><%= product.material_locale %></td></tr>
                             <tr><td class="title">编号：</td><td class="string"><%= product.sku_code %></td></tr>

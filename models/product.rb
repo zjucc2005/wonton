@@ -55,6 +55,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def price_grade(grade=nil)
+    try(:"price_#{grade}") || price
+  end
+
   private
   def setup
     self.pv ||= 0

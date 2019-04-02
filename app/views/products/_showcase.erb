@@ -12,7 +12,7 @@
         <div class="showcase-text-right">
             <p class="product-price">
                 <span class="symbol">¥</span>
-                <span class="value"><%= product.price %></span>
+                <span class="value"><%= product.price_grade(current_account.try(:grade)) %></span>
             </p>
             <p class="product-pv">
                 <span class="symbol"><%= image_tag 'pv_logo.svg' %></span>

@@ -5,7 +5,7 @@ Wonton::Admin.controllers :products, :map => 'products' do
   get :index do
     @title = 'Products'
     query = Product.all
-    %w[sku_code name].each do |field|
+    %w[sku_code name name_en].each do |field|
       query = query.where("#{field} LIKE ?", "%#{params[:"#{field}"].strip}%") if params[:"#{field}"].present?
     end
     @products = query.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 10)
@@ -66,7 +66,7 @@ Wonton::Admin.controllers :products, :map => 'products' do
   # -- extra --
   get :pv_rank do
     products = Product.all.order(:pv => :desc).limit(10)
-    data = products.map{|p| [p.name, p.pv, p.collectors.count]}
+    data = products.map{|p| [p.name_locale, p.pv, p.collectors.count]}
     title = current_locale == :zh_cn ? %w[产品 点击量 收藏数] : %w[Product PV Collectors]
     @source = [title] + data.reverse
     render :pv_rank
