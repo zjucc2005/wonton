@@ -23,6 +23,9 @@ class Product < ActiveRecord::Base
 
   before_validation :setup, :on => :create
 
+  extend ::FieldLocale
+  field_locale(:name, :description, :size, :material)
+
   ##
   # page view/page access count, increase pv by 1
   def pv_up

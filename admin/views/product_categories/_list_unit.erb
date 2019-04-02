@@ -1,6 +1,6 @@
 <% content_tag :li, :id => "category_#{category.id}", :class => "category-grade-#{category.grade} list-group-item", :title => category.description,
                :onclick => category.grade == 3 ? '' : "get_sub_categories(#{category.id});" do %>
-    <%= category.name %>
+    <%= category.name_locale(current_locale) %>
     <%= button_to(:destroy, url(:product_categories, :destroy, :id => category.id), :method => :delete, :class => 'btn-delete pull-right', :onsubmit => "return confirm('#{t(:sure_to_delete)}');",
                   :submit_options => { :type => :submit, :title => "#{t('action.delete')}#{category.name}", :class => 'btn btn-danger btn-xs btn-badge' }) { tag_icon(:'trash-o') } %>
     <%= link_to tag_icon(:edit), url(:product_categories, :edit, :id => category.id),

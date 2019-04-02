@@ -44,10 +44,10 @@
                 <tr class="list-row">
                     <td class="list-column"><%= product.created_at.strftime('%F %T') %></td>
                     <td class="list-column"><%= product.sku_code %></td>
-                    <td class="list-column"><%= product.name %></td>
+                    <td class="list-column"><%= product.name_locale %></td>
                     <td class="list-column"><%= product.product_category.try(:name_breadcrumb) %></td>
-                    <td class="list-column"><%= product.size %></td>
-                    <td class="list-column"><%= product.material %></td>
+                    <td class="list-column"><%= product.size_locale %></td>
+                    <td class="list-column"><%= product.material_locale %></td>
                     <td class="list-column"><%= product.pv %></td>
                     <td class="list-column list-row-action">
                         <div class='list-row-action-wrapper'>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190329072158) do
+ActiveRecord::Schema.define(version: 20190402021842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20190329072158) do
     t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_en"
+    t.string "description_en"
   end
 
   create_table "product_posts", force: :cascade do |t|
@@ -122,6 +124,10 @@ ActiveRecord::Schema.define(version: 20190329072158) do
     t.datetime "updated_at", null: false
     t.jsonb "price_list", default: {}
     t.bigint "product_category_id"
+    t.string "name_en"
+    t.text "description_en"
+    t.string "size_en"
+    t.string "material_en"
   end
 
 end

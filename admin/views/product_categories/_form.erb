@@ -1,32 +1,56 @@
-<% error = @product_category.errors.include?(:name) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-    <%= f.label :name, :class => 'control-label' %>
-    <div class='controls'>
-        <%= f.text_field :name, :required => true, :class => 'form-control input-xlarge input-with-feedback' %>
-        <span class='help-inline'><%= error ? f.error_message_on(:name) : '' %></span>
-    </div>
-</fieldset>
+<div class="row">
+    <div class="col-xs-6">
+        <% error = @product_category.errors.include?(:name) %>
+        <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+            <%= f.label :name, :class => 'control-label' %>
+            <div class="controls">
+                <%= f.text_field :name, :required => true, :class => 'form-control' %>
+                <span class="help-inline"><%= error ? f.error_message_on(:name) : '' %></span>
+            </div>
+        </fieldset>
 
-<% error = @product_category.errors.include?(:description) %>
-<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
-    <%= f.label :description, :class => 'control-label' %>
-    <div class='controls'>
-        <%= f.text_field :description, :class => 'form-control input-xlarge input-with-feedback' %>
-        <span class='help-inline'><%= error ? f.error_message_on(:description) : '' %></span>
-    </div>
-</fieldset>
+        <% error = @product_category.errors.include?(:description) %>
+        <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+            <%= f.label :description, :class => 'control-label' %>
+            <div class="controls">
+                <%= f.text_field :description, :class => 'form-control' %>
+                <span class="help-inline"><%= error ? f.error_message_on(:description) : '' %></span>
+            </div>
+        </fieldset>
 
-<% if request.action == :edit && @product_category.grade == 2 %>
-<% error = @product_category.errors.include?(:parent_id) %>
-<fieldset class="control-group <%= error ? 'has-error' : '' %>">
-    <%= f.label :parent, :class => 'control-label' %>
-    <div class="controls">
-        <%= f.select :parent_id, :options => @main_categories.map{|c| [c.name, c.id]},
-                     :class => 'form-control input-xlarge input-with-feedback' %>
-        <span class='help-inline'><%= error ? f.error_message_on(:parent_id) : '' %></span>
+        <% if request.action == :edit && @product_category.grade == 2 %>
+        <% error = @product_category.errors.include?(:parent_id) %>
+        <fieldset class="control-group <%= error ? 'has-error' : '' %>">
+            <%= f.label :parent, :class => 'control-label' %>
+            <div class="controls">
+                <%= f.select :parent_id, :options => @main_categories.map{|c| [c.name_locale(current_locale), c.id]},
+                             :class => 'form-control' %>
+                <span class="help-inline"><%= error ? f.error_message_on(:parent_id) : '' %></span>
+            </div>
+        </fieldset>
+        <% end %>
     </div>
-</fieldset>
-<% end %>
+
+    <div class="col-xs-6">
+        <% error = @product_category.errors.include?(:name_en) %>
+        <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+            <%= f.label :name_en, :class => 'control-label' %>
+            <div class="controls">
+                <%= f.text_field :name_en, :required => true, :class => 'form-control' %>
+                <span class="help-inline"><%= error ? f.error_message_on(:name) : '' %></span>
+            </div>
+        </fieldset>
+
+        <% error = @product_category.errors.include?(:description_en) %>
+        <fieldset class="control-group <%= error ? 'has-error' : ''%>">
+            <%= f.label :description_en, :class => 'control-label' %>
+            <div class="controls">
+                <%= f.text_field :description_en, :class => 'form-control' %>
+                <span class="help-inline"><%= error ? f.error_message_on(:description_en) : '' %></span>
+            </div>
+        </fieldset>
+    </div>
+</div>
 
 <div class="clearfix"></div>
 

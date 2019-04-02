@@ -74,7 +74,11 @@ Wonton::Admin.controllers :products, :map => 'products' do
 
   get :new_post, :map => ':id/new_post' do
     load_product
-    @product.product_posts.create!
+    if @product.product_posts.count < 6
+      @product.product_posts.create!
+    else
+      flash[:error] = 'post number must be less than or equal to 6'
+    end
     redirect url(:products, :edit, :id => @product.id)
   end
 

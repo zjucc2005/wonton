@@ -26,7 +26,7 @@ module Wonton
       end
 
       def product_category_params
-        resource_params_permit(:product_category, %w[name description])
+        resource_params_permit(:product_category, %w[name name_en description description_en])
       end
 
       def load_main_categories
@@ -46,7 +46,7 @@ module Wonton
       end
 
       def product_params
-        resource_params_permit(:product, %w[name sku_code thumbnail description size material price price_1 price_2 price_3 product_category_id])
+        resource_params_permit(:product, %w[name name_en sku_code thumbnail description description_en size size_en material material_en price price_1 price_2 price_3 product_category_id])
       end
 
       ##

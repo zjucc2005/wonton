@@ -5,7 +5,7 @@
     </li>
     <% @main_categories.each do |category_g1| %>
         <li class="dropdown">
-            <a class="dropdown-toggle <%= 'active' if active == category_g1.id %>"  data-toggle="dropdown"><%= category_g1.name %></a>
+            <a class="dropdown-toggle <%= 'active' if active == category_g1.id %>"  data-toggle="dropdown"><%= category_g1.name_locale %></a>
             <ul class="dropdown-menu">
                 <% category_g1.children.each do |category_g2| %>
                     <li class="category-g2">
@@ -13,12 +13,12 @@
                         <ul id="category_<%= category_g2.id %>" class="dropdown-menu right category-g3">
                             <% category_g2.children.each do |category_g3| %>
                                 <li>
-                                    <%= link_to category_g3.name, url(:products, :category, :id => category_g3.id) %>
+                                    <%= link_to category_g3.name_locale, url(:products, :category, :id => category_g3.id) %>
                                 </li>
                             <% end %>
                         </ul>
                         <% end %>
-                        <%= link_to category_g2.name, url(:products, :category, :id => category_g2.id) %>
+                        <%= link_to category_g2.name_locale, url(:products, :category, :id => category_g2.id) %>
                     </li>
                 <% end %>
             </ul>

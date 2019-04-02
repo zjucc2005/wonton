@@ -255,8 +255,8 @@ body {
 .showcase-image img.main { width: 100%; height: 100%; }
 .showcase-image img.tab { position: absolute; top: 22px; right: 22px; }
 .showcase-container.active .showcase-image img.tab { top: 15px; right: 15px; }
-.showcase-text-left { float: left; text-align: left; }
-.showcase-text-right { float: right; text-align: right; }
+.showcase-text-left { float: left; text-align: left; width: 70%; overflow: hidden; white-space: nowrap; }
+.showcase-text-right { float: right; text-align: right; width: 30%; overflow: hidden; white-space: nowrap; }
 .showcase .product-name{ font-size: 15px; color: #555; margin-top: 10px; margin-bottom: 5px; }
 .showcase .product-category { font-size: 13px; color: #bbb; }
 .showcase .product-price{ margin-top: 8px; margin-bottom: 0; }
@@ -283,9 +283,9 @@ body {
 .showcase-modal .modal-body .product-properties .text { font-size: 14px; text-align: left; }
 
 .showcase-modal .modal-body .user-grade { font-size: 16px; color: #43A9EE; float: right; margin-top: 30px; margin-bottom: 10px; }
-.showcase-modal .modal-body .operation { margin-top: 20px; font-size: 18px; margin-left: -5px; margin-right: -5px; }
+.showcase-modal .modal-body .operation { margin-top: 20px; font-size: 18px; margin-left: -5px; margin-right: -5px; white-space: nowrap; }
 .showcase-modal .modal-body .operation .col-xs-4 { padding-left: 5px; padding-right: 5px; }
-.showcase-modal .modal-body .operation img { margin-right: 10px; }
+.showcase-modal .modal-body .operation img { margin-right: 5px; }
 .showcase-modal .modal-body .operation .consult { padding: 10px; color: #fff; text-align: center; background: #00A0E9; opacity: 0.8; }
 .showcase-modal .modal-body .operation .collect { padding: 10px; color: #fff; text-align: center; background: linear-gradient(46deg, #FA970C, #FFDC01); opacity: 0.8; }
 .showcase-modal .modal-body .operation .collect.disabled, .showcase-modal .modal-body .operation .order.disabled { background: #ccc; opacity: 1; }

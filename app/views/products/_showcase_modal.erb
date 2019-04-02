@@ -12,16 +12,16 @@
                         <tr>
                             <th colspan="2" class="product-name">
                                 <%= image_tag 'icon_product_name.svg' %>
-                                <%= product.name %>
+                                <%= product.name_locale %>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr><td class="title">价格：</td><td class="string price">¥ <%= product.price %></td></tr>
-                            <tr><td class="title">尺寸：</td><td class="string"><%= product.size %></td></tr>
-                            <tr><td class="title">材质：</td><td class="string"><%= product.material %></td></tr>
+                            <tr><td class="title">尺寸：</td><td class="string"><%= product.size_locale %></td></tr>
+                            <tr><td class="title">材质：</td><td class="string"><%= product.material_locale %></td></tr>
                             <tr><td class="title">编号：</td><td class="string"><%= product.sku_code %></td></tr>
-                            <tr><td class="title">说明：</td><td class="text"><%= product.description %></td></tr>
+                            <tr><td class="title">说明：</td><td class="text"><%= product.description_locale %></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -31,12 +31,12 @@
                     <div id="myPPT_<%= product.id %>" class="product-posts">
                         <% if product.product_posts.count > 0 %>
                             <div class="product-posts-show">
-                                <%= image_tag product.product_posts.first.image.default_url, :class => 'blowup' %>
+                                <%= image_tag product.product_posts.first.image.default_url, :class => 'blowup' if product.product_posts.first.image.present? %>
                             </div>
                             <ul class="product-posts-list">
                                 <% product.product_posts.each_with_index do |post, index| %>
                                     <li><%= image_tag post.image.default_url, :onmouseover => 'postShow(this);',
-                                                      :class => index.zero? ? 'product-post active' : 'product-post' %></li>
+                                                      :class => index.zero? ? 'product-post active' : 'product-post' if post.image.present? %></li>
                                 <% end %>
                             </ul>
                             <script>$(function(){$("#myPPT_<%= product.id %> img.blowup").blowup({ width: 250, height: 250 });})</script>
@@ -45,7 +45,7 @@
 
                     <div class="operation">
                         <div class="col-xs-4">
-                            <div class="consult"><%= image_tag 'icon_consult.svg' %>咨询</div>
+                            <div class="consult"><%= image_tag 'icon_consult.svg' %><%= t(:consult) %></div>
                         </div>
                         <div class="col-xs-4">
                             <% if logged_in? %>
@@ -59,10 +59,10 @@
                         <div class="col-xs-4">
                             <% if true # logged_in? %>
                                 <% link_to url(:orders, :new), :style => 'text-decoration: none;' do %>
-                                    <div class="order"><%= image_tag 'icon_cart.svg' %>下单</div>
+                                    <div class="order"><%= image_tag 'icon_cart.svg' %><%= t(:place_order) %></div>
                                 <% end %>
                             <% else %>
-                                <div class="order disabled" onclick="alert('<%= t(:login_first) %>')"><%= image_tag 'icon_cart.svg' %>下单</div>
+                                <div class="order disabled" onclick="alert('<%= t(:login_first) %>')"><%= image_tag 'icon_cart.svg' %><%= t(:place_order) %></div>
                             <% end %>
                         </div>
                     </div>
