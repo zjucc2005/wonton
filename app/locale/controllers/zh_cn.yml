@@ -88,6 +88,7 @@ zh_cn:
   password_confirmation: "密码确认"
   pictures: "图片"
   place_order: "下单"
+  product_name: "产品名称"
   product_statistics: "产品统计"
   remember_me: "下次自动登录"
   signup_succeeded: "注册成功"

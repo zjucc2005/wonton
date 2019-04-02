@@ -88,6 +88,7 @@ en:
   password_confirmation: "Password confirmation"
   pictures: "Pictures"
   place_order: "Order"
+  product_name: "Product name"
   product_statistics: "Product statistics"
   remember_me: "remember me"
   signup_succeeded: "Sign up succeeded"

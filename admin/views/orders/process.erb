@@ -4,28 +4,32 @@
 </ul>
 <div class="tabs-content">
     <div class="col-md-8 col-md-offset-2">
-        <div class="list-group">
-            <a class="list-group-item active">
+        <ul class="list-group">
+            <li class="list-group-item active">
                 <%= t(:order_info) %>
-            </a>
-            <a class="list-group-item">
-                <h4 class="list-group-item-heading"><%= mat(:order, :account) %></h4>
-                <p class="list-group-item-text"><%= @order.account.try(:email) %></p>
-            </a>
-            <a class="list-group-item">
+            </li>
+            <li class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :status) %></h4>
                 <p class="list-group-item-text"><%= t("order_status.#{@order.status}") %></p>
-            </a>
-            <a class="list-group-item">
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :account) %></h4>
+                <p class="list-group-item-text"><%= link_to @order.account.email, url(:accounts, :edit, :id => @order.account_id) %></p>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :product) %></h4>
+                <p class="list-group-item-text"><%= link_to @order.product.name_locale, url(:products, :edit, :id => @order.product_id) %></p>
+            </li>
+            <li class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :content) %></h4>
                 <p class="list-group-item-text"><%= @order.content %></p>
-            </a>
+            </li>
             <% unless @order.status == 'closed' %>
-            <a class="list-group-item" style="text-align: right;">
+            <li class="list-group-item" style="text-align: right;">
                 <%= button_to(:close, url(:orders, :close, :id => @order.id), :method => :put, :onsubmit => "return confirm('#{t(:sure_to_close)}');",
                                 :submit_options => { :type => :submit, :class => 'btn btn-success' }) { "#{tag_icon(:check)} #{t('action.close')}".html_safe } %>
-            </a>
+            </li>
             <% end %>
-        </div>
+        </ul>
     </div>
 </div>

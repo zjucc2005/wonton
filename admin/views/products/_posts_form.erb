@@ -13,10 +13,17 @@
                             <%= image_tag post.image.present? ? post.image.default_url : 'alt.jpg' %>
                         </div>
                     </div>
+                    <%= content_tag :button, tag_icon(:'search-plus'), :type => 'button', :class => 'btn btn-default btn-xs product-post-btn', :data => { :toggle => 'modal', :target => "#postModal_#{post.id}"} %>
                     <%= content_tag :button, tag_icon(:upload), :type => 'submit', :class => 'btn btn-primary btn-xs product-post-btn', :title => 'upload picture' %>
                 <% end %>
                 <%= button_to(:product_post, url(:product_posts, :destroy, :id => post.id), :method => :delete, :onsubmit => "return confirm('#{t(:sure_to_delete)}');",
                               :submit_options => { :type => :submit, :class => 'btn btn-danger btn-xs product-post-btn', :title => 'delete picture' }) { tag_icon(:'trash-o') } %>
+                </div>
+
+                <div class="modal fade" id="postModal_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="cursor: zoom-out;">
+                    <div class="modal-dialog" align="center">
+                        <%= image_tag post.image.present? ? post.image.default_url : 'alt.jpg', :onclick => "$(this).parent().parent().modal('hide');" %>
+                    </div>
                 </div>
             <% end %>
 

@@ -1,13 +1,20 @@
 <%= partial 'shared/header', :locals => { :active => 'product' } %>
 
 <div class="container">
-    <% form_for :order, url(:orders, :create), :method => :post, :class => 'form-horizontal', :style => 'margin-top: 20px;' do |f| %>
+    <% form_for :order, url(:orders, :create, :product_id => params[:product_id]), :method => :post, :class => 'form-horizontal', :style => 'margin-top: 20px;' do |f| %>
         <div class="col-xs-8 col-xs-offset-2">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title"><%= t(:order_info) %></h3>
                 </div>
                 <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h4 class="list-group-item-heading"><%= t(:product_name) %></h4>
+                            <p class="list-group-item-text"><%= @product.name_locale %></p>
+                        </li>
+                    </ul>
+
                     <% error = @order.errors.include?(:content) %>
                     <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
                         <%= f.label :content, :class => 'control-label' %>

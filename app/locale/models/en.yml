@@ -73,6 +73,7 @@ en:
         content: "Content"
         created_at: "Created at"
         account: "User"
+        product: "Product"
 
   will_paginate:
     previous_label: "&lt;"

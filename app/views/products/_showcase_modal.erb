@@ -57,8 +57,8 @@
                             <% end %>
                         </div>
                         <div class="col-xs-4">
-                            <% if true # logged_in? %>
-                                <% link_to url(:orders, :new), :style => 'text-decoration: none;' do %>
+                            <% if logged_in? %>
+                                <% link_to url(:orders, :new, :product_id => product.id), :style => 'text-decoration: none;' do %>
                                     <div class="order"><%= image_tag 'icon_cart.svg' %><%= t(:place_order) %></div>
                                 <% end %>
                             <% else %>

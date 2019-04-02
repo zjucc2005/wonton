@@ -25,6 +25,7 @@
             <thead>
             <tr>
                 <th class="header"><%= mat(:order, :created_at) %></th>
+                <th class="header"><%= mat(:order, :product) %></th>
                 <th class="header"><%= mat(:order, :content) %></th>
                 <th class="header"><%= mat(:order, :status) %></th>
                 <th class="header"><%= mat(:order, :account) %></th>
@@ -36,6 +37,7 @@
             <% @orders.each do |order| %>
                 <tr class="list-row">
                     <td class="list-column"><%= order.created_at.strftime('%F %T') %></td>
+                    <td class="list-column"><%= order.product.try(:name_locale) %></td>
                     <td class="list-column"><%= link_to truncate(order.content, length: 20), url(:orders, :process, :id => order.id) %></td>
                     <td class="list-column"><%= t("order_status.#{order.status}") %></td>
                     <td class="list-column"><%= link_to(order.account.email, url(:accounts, :edit, :id => order.account_id)) if order.account.present? %></td>

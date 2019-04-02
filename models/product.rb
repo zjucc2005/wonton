@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
   has_many :product_access_logs, :class_name => 'ProductAccessLog', :dependent => :destroy
 
   has_many :product_posts, :class_name => 'ProductPost', :dependent => :destroy
+  has_many :orders, :class_name => 'Order', :dependent => :destroy
 
   # Validations
   validates_presence_of :name

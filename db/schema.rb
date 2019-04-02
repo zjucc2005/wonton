@@ -75,11 +75,13 @@ ActiveRecord::Schema.define(version: 20190402021842) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "account_id"
+    t.bigint "product_id"
     t.string "status"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_orders_on_account_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "product_access_logs", force: :cascade do |t|

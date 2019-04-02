@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Order < ActiveRecord::Base
   belongs_to :account, :class_name => 'Account'
+  belongs_to :product, :class_name => 'Product'
   validates_inclusion_of :status, :in => %w[new readed closed]
 
   before_validation :setup, :on => :create

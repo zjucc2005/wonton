@@ -111,6 +111,7 @@ zh_cn:
         content: "内容"
         created_at: "创建时间"
         account: "用户"
+        product: "产品"
 
   will_paginate:
     previous_label: "&lt;"

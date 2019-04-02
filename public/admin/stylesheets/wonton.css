@@ -78,4 +78,4 @@ li.list-group-item.category-plus a:hover{ background: #5bc0de; color: #fff; }
 .product-post { margin-bottom: 10px; text-align: center; padding: 4px; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); }
 .product-post.editing { border: 1px solid #a94442;}
 .product-post .pic-upload { padding: 0; border: none; box-shadow: none; margin-bottom: 5px; }
-.product-post-btn { width: 48%; }
+.product-post-btn { width: 32%; }

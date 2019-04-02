@@ -7,8 +7,8 @@ module Wonton
         @main_categories = ProductCategory.where(grade: 1).order(:created_at => :asc)
       end
 
-      def load_product
-        @product = Product.where(id: params[:id]).first
+      def load_product(product_id=:id)
+        @product = Product.where(id: params[product_id]).first
         halt(404) if @product.nil?
       end
 
