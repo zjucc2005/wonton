@@ -3,6 +3,7 @@ body {
     font-family: "microsoft yahei";
 }
 .control-label { white-space: nowrap; }
+.alert{ margin-bottom: 0; }
 .caret.right {
     display: inline-block;
     width: 0;
@@ -100,6 +101,7 @@ body {
     border-bottom: 2px solid #33B1EA;
     border-radius: 0;
     margin-bottom: 0;
+    background: #fff;
 }
 .hy-navbar-logo{
     float: left;

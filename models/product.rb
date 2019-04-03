@@ -24,7 +24,7 @@ class Product < ActiveRecord::Base
 
   before_validation :setup, :on => :create
 
-  extend ::FieldLocale
+  include ::FieldLocale
   field_locale(:name, :description, :size, :material)
 
   ##

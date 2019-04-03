@@ -1,13 +1,13 @@
 # encoding: utf-8
 Wonton::App.controllers :orders, :map => 'orders' do
-  get :new do
+  get :new, :map => 'new/:product_id' do
     halt(404) unless logged_in?
     @order = Order.new
     load_product(:product_id)
     render :new
   end
 
-  post :create do
+  post :create, :map => 'create/:product_id' do
     load_product(:product_id)
     @order = Order.new(order_params)
     @order.account = current_account
