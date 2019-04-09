@@ -214,6 +214,9 @@ body {
 #hy-logged-form form button { width: 100%; color: #333; white-space: nowrap; border: none; padding: 5px 20px; background: #fff; text-align: left; }
 #hy-logged-form form button:hover { background: linear-gradient(140deg, #00A0E9, #F68AFF); color: #fff; }
 
+/*-- Company --*/
+.intro-text { font-size: 18px; line-height: 160%; margin-bottom: 20px; }
+.intro-text.first-section{ margin-top: 100px; }
 
 /*-- Contact --*/
 .contact-bgleft{ width: 548px; height: 617px; position: absolute; left: 0; top: 128px; z-index: -1; background: url('/images/bg_contact1.svg') no-repeat; }

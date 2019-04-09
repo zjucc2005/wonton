@@ -29,14 +29,14 @@
                     <!--<span class="user-grade">欢迎二级用户</span>-->
 
                     <div id="myPPT_<%= product.id %>" class="product-posts">
-                        <% if product.product_posts.count > 0 %>
+                        <% if product.product_posts.where.not(image: nil).count > 0 %>
                             <div class="product-posts-show">
-                                <%= image_tag product.product_posts.first.image.default_url, :class => 'blowup' if product.product_posts.first.image.present? %>
+                                <%= image_tag product.product_posts.where.not(image: nil).first.image.default_url, :class => 'blowup' %>
                             </div>
                             <ul class="product-posts-list">
-                                <% product.product_posts.each_with_index do |post, index| %>
+                                <% product.product_posts.where.not(image: nil).each_with_index do |post, index| %>
                                     <li><%= image_tag post.image.default_url, :onmouseover => 'postShow(this);',
-                                                      :class => index.zero? ? 'product-post active' : 'product-post' if post.image.present? %></li>
+                                                      :class => index.zero? ? 'product-post active' : 'product-post' %></li>
                                 <% end %>
                             </ul>
                             <script>$(function(){$("#myPPT_<%= product.id %> img.blowup").blowup({ width: 250, height: 250 });})</script>
