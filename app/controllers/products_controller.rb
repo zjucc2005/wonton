@@ -3,7 +3,7 @@ Wonton::App.controllers :products, :map => '/products' do
   # 新品
   get :new_arrival do
     load_main_categories
-    @products = Product.all.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 8)
+    @products = Product.where('created_at >= ?', Time.now - 1.year).order(:created_at => :desc).paginate(:page => params[:page], :per_page => 8)
     render :new_arrival
   end
 

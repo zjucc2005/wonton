@@ -107,6 +107,21 @@ body {
     float: left;
     margin-top: 31px;
 }
+.hy-navbar-logo.blink::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: blink 1s ease-in 1s infinite;
+    animation: blink 1s ease-in 1s infinite;
+}
+@-webkit-keyframes blink { from {left: 10px;} to {left: 320px;} }
+@-o-keyframes blink { from {left: 10px;} to {left: 320px;} }
+@-moz-keyframes blink { from {left: 10px;} to {left: 320px;} }
+@keyframes blink { from {left: -100px;} to {left: 320px;} }
 .hy-navbar-menu{
     float: right;
     margin-top: 27px;
