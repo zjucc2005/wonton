@@ -251,17 +251,20 @@ body {
 .product-bgright { width: 937px; height: 672px; position: absolute; right: 0; top: 150px; z-index: -1; background: url('/images/bg_product2.svg') no-repeat; }
 .product-bg{ width: 100%; height: 732px; position: absolute; top: 90px; z-index: -1; background: #F0F5F8; }
 
-.product-navbar-nav{ margin-top: 40px; margin-bottom: 10px; width: 100%; }
-.product-navbar-nav > li { padding: 0 10px; }
-.product-navbar-nav > li > a { font-size: 22px; color: #000; }
+.product-navbar-nav{ margin-top: 40px; margin-bottom: 10px; margin-left: -15px; width: 100%; }
+.product-navbar-nav > li { padding: 4px 12px; }
+.product-navbar-nav > li > a { font-size: 18px; color: #000; padding: 4px 0; }
 .product-navbar-nav > li > a.active { color:  #00A0E9; }
 .product-navbar-nav > li{ position: relative; display: block; float: left; }
 .product-navbar-nav > li > a:hover, .product-navbar-nav > li > a:focus, .product-navbar-nav > li > a.active, .product-navbar-nav > li.open > a {
     text-decoration: none;
-    background: url('/images/gradient_4px.png') no-repeat;
-    background-position: 50% 90%;
+    border-bottom: 4px solid #428bca;
+    -webkit-border-image: url('/images/gradient_4px.png') 1 0 1;
+    -o-border-image: url('/images/gradient_4px.png') 1 0 1;
+    border-image: url('/images/gradient_4px.png') 1 0 1;
 }
-.product-navbar-nav > li .tab { position: absolute; top: 15px; right: 0; }
+.product-navbar-nav .alpha a, .product-navbar-nav .alpha span{ display: inline-block; }
+/*.product-navbar-nav > li .tab { margin-left: 0; }*/
 
 .product-navbar-nav .dropdown-menu { font-size: 16px; border: none; border-radius: 0; }
 .product-navbar-nav .dropdown-menu > li > a { padding: 5px 20px; }
