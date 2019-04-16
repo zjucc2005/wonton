@@ -28,6 +28,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mime-types (2.99.3)
+    mini_magick (4.9.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
@@ -120,6 +121,7 @@ DEPENDENCIES
   carrierwave (~> 1.2.2)
   database_cleaner
   erubi (~> 1.6)
+  mini_magick (~> 4.9)
   padrino (= 0.14.3)
   pg
   rack-test

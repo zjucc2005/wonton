@@ -11,6 +11,9 @@
                         <div class="pic-upload">
                             <%= f.file_field :image, :class => 'inbox-file', :onchange => 'editing_product_post(this);' %>
                             <%= image_tag post.image.present? ? post.image.default_url : 'alt.jpg' %>
+                            <% if post.image.present? %>
+                                <p class="image-info"><%= post.image.friendly_image_info %></p>
+                            <% end %>
                         </div>
                     </div>
                     <%= content_tag :button, tag_icon(:'search-plus'), :type => 'button', :class => 'btn btn-default btn-xs product-post-btn', :data => { :toggle => 'modal', :target => "#postModal_#{post.id}"} %>
@@ -21,11 +24,13 @@
                 </div>
 
                 <div class="modal fade" id="postModal_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="cursor: zoom-out;">
-                    <div class="modal-dialog" align="center">
+                    <div class="modal-dialog" align="center" style="width: 100%;">
                         <%= image_tag post.image.present? ? post.image.default_url : 'alt.jpg', :onclick => "$(this).parent().parent().modal('hide');" %>
                     </div>
                 </div>
             <% end %>
+
+            <span class="help-inline"><%= t(:resolution_best_or_equal_ratio, :width => 352, :height => 256) %></span>
 
             <%= link_to tag_icon(:plus), url(:products, :new_post, :id => product.id), :class => 'btn btn-info', :style => 'display: block;' %>
         </div>

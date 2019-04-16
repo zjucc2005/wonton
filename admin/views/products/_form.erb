@@ -40,12 +40,13 @@
                             <% if @product.thumbnail.present? %>
                                 <%= f.file_field :thumbnail, :class => 'inbox-file' %>
                                 <%= image_tag @product.thumbnail.default_url %>
+                                <span class="image-info"><%= @product.thumbnail.friendly_image_info %></span>
                             <% else %>
                                 <%= f.file_field :thumbnail, :required => true, :class => 'inbox-file' %>
                                 <%= image_tag 'alt.jpg' %>
                             <% end %>
                         </div>
-                        <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : '' %></span>
+                        <span class='help-inline'><%= error ? f.error_message_on(:thumbnail) : t(:resolution_best, :width => 248, :height => 174) %></span>
                     </div>
                 </fieldset>
             </div>

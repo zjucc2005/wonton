@@ -27,6 +27,7 @@ gem 'pg'
 gem 'will_paginate', '~> 3.0'
 gem 'carrierwave', '~> 1.2.2'
 gem 'roo', '~> 2.7', '>= 2.7.1'
+gem 'mini_magick', '~> 4.9'
 # Test requirements
 group :test do
   gem 'rspec'

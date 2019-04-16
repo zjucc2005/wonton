@@ -302,9 +302,9 @@ body {
 .showcase-modal .modal-body .product-properties th{ border: none; padding-bottom: 10px; }
 .showcase-modal .modal-body .product-properties td{ border: none; padding: 7px; }
 .showcase-modal .modal-body .product-properties .title { font-size: 16px; color: #787A84; white-space: nowrap; text-align: left; }
-.showcase-modal .modal-body .product-properties .string { font-size: 16px; color: #2B2F39; text-align: right; }
+.showcase-modal .modal-body .product-properties .string { font-size: 16px; color: #2B2F39; text-align: left; }
 .showcase-modal .modal-body .product-properties .price { color: #E64949; }
-.showcase-modal .modal-body .product-properties .text { font-size: 14px; text-align: left; }
+.showcase-modal .modal-body .product-properties .text { font-size: 14px; text-align: left; width: 80%; }
 
 .showcase-modal .modal-body .user-grade { font-size: 16px; color: #43A9EE; float: right; margin-top: 30px; margin-bottom: 10px; }
 .showcase-modal .modal-body .operation { margin-top: 20px; font-size: 18px; margin-left: -5px; margin-right: -5px; white-space: nowrap; }

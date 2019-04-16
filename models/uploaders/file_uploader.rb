@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'mini_magick'
 class FileUploader < CarrierWave::Uploader::Base
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
@@ -21,6 +22,16 @@ class FileUploader < CarrierWave::Uploader::Base
   def default_url
     store_dir.match(/^public(.+)/)
     "#{$1}/#{file.filename}"
+  end
+
+  # Encapsulated by MiniMagick::Image class
+  def mini_magick
+    ::MiniMagick::Image.new path
+  end
+
+  def friendly_image_info
+    _mini_magick_ = mini_magick
+    "#{_mini_magick_.dimensions.join('x')}, #{_mini_magick_.human_size}, #{_mini_magick_.mime_type}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
