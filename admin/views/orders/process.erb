@@ -19,6 +19,11 @@
             <li class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :product) %></h4>
                 <p class="list-group-item-text"><%= link_to @order.product.name_locale, url(:products, :edit, :id => @order.product_id) %></p>
+                <%= image_tag @order.product.thumbnail.default_url, :class => 'thumbnail', :style => 'height: 150px; max-width: 100%;' %>
+            </li>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading"><%= mat(:order, :quantity) %></h4>
+                <p class="list-group-item-text"><%= @order.quantity %></p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading"><%= mat(:order, :content) %></h4>

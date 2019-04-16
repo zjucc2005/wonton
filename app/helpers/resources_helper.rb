@@ -18,7 +18,7 @@ module Wonton
       end
 
       def order_params
-        resource_params_permit(:order, %w[content])
+        resource_params_permit(:order, %w[content quantity])
       end
 
     end

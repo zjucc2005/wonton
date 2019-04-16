@@ -74,6 +74,7 @@ en:
         created_at: "Created at"
         account: "User"
         product: "Product"
+        quantity: "Quantity"
 
   will_paginate:
     previous_label: "&lt;"

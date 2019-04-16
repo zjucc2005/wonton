@@ -2,24 +2,39 @@
 
 <div class="container">
     <% form_for :order, url(:orders, :create, :product_id => params[:product_id]), :method => :post, :class => 'form-horizontal', :style => 'margin-top: 20px;' do |f| %>
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title"><%= t(:order_info) %></h3>
                 </div>
                 <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h4 class="list-group-item-heading"><%= t(:product_name) %></h4>
-                            <p class="list-group-item-text"><%= @product.name_locale %></p>
-                        </li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= label_tag t(:product_thumbnail), :class => 'control-label' %>
+                            <%= image_tag @product.thumbnail.default_url, :class => 'thumbnail', :style => 'max-width: 100%; max-height: 100px;' %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= label_tag t(:product_name), :class => 'control-label' %>
+                            <p><%= @product.name_locale %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <% error = @order.errors.include?(:quantity) %>
+                            <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+                                <%= f.label :quantity, :class => 'control-label' %>
+                                <div class='controls'>
+                                    <%= f.number_field :quantity, :class => 'form-control', :required => true, :min => 1 %>
+                                    <span class='help-inline'><%= error ? f.error_message_on(:content) : '' %></span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
 
                     <% error = @order.errors.include?(:content) %>
                     <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
                         <%= f.label :content, :class => 'control-label' %>
                         <div class='controls'>
-                            <%= f.text_area :content, :class => 'form-control', :required => true, :rows => 8, :style => 'resize: vertical;' %>
+                            <%= f.text_area :content, :class => 'form-control', :required => true, :rows => 8,
+                                            :style => 'resize: vertical;', :placeholder => t(:order_hint) %>
                             <span class='help-inline'><%= error ? f.error_message_on(:content) : '' %></span>
                         </div>
                     </fieldset>
